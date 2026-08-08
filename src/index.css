@@ -1,0 +1,52 @@
+/* assets/styles/globals.css */
+@import "tailwindcss";
+
+@theme {
+ 
+  --color-primary-50: #f0f0fe;
+  --color-primary-100: #e0e1fd;
+  --color-primary-200: #c2c3fb;
+  --color-primary-300: #a3a5f8;
+  --color-primary-400: #8587f4;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f52d9;
+  --color-primary-700: #3c3fb8;
+  --color-primary-800: #2a2c8f;
+  --color-primary-900: #1a1b5c;
+
+  --color-secondary-50: #f5f3fe;
+  --color-secondary-100: #ebe7fd;
+  --color-secondary-200: #d7cffb;
+  --color-secondary-300: #c3b7f9;
+  --color-secondary-400: #a99ff8;
+  --color-secondary-500: #8b5cf6;
+  --color-secondary-600: #7440e0;
+  --color-secondary-700: #5a2fb8;
+  --color-secondary-800: #41218f;
+  --color-secondary-900: #291560;
+
+  --color-tertiary-50: #fdf3e7;
+  --color-tertiary-100: #f9e2c5;
+  --color-tertiary-200: #eec48a;
+  --color-tertiary-300: #e0a355;
+  --color-tertiary-400: #cc8228;
+  --color-tertiary-500: #b95f00;
+  --color-tertiary-600: #944c00;
+  --color-tertiary-700: #6f3900;
+  --color-tertiary-800: #4a2600;
+  --color-tertiary-900: #2b1600;
+
+  --color-neutral-50: #f7f8f9;
+  --color-neutral-100: #eceef1;
+  --color-neutral-200: #d5d9e0;
+  --color-neutral-300: #adb3c0;
+  --color-neutral-400: #8890a0;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #4f5a6d;
+  --color-neutral-700: #3c4453;
+  --color-neutral-800: #282d38;
+  --color-neutral-900: #15171d;
+
+
+  --font-sans: "Geist", system-ui, sans-serif;
+}
