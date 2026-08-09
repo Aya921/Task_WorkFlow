@@ -1,14 +1,18 @@
-import { StorageKeys } from "./constants/storage_keys"
-
+import { SignupProvider } from "./features/auth/presentation/signup/context/signup_provider";
+import { SignUpPage } from "./features/auth/presentation/signup/pages/signup_page";
+import { BackGroundLayout } from "./layout/bg_layout";
 
 function App() {
-  
   return (
-    
+   <SignupProvider>
+      <BackGroundLayout>
+      <SignUpPage />
+    </BackGroundLayout>
 
- <h1>{StorageKeys.TOKEN}</h1>
+   </SignupProvider>
+  
 
-  )
+  );
 }
 
-export default App
+export default App;
