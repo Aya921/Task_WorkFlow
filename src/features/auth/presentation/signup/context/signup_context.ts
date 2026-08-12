@@ -3,11 +3,11 @@ import { createContext } from "react";
 type SignupContextType = {
     totalSteps: number;
     currentStep: number;
-    maxStepReached: number;
+   // maxStepReached: number;
     
     nextStep: () => void;
     previousStep: () => void;
-    goToStep: (step: number) => void;
+    //goToStep: (step: number) => void;
 
 }
 

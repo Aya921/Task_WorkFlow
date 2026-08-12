@@ -38,10 +38,10 @@ export const SignupProgressBar = () => {
         {signupSteps.map((step) => (
           <div
             key={step.stepNumber}
+            aria-current={step.stepNumber === currentStep ? "step" : undefined}
             className="flex flex-col items-center justify-center gap-2"
           >
             <div
-              //   for current step
               className={getStepClassNameForOuterCircle(step.stepNumber)}
             >
               <div className={getStepClassNameForInnerCircle(step.stepNumber)}>
