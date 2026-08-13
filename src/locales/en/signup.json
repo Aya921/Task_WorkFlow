@@ -1,0 +1,36 @@
+{
+ 
+    "title": "Create Your Account",
+    "description": "Let's get your basic details set up for a secure environment.",
+
+    "inputs": {
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Mohamed Salah Saber"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "mohamedsalah@gmail.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      }
+    },
+
+    "passwordRequirements": {
+      "characters": "8+ Characters",
+      "uppercase": "Uppercase Letter",
+      "number": "Number",
+      "specialCharacter": "Special Character"
+    },
+
+    "buttons": {
+      "continue": "Continue to Verification"
+    },
+
+    "links": {
+      "alreadyHaveAccount": "Already Have Account?",
+      "loginHere": "Login Here"
+    }
+  }

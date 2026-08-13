@@ -1,13 +1,18 @@
+import { useTranslation } from "react-i18next";
+import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 
 export const SignupHeader = () => {
+  const { t } = useTranslation("signup");
+
   return (
-   <div>
-          <span className=" font-semibold text-[30px]">
-            Create Your Account
-          </span>
-          <p className="text-[16px]">
-            Let's get your basic details set up for a secure environment.
-          </p>
-        </div>
+    <div>
+      <span className={`font-semibold ${FONT_STYLES.h1}`}>
+        {t("title")}
+      </span>
+
+      <p className={` ${FONT_STYLES.body}`}>
+        {t("description")}
+      </p>
+    </div>
   );
 };
