@@ -1,8 +1,8 @@
 import { LockKeyhole, Mail, User } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { InputField } from "../../../../../shared/components/input_field";
-import { type SignupFormData } from "../types/signup_schema";
+import { InputField } from "../../../../../../shared/components/input_field";
+import { type SignupFormData } from "../../types/signup_schema";
 import { SignupPasswordCheckList } from "./signup_passCheck";
 
 const strengthSteps = [1, 2, 3, 4];

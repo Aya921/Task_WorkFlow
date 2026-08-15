@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes } from "react";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   activeClassName: string;
-  disabledClassName: string;
+  disabledClassName?: string;
 };
 
 export const Button = ({

@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import { FONT_STYLES } from "../../../../../../assets/fonts/font_style";
 
 type SignupPasswordCheckListProps = {
   label: string;

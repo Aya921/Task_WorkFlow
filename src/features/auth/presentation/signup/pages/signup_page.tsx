@@ -6,9 +6,8 @@ import { UserCreateAccountAnimation } from "../../../../../animations/user_creat
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { Button } from "../../../../../shared/components/button";
 import { TextLink } from "../../../../../shared/components/text_link";
-import { SignupHeader } from "../components/signup_header";
-import { SignupInputs } from "../components/signup_inputs";
-import { SignupLayout } from "../layout/signup_layout";
+import { SignupHeader } from "../components/create_account/signup_header";
+import { SignupInputs } from "../components/create_account/signup_inputs";
 import { signupSchema, type SignupFormData } from "../types/signup_schema";
 
 export const SignUpPage = () => {
@@ -23,9 +22,9 @@ export const SignUpPage = () => {
   } = methods;
 
   return (
-    <FormProvider {...methods}>
-      <SignupLayout>
-        <div className="flex flex-col gap-6 overflow-x-hidden p-4 sm:p-6 md:p-8 lg:flex-row lg:gap-8 lg:p-10">
+   
+      <FormProvider {...methods}>
+        <div className="flex flex-col gap-6 overflow-x-hidden lg:flex-row lg:gap-8 lg:p-10">
           <div className="flex w-full min-w-0 flex-col gap-4 lg:flex-[2]">
             <SignupHeader />
             <SignupInputs />
@@ -38,7 +37,11 @@ export const SignUpPage = () => {
               <span className={FONT_STYLES.button}>
                 {t("buttons.continue")}
               </span>
-              <ArrowRight size={20} className="shrink-0 rtl:rotate-180" aria-hidden />
+              <ArrowRight
+                size={20}
+                className="shrink-0 rtl:rotate-180"
+                aria-hidden
+              />
             </Button>
 
             <TextLink
@@ -52,7 +55,7 @@ export const SignUpPage = () => {
             <UserCreateAccountAnimation />
           </div>
         </div>
-      </SignupLayout>
-    </FormProvider>
+      </FormProvider>
+   
   );
 };
