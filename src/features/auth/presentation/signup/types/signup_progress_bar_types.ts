@@ -1,14 +1,19 @@
-export type SignupProgressBarTypes= "Account"|"Verification"|"Workspace"|"GitHub"|"Success";
+export type SignupStepKey =
+  | "account"
+  | "verification"
+  | "workspace"
+  | "github"
+  | "success";
 
-export type SignupCircleContent={
-    stepNumber:number;
-    stepName:SignupProgressBarTypes;
-}
+export type SignupCircleContent = {
+  stepNumber: number;
+  stepKey: SignupStepKey;
+};
 
 export const signupSteps: SignupCircleContent[] = [
-  { stepNumber: 1, stepName: "Account" },
-  { stepNumber: 2, stepName: "Verification" },
-  { stepNumber: 3, stepName: "Workspace" },
-  { stepNumber: 4, stepName: "GitHub" },
-  { stepNumber: 5, stepName: "Success" }
+  { stepNumber: 1, stepKey: "account" },
+  { stepNumber: 2, stepKey: "verification" },
+  { stepNumber: 3, stepKey: "workspace" },
+  { stepNumber: 4, stepKey: "github" },
+  { stepNumber: 5, stepKey: "success" },
 ];

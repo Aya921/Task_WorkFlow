@@ -1,5 +1,6 @@
 import { Eye, EyeOff, type LucideIcon } from "lucide-react";
 import { useState, type InputHTMLAttributes } from "react";
+import { FONT_STYLES } from "../../assets/fonts/font_style";
 
 type Status = "default" | "error" | "success";
 
@@ -26,49 +27,70 @@ export const InputField = ({
   label,
   icon: Icon,
   className = "",
-  status,
+  status = "default",
   message,
   ...props
 }: InputFieldProps) => {
   const [showPass, setShowPass] = useState(false);
-  const toggleShowPassword = () => {
-    setShowPass((prev) => !prev);
-  };
-  const chooseType=()=>{
 
-    if(props.type=="password"&&showPass) return "text"
-    return props.type
-  }
-  const inputType =chooseType()
+  const inputType =
+    props.type === "password" && showPass ? "text" : props.type;
+
   return (
-    <div className="flex flex-col gap-2 ">
-      <span className="text-[14px] font-medium">{label}</span>
-      <div className="relative ">
+    <div className="flex flex-col gap-2">
+      <label className={FONT_STYLES.label}>{label}</label>
+
+      <div className="relative">
         <input
           {...props}
           type={inputType}
-          className={`pl-10 py-2 rounded-xl w-full border-2 border-secondary-300 focus:ring-2 focus:ring-primary-500  focus:border-transparent
-             hover:border-secondary-500 transition-all shadow-sm outline-none text-[14px] ${statusClasses[status ?? "default"]}`}
+          className={`
+            w-full
+            h-11 md:h-12
+            rounded-xl
+            border-2
+            outline-none
+            shadow-sm
+            transition-all
+            ${Icon ? "pl-10" : "pl-4"}
+            ${props.type === "password" ? "pr-10" : "pr-4"}
+            ${FONT_STYLES.input}
+            ${statusClasses[status]}
+            focus:ring-2
+            focus:ring-primary-500
+            focus:border-transparent
+            hover:border-secondary-500
+            ${className}
+          `}
         />
+
         {Icon && (
-          <span className="absolute top-1/2 -translate-y-1/2 left-3 text-secondary-400 ">
-            <Icon size={20} />
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary-400">
+            <Icon className="h-4 w-4 md:h-5 md:w-5" />
           </span>
         )}
 
-        {props.type == "password" && (
+        {props.type === "password" && (
           <button
             type="button"
-            onClick={toggleShowPassword}
-            className="absolute top-1/2 -translate-y-1/2 right-3 text-secondary-400 hover:text-secondary-600"
+            onClick={() => setShowPass((prev) => !prev)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary-400 transition-colors hover:text-secondary-600"
           >
-            {showPass ? <EyeOff size={20} /> : <Eye size={20} />}
+            {showPass ? (
+              <EyeOff className="h-4 w-4 md:h-5 md:w-5" />
+            ) : (
+              <Eye className="h-4 w-4 md:h-5 md:w-5" />
+            )}
           </button>
         )}
       </div>
 
-      {message && props.type != "password" && (
-        <span className={` text-sm ${messageClasses[status ?? "default"]}`}>
+      {message && (
+        <span
+          className={`${FONT_STYLES.caption} ${
+            messageClasses[status]
+          }`}
+        >
           {message}
         </span>
       )}

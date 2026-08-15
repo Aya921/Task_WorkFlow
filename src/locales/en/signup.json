@@ -32,5 +32,15 @@
     "links": {
       "alreadyHaveAccount": "Already Have Account?",
       "loginHere": "Login Here"
+    },
+
+    "progress": {
+      "steps": {
+        "account": "Account",
+        "verification": "Verification",
+        "workspace": "Workspace",
+        "github": "GitHub",
+        "success": "Success"
+      }
     }
   }

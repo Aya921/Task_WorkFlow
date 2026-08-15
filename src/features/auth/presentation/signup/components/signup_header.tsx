@@ -5,14 +5,9 @@ export const SignupHeader = () => {
   const { t } = useTranslation("signup");
 
   return (
-    <div>
-      <span className={`font-semibold ${FONT_STYLES.h1}`}>
-        {t("title")}
-      </span>
-
-      <p className={` ${FONT_STYLES.body}`}>
-        {t("description")}
-      </p>
+    <div className="flex flex-col gap-2">
+      <h1 className={FONT_STYLES.h1}>{t("title")}</h1>
+      <p className={FONT_STYLES.body}>{t("description")}</p>
     </div>
   );
 };
