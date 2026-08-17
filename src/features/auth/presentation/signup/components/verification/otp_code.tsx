@@ -1,8 +1,11 @@
 import { OTPInput } from "input-otp";
-import { useState } from "react";
 
-export const OtpCode = () => {
-  const [otp, setOtp] = useState("");
+type otpCodeProps={
+  otp:string
+  setOtp:(otpNumber: string) => void
+}
+
+export const OtpCode = ({otp,setOtp}:otpCodeProps) => {
   const otpNumbers = 6;
   return (
     <div className="w-full my-10">
