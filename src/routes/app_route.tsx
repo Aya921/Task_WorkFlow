@@ -26,6 +26,7 @@ import { Routes, Route } from "react-router-dom";
 import { RegisterLayout } from "../features/auth/presentation/signup/layout/register_layout";
 import { ROUTES } from "./route_path";
 import { LazyLoader } from "../shared/components/lazy_loader";
+import { CreateWorkSpacePage } from "../features/auth/presentation/signup/pages/workspace_page";
 
 
 const CreateUserPage = lazy(() =>
@@ -46,6 +47,8 @@ export const AppRoutes = () => {
         <Route element={<RegisterLayout />}>
           <Route path={"/"} element={<CreateUserPage />} />
           <Route path={ROUTES.VERIFICATION} element={<VerificationPage />} />
+          <Route path={ROUTES.CREATE_WORKSPACE} element={<CreateWorkSpacePage />} />
+
         </Route>
       </Routes>
     </Suspense>

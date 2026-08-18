@@ -18,13 +18,13 @@ export const FONT_STYLES = {
 
   // Body
   bodyLg:
-    "text-base md:text-lg font-normal leading-relaxed",
+    "text-base md:text-lg font-normal",
 
   body:
-    "text-sm md:text-base font-normal leading-relaxed",
+    "text-sm md:text-base font-normal ",
 
   bodySm:
-    "text-xs md:text-sm font-normal leading-relaxed",
+    "text-xs md:text-sm font-normal",
 
   // UI Text
   button:

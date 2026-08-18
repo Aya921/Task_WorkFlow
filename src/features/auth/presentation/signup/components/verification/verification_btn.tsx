@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FONT_STYLES } from "../../../../../../assets/fonts/font_style";
 import { Button } from "../../../../../../shared/components/button";
 import { useSignupContext } from "../../hooks/use_signup_context";
+import { ROUTES } from "../../../../../../routes/route_path";
 
 type VerificationBtnProps = {
   otp: string;
@@ -37,6 +38,7 @@ export const VerificationBtn = ({ otp, otpNumbers }: VerificationBtnProps) => {
       <Button
         onClick={() => {
           nextStep();
+          navigate(ROUTES.CREATE_WORKSPACE)
         }}
         disabled={!isValidOtp}
         className="w-full sm:max-w-sm"
