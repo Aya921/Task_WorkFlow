@@ -1,29 +1,36 @@
 import { OTPInput } from "input-otp";
+import { FONT_STYLES } from "../../../../../../assets/fonts/font_style";
 
-type otpCodeProps={
-  otp:string
-  setOtp:(otpNumber: string) => void
-}
+export const OTP_LENGTH = 6;
 
-export const OtpCode = ({otp,setOtp}:otpCodeProps) => {
-  const otpNumbers = 6;
+type OtpCodeProps = {
+  otp: string;
+  setOtp: (otpNumber: string) => void;
+  otpLength?: number;
+};
+
+export const OtpCode = ({
+  otp,
+  setOtp,
+  otpLength = OTP_LENGTH,
+}: OtpCodeProps) => {
   return (
-    <div className="w-full my-10">
+    <div className="my-6 w-full min-w-0 sm:my-8 md:my-10">
       <OTPInput
         value={otp}
         onChange={setOtp}
-        maxLength={otpNumbers}
+        maxLength={otpLength}
+        containerClassName="w-full"
         render={({ slots }) => (
-          <div className="flex gap-2 w-full justify-between">
+          <div className="grid w-full grid-cols-6 gap-1.5 sm:gap-2 md:gap-15">
             {slots.map((slot, index) => (
               <div
                 key={index}
-                className={` 
-            flex h-30 w-20 items-center justify-center
-            rounded-xl border border-neutral-300
-            bg-primary-100 text-xl font-semibold
-            ${slot.isActive ? "border-primary-500" : ""}
-          `}
+                className={`flex aspect-square w-full items-center justify-center rounded-xl border border-neutral-300 bg-primary-100 font-semibold ${FONT_STYLES.h3} ${
+                  slot.isActive
+                    ? "border-primary-500 ring-2 ring-primary-500/20"
+                    : ""
+                }`}
               >
                 {slot.char ?? ""}
               </div>
