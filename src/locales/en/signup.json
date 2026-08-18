@@ -42,5 +42,16 @@
         "github": "GitHub",
         "success": "Success"
       }
+    },
+
+    "verification": {
+      "title": "Check your inbox",
+      "sentCode": "We sent a 6-digit code to {{email}}.",
+      "enterCode": "Please enter it below to verify your email.",
+      "resend": "Resend Code",
+      "buttons": {
+        "back": "Back",
+        "verifyContinue": "Verify & Continue"
+      }
     }
   }
