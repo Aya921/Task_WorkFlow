@@ -8,11 +8,15 @@ import { Button } from "../../../../../shared/components/button";
 import { TextLink } from "../../../../../shared/components/text_link";
 import { SignupHeader } from "../components/create_account/signup_header";
 import { SignupInputs } from "../components/create_account/signup_inputs";
-import { createSignupSchema, type SignupFormData } from "../types/signup_schema";
+import {
+  createSignupSchema,
+  type SignupFormData,
+} from "../types/signup_schema";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../../../routes/route_path";
 import { useSignupContext } from "../hooks/use_signup_context";
 import type { SignupEntity } from "../../../domain/entity/signup_entity";
+import { NavigationButtons } from "../components/navigation_btns";
 
 export const CreateUserPage = () => {
   const { t } = useTranslation("signup");
@@ -27,12 +31,10 @@ export const CreateUserPage = () => {
       password: signupData.password,
     },
   });
- 
 
   const {
     formState: { isValid },
     handleSubmit,
-    
   } = methods;
 
   const onSubmit = (data: SignupEntity) => {
@@ -48,19 +50,12 @@ export const CreateUserPage = () => {
           <SignupHeader />
           <SignupInputs />
 
-          <Button
-            onClick={handleSubmit(onSubmit)}
-            disabled={!isValid}
-            activeClassName="bg-primary-800 hover:bg-primary-900 text-white cursor-pointer"
-            disabledClassName="bg-primary-200 text-white cursor-not-allowed"
-          >
-            <span className={FONT_STYLES.button}>{t("buttons.continue")}</span>
-            <ArrowRight
-              size={20}
-              className="shrink-0 rtl:rotate-180"
-              aria-hidden
-            />
-          </Button>
+          <NavigationButtons
+            nextLabel={t("buttons.continue")}
+            isNextDisabled={!isValid}
+            showBackButton={false}
+            onNext={handleSubmit(onSubmit)}
+          />
 
           <TextLink
             className="text-primary-800"

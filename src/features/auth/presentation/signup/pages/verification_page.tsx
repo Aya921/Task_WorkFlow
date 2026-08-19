@@ -27,6 +27,7 @@ export const VerificationPage = () => {
       <ResendOtpBtn />
 
       <NavigationButtons
+      
         backLabel={t("verification.buttons.back")}
         nextLabel={t("verification.buttons.verifyContinue")}
         isNextDisabled={otp.length !== OTP_LENGTH}

@@ -15,6 +15,9 @@ export const CreateWorkSpacePage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("signup");
   const [workspaceMode, setWorkspaceMode] = useState<WorkspaceMode>(null);
+  const [inputValue,setInputValue]=useState<string>("");
+
+  console.log("input value is",inputValue)
 
   return (
     <div className="flex w-full flex-col items-center justify-between gap-6 sm:gap-8 md:gap-10">
@@ -27,13 +30,14 @@ export const CreateWorkSpacePage = () => {
       />
 
       {workspaceMode !== null && (
-        <WorkSpaceInputField workSpaceMode={workspaceMode} />
+        <WorkSpaceInputField workSpaceMode={workspaceMode} handleInputValue={(value)=>setInputValue(value)} />
       )}
 
       <NavigationButtons
+   
         backLabel={t("workspace.buttons.back")}
         nextLabel={t("workspace.buttons.continue")}
-        isNextDisabled={workspaceMode === null}
+        isNextDisabled={workspaceMode === null||inputValue===""}
         onBack={() => {
           previousStep();
           navigate(ROUTES.VERIFICATION);

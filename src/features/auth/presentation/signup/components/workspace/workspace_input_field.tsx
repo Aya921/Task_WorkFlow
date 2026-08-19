@@ -6,9 +6,10 @@ import { FONT_STYLES } from "../../../../../../assets/fonts/font_style";
 
 type WorkSpaceInputFieldProps = {
   workSpaceMode: Exclude<WorkspaceMode, null>;
+  handleInputValue:(text:string)=>void
 };
 
-export const WorkSpaceInputField = ({ workSpaceMode }: WorkSpaceInputFieldProps) => {
+export const WorkSpaceInputField = ({ workSpaceMode,handleInputValue }: WorkSpaceInputFieldProps) => {
   const { t } = useTranslation("signup");
   const workSpaceModeProperties =
     workSpaceMode === "join"
@@ -29,6 +30,8 @@ export const WorkSpaceInputField = ({ workSpaceMode }: WorkSpaceInputFieldProps)
             icon={workSpaceModeProperties.icon}
             placeholder={workSpaceModeProperties.placeholder}
             label={workSpaceModeProperties.labelName}
+            onChange={(e)=>handleInputValue(e.target.value)}
+            
           />
 
           <div className="flex items-center gap-2">
