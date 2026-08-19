@@ -1,0 +1,47 @@
+{
+  "title": "أنشئ حسابك",
+  "description": "لنُعدّ بياناتك الأساسية لبيئة آمنة.",
+  "inputs": {
+    "fullName": { "label": "الاسم الكامل", "placeholder": "محمد صلاح صابر" },
+    "email": { "label": "البريد الإلكتروني", "placeholder": "mohamedsalah@gmail.com" },
+    "password": { "label": "كلمة المرور", "placeholder": "أدخل كلمة المرور" }
+  },
+  "passwordRequirements": {
+    "characters": "8 أحرف أو أكثر",
+    "uppercase": "حرف كبير",
+    "number": "رقم",
+    "specialCharacter": "رمز خاص"
+  },
+  "validation": {
+    "fullNameLength": "يجب أن يتكون الاسم الكامل من 3 أحرف على الأقل",
+    "fullNameParts": "يرجى إدخال الاسم الأول والأخير",
+    "email": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "passwordLength": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
+    "passwordUppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+    "passwordLowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
+    "passwordNumber": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+    "passwordSpecialCharacter": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل"
+  },
+  "buttons": { "continue": "المتابعة إلى التحقق", "back": "رجوع" },
+  "links": { "alreadyHaveAccount": "لديك حساب بالفعل؟", "loginHere": "سجّل الدخول هنا" },
+  "progress": { "steps": { "account": "الحساب", "verification": "التحقق", "workspace": "مساحة العمل", "github": "GitHub", "success": "تم" } },
+  "verification": {
+    "title": "تحقق من بريدك الوارد",
+    "sentCode": "أرسلنا رمزًا من 6 أرقام إلى {{email}}.",
+    "enterCode": "أدخله أدناه للتحقق من بريدك الإلكتروني.",
+    "resend": "إعادة إرسال الرمز",
+    "buttons": { "back": "رجوع", "verifyContinue": "تحقق وتابع" }
+  },
+  "workspace": {
+    "title": "أعد مساحة عملك",
+    "description": "أنشئ مركزًا جديدًا لفريقك أو انضم إلى مساحة عمل موجودة للبدء.",
+    "create": { "title": "إنشاء مساحة جديدة", "description": "ابدأ مساحة عمل جديدة تمامًا لمؤسستك." },
+    "join": { "title": "الانضمام إلى مساحة موجودة", "description": "لديك رمز دعوة؟ انضم إلى مساحة العمل الحالية لفريقك." },
+    "input": {
+      "create": { "label": "اسم مساحة العمل", "placeholder": "مثال: مساحة عمل الهندسة" },
+      "join": { "label": "رابط مساحة العمل", "placeholder": "رابط مساحة العمل" },
+      "hint": "يمكنك تغيير هذا لاحقًا من الإعدادات"
+    },
+    "buttons": { "back": "رجوع", "continue": "متابعة" }
+  }
+}

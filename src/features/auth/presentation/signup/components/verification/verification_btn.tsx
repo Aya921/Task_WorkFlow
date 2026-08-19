@@ -24,7 +24,7 @@ export const VerificationBtn = ({ otp, otpNumbers }: VerificationBtnProps) => {
           previousStep();
           navigate("/");
         }}
-        className="w-full sm:max-w-[200px]"
+        className="w-full sm:max-w-xs"
         activeClassName={`hover:bg-primary-100 text-secondary-600 cursor-pointer ${FONT_STYLES.body}`}
       >
         <ArrowLeft

@@ -52,8 +52,8 @@ export const InputField = ({
             outline-none
             shadow-sm
             transition-all
-            ${Icon ? "pl-10" : "pl-4"}
-            ${props.type === "password" ? "pr-10" : "pr-4"}
+            ${Icon ? "ps-10" : "ps-4"}
+            ${props.type === "password" ? "pe-10" : "pe-4"}
             ${FONT_STYLES.input}
             ${statusClasses[status]}
             focus:ring-2
@@ -65,7 +65,7 @@ export const InputField = ({
         />
 
         {Icon && (
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary-400">
+          <span className="absolute start-3 top-1/2 -translate-y-1/2 text-secondary-400">
             <Icon className="h-4 w-4 md:h-5 md:w-5" />
           </span>
         )}
@@ -74,7 +74,7 @@ export const InputField = ({
           <button
             type="button"
             onClick={() => setShowPass((prev) => !prev)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary-400 transition-colors hover:text-secondary-600"
+            className="absolute end-3 top-1/2 -translate-y-1/2 text-secondary-400 transition-colors hover:text-secondary-600"
           >
             {showPass ? (
               <EyeOff className="h-4 w-4 md:h-5 md:w-5" />

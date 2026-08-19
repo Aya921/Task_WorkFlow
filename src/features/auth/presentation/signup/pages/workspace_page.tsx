@@ -1,47 +1,48 @@
-import { Check, HousePlus, UserPlus } from "lucide-react";
-import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
-import { IconContainer } from "../../../../../shared/components/icon_container";
+
 import { useState } from "react";
-import { WorkspaceOptionCard } from "../components/workspace/workspace_option_card";
+import { useTranslation } from "react-i18next";
+import { NavigationButtons } from "../components/navigation_btns";
+import { useSignupContext } from "../hooks/use_signup_context";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../../../../routes/route_path";
+import { WorkSpaceHeader } from "../components/workspace/workspace_header";
+import { WorkSpaceCards } from "../components/workspace/workspace_cards";
+import type { WorkspaceMode } from "../types/workspace_mode";
+import { WorkSpaceInputField } from "../components/workspace/workspace_input_field";
 
 export const CreateWorkSpacePage = () => {
-  const [createWorkSpace, setCreateWordSpace] = useState<boolean>(false);
-  const [joinWorkSpace, setJoinWordSpace] = useState<boolean>(false);
+  const { previousStep } = useSignupContext();
+  const navigate = useNavigate();
+  const { t } = useTranslation("signup");
+  const [workspaceMode, setWorkspaceMode] = useState<WorkspaceMode>(null);
 
   return (
-    <div className="w-full flex flex-col items-center gap-10 ">
-      <div className="flex flex-col items-center justify-center ">
-        <p className={`${FONT_STYLES.h1}`}>Setup your workspace</p>
-        <p className={`${FONT_STYLES.bodyLg}`}>
-          Create a new hub for your team or join an existing one to get started.
-        </p>
-      </div>
+    <div className="flex w-full flex-col items-center justify-between gap-6 sm:gap-8 md:gap-10">
 
-      <div className="flex gap-15 ">
-        <WorkspaceOptionCard
-          title="Create New"
-          description="Start fresh with a brand new workspace for your organization."
-          icon={HousePlus}
-          selected={createWorkSpace}
-          
-          onClick={() => {
-            setCreateWordSpace(true);
-            setJoinWordSpace(false);
-          }}
-        />
+      <WorkSpaceHeader />
 
-        <WorkspaceOptionCard
-          title="Join Existing"
-          description="Got an invite code? Join your team's current workspace."
-          icon={UserPlus}
-         variant="rose"
-          selected={joinWorkSpace}
-          onClick={() => {
-            setJoinWordSpace(true);
-            setCreateWordSpace(false);
-          }}
-        />
-      </div>
+      <WorkSpaceCards
+        handleSelectWorkSpace={setWorkspaceMode}
+        workSpaceMode={workspaceMode}
+      />
+
+      {workspaceMode !== null && (
+        <WorkSpaceInputField workSpaceMode={workspaceMode} />
+      )}
+
+      <NavigationButtons
+        backLabel={t("workspace.buttons.back")}
+        nextLabel={t("workspace.buttons.continue")}
+        isNextDisabled={workspaceMode === null}
+        onBack={() => {
+          previousStep();
+          navigate(ROUTES.VERIFICATION);
+        }}
+        onNext={() => {
+          // if join workspace is true then call api of join
+          // else call the api of create
+        }}
+      />
     </div>
   );
 };

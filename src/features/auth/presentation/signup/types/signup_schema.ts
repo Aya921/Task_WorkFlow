@@ -1,34 +1,34 @@
 import { z } from "zod";
 
-export const signupSchema = z.object({
+export const createSignupSchema = (t: (key: string) => string) => z.object({
   fullName: z
     .string()
     .trim()
-    .min(3, { message: "Full name must be at least 3 characters" })
+    .min(3, { message: t("validation.fullNameLength") })
     .refine(
       (value) => value.split(/\s+/).length >= 2,
-      { message: "Please enter first and last name" }
+      { message: t("validation.fullNameParts") }
     ),
 
   email: z.email({
-    message: "Please enter a valid email address",
+    message: t("validation.email"),
   }),
 
   password: z
     .string()
-    .min(8, { message: "Password must be at least 8 characters" })
+    .min(8, { message: t("validation.passwordLength") })
     .regex(/[A-Z]/, {
-      message: "Password must contain at least one uppercase letter",
+      message: t("validation.passwordUppercase"),
     })
     .regex(/[a-z]/, {
-      message: "Password must contain at least one lowercase letter",
+      message: t("validation.passwordLowercase"),
     })
     .regex(/\d/, {
-      message: "Password must contain at least one number",
+      message: t("validation.passwordNumber"),
     })
     .regex(/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/, {
-      message: "Password must contain at least one special character",
+      message: t("validation.passwordSpecialCharacter"),
     }),
 });
 
-export type SignupFormData = z.infer<typeof signupSchema>; // convert to type = fullname,email,password  
+export type SignupFormData = z.infer<ReturnType<typeof createSignupSchema>>;

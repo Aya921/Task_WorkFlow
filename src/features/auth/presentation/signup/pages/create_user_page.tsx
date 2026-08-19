@@ -8,7 +8,7 @@ import { Button } from "../../../../../shared/components/button";
 import { TextLink } from "../../../../../shared/components/text_link";
 import { SignupHeader } from "../components/create_account/signup_header";
 import { SignupInputs } from "../components/create_account/signup_inputs";
-import { signupSchema, type SignupFormData } from "../types/signup_schema";
+import { createSignupSchema, type SignupFormData } from "../types/signup_schema";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../../../routes/route_path";
 import { useSignupContext } from "../hooks/use_signup_context";
@@ -17,15 +17,15 @@ import type { SignupEntity } from "../../../domain/entity/signup_entity";
 export const CreateUserPage = () => {
   const { t } = useTranslation("signup");
   const navigate = useNavigate();
-   const { nextStep, updateSignupData,signupData } = useSignupContext();
+  const { nextStep, updateSignupData, signupData } = useSignupContext();
   const methods = useForm<SignupFormData>({
-    resolver: zodResolver(signupSchema),
+    resolver: zodResolver(createSignupSchema(t)),
     mode: "onChange",
-    defaultValues:{
-      fullName:signupData.fullName,
-      email:signupData.email,
-      password:signupData.password
-    }
+    defaultValues: {
+      fullName: signupData.fullName,
+      email: signupData.email,
+      password: signupData.password,
+    },
   });
  
 
@@ -43,7 +43,7 @@ export const CreateUserPage = () => {
 
   return (
     <FormProvider {...methods}>
-      <div className="flex flex-col gap-6 overflow-x-hidden lg:flex-row lg:gap-8 w-full  ">
+      <div className="flex w-full flex-col gap-6 overflow-x-hidden lg:flex-row lg:gap-8">
         <div className="flex w-full min-w-0 flex-col gap-4 lg:flex-[2]">
           <SignupHeader />
           <SignupInputs />

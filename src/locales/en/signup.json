@@ -25,6 +25,17 @@
       "specialCharacter": "Special Character"
     },
 
+    "validation": {
+      "fullNameLength": "Full name must be at least 3 characters",
+      "fullNameParts": "Please enter first and last name",
+      "email": "Please enter a valid email address",
+      "passwordLength": "Password must be at least 8 characters",
+      "passwordUppercase": "Password must contain at least one uppercase letter",
+      "passwordLowercase": "Password must contain at least one lowercase letter",
+      "passwordNumber": "Password must contain at least one number",
+      "passwordSpecialCharacter": "Password must contain at least one special character"
+    },
+
     "buttons": {
       "continue": "Continue to Verification"
     },
@@ -53,5 +64,24 @@
         "back": "Back",
         "verifyContinue": "Verify & Continue"
       }
+    },
+
+    "workspace": {
+      "title": "Set up your workspace",
+      "description": "Create a new hub for your team or join an existing one to get started.",
+      "create": {
+        "title": "Create new",
+        "description": "Start fresh with a brand new workspace for your organization."
+      },
+      "join": {
+        "title": "Join existing",
+        "description": "Got an invite code? Join your team's current workspace."
+      },
+      "input": {
+        "create": { "label": "Workspace name", "placeholder": "e.g. Engineering workspace" },
+        "join": { "label": "Workspace URL", "placeholder": "Workspace URL" },
+        "hint": "You can change this later in settings."
+      },
+      "buttons": { "back": "Back", "continue": "Continue" }
     }
   }

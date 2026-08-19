@@ -52,7 +52,7 @@ export const WorkspaceOptionCard = ({
   type="button"
   onClick={onClick}
   className={`
-    group relative flex flex-1 flex-col items-start gap-2
+    group relative flex min-w-0 flex-1 flex-col items-start gap-2
     w-full rounded-2xl border-2 border-neutral-900/20
     p-5 transition-all cursor-pointer
     hover:shadow-md
@@ -62,7 +62,7 @@ export const WorkspaceOptionCard = ({
   `}
 >
       <div
-        className={`absolute right-3 flex h-15 w-15 items-center justify-center rounded-2xl ${
+        className={`absolute end-3 flex h-12 w-12 items-center justify-center rounded-2xl sm:h-14 sm:w-14 ${
           selected
             ? currentStyle.selectedCheckIconColor
             : currentStyle.groupHoverSelectedBackgroundColor
@@ -77,7 +77,7 @@ export const WorkspaceOptionCard = ({
         iconColor={currentStyle.iconColor}
       />
 
-      <div className="text-start flex flex-col gap-2">
+      <div className="flex flex-col gap-2 text-start">
         <p className={FONT_STYLES.h3}>{title}</p>
         <p className={`${FONT_STYLES.body} leading-tight`}>{description}</p>
       </div>

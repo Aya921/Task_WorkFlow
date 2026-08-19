@@ -2,6 +2,48 @@
 @import "tailwindcss";
 
 @theme {
+  /*
+   * Compact density scale. Tailwind derives its numeric padding, margin, gap,
+   * width, height, and inset utilities from --spacing, so this keeps those
+   * values in proportion without relying on CSS or browser zoom.
+   */
+  --spacing: 0.225rem;
+
+  /* Keep captions at the accessible 12px minimum; scale all larger type. */
+  --text-xs: 0.75rem;
+  --text-sm: 0.7875rem;
+  --text-base: 0.9rem;
+  --text-lg: 1.0125rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.35rem;
+  --text-3xl: 1.6875rem;
+  --text-4xl: 2.025rem;
+  --text-5xl: 2.7rem;
+
+  /* Radius and component-width tokens follow the same compact density. */
+  --radius-xs: 0.1125rem;
+  --radius-sm: 0.225rem;
+  --radius-md: 0.3375rem;
+  --radius-lg: 0.45rem;
+  --radius-xl: 0.675rem;
+  --radius-2xl: 0.9rem;
+  --radius-3xl: 1.35rem;
+  --radius-4xl: 1.8rem;
+
+  --container-3xs: 14.4rem;
+  --container-2xs: 16.2rem;
+  --container-xs: 18rem;
+  --container-sm: 21.6rem;
+  --container-md: 25.2rem;
+  --container-lg: 28.8rem;
+  --container-xl: 32.4rem;
+  --container-2xl: 37.8rem;
+  --container-3xl: 43.2rem;
+  --container-4xl: 50.4rem;
+  --container-5xl: 57.6rem;
+  --container-6xl: 64.8rem;
+  --container-7xl: 72rem;
+
   /* Primary - Premium Blue */
   --color-primary-50: #f5f9ff;
   --color-primary-100: #eaf2ff;

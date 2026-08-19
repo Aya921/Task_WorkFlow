@@ -22,11 +22,11 @@ export const OtpCode = ({
         maxLength={otpLength}
         containerClassName="w-full"
         render={({ slots }) => (
-          <div className="grid w-full grid-cols-6 gap-1.5 sm:gap-2 md:gap-15">
+          <div className="flex w-full gap-1.5 sm:gap-2 md:gap-4">
             {slots.map((slot, index) => (
               <div
                 key={index}
-                className={`flex aspect-square w-full items-center justify-center rounded-xl border border-neutral-300 bg-primary-100 font-semibold ${FONT_STYLES.h3} ${
+                className={`flex aspect-square min-w-0 flex-1 items-center justify-center rounded-xl border border-neutral-300 bg-primary-100 font-semibold ${FONT_STYLES.h3} ${
                   slot.isActive
                     ? "border-primary-500 ring-2 ring-primary-500/20"
                     : ""

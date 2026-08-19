@@ -43,7 +43,7 @@ export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
 
       return next;
     });
-  }, []);
+  }, [totalSteps]);
 
   const previousStep = useCallback(() => {
     setCurrentStep((prev) => {
@@ -53,13 +53,12 @@ export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
     });
   }, []);
 
-  const updateSignupData = (data: Partial<SignupEntity>) => {
+  const updateSignupData = useCallback((data: Partial<SignupEntity>) => {
     setSignupData((prev) => ({
       ...prev,
       ...data,
     }));
-   
-  };
+  }, []);
 
   const value = useMemo(
     () => ({

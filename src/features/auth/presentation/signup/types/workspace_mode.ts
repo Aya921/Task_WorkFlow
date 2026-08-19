@@ -1,0 +1,1 @@
+export type WorkspaceMode = "join" | "create" | null;
