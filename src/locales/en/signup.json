@@ -83,5 +83,16 @@
         "hint": "You can change this later in settings."
       },
       "buttons": { "back": "Back", "continue": "Continue" }
+    },
+    "github": {
+      "title": "Connect GitHub",
+      "description": "Connect your GitHub account to link repositories and sync your development workflow directly into TaskFlow.",
+      "connect": "Connect GitHub account",
+      "buttons": { "back": "Back", "continue": "Continue" }
+    },
+    "success": {
+      "title": "Welcome to Developer TaskFlow",
+      "description": "Your workspace is ready. You've successfully completed the setup. Let's start building something amazing together.",
+      "buttons": { "continue": "Continue" }
     }
   }

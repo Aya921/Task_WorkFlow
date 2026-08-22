@@ -43,5 +43,16 @@
       "hint": "يمكنك تغيير هذا لاحقًا من الإعدادات"
     },
     "buttons": { "back": "رجوع", "continue": "متابعة" }
+  },
+  "github": {
+    "title": "ربط GitHub",
+    "description": "اربط حساب GitHub الخاص بك لربط المستودعات ومزامنة سير عمل التطوير مباشرةً مع TaskFlow.",
+    "connect": "ربط حساب GitHub",
+    "buttons": { "back": "رجوع", "continue": "متابعة" }
+  },
+  "success": {
+    "title": "مرحبًا بك في Developer TaskFlow",
+    "description": "مساحة عملك جاهزة. لقد أكملت الإعداد بنجاح. لنبدأ ببناء شيء رائع معًا.",
+    "buttons": { "continue": "متابعة" }
   }
 }

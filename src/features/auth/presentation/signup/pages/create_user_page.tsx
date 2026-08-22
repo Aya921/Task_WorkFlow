@@ -1,12 +1,9 @@
-import { ArrowRight } from "lucide-react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserCreateAccountAnimation } from "../../../../../animations/user_create_account";
-import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
-import { Button } from "../../../../../shared/components/button";
+
 import { TextLink } from "../../../../../shared/components/text_link";
-import { SignupHeader } from "../components/create_account/signup_header";
 import { SignupInputs } from "../components/create_account/signup_inputs";
 import {
   createSignupSchema,
@@ -17,6 +14,7 @@ import { ROUTES } from "../../../../../routes/route_path";
 import { useSignupContext } from "../hooks/use_signup_context";
 import type { SignupEntity } from "../../../domain/entity/signup_entity";
 import { NavigationButtons } from "../components/navigation_btns";
+import { AuthSectionHeader } from "../components/auth_header";
 
 export const CreateUserPage = () => {
   const { t } = useTranslation("signup");
@@ -47,7 +45,7 @@ export const CreateUserPage = () => {
     <FormProvider {...methods}>
       <div className="flex w-full flex-col gap-6 overflow-x-hidden lg:flex-row lg:gap-8">
         <div className="flex w-full min-w-0 flex-col gap-4 lg:flex-[2]">
-          <SignupHeader />
+          <AuthSectionHeader title={t("title")} description={t("description")} />
           <SignupInputs />
 
           <NavigationButtons

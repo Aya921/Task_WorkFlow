@@ -18,7 +18,7 @@ export const Button = ({
     type="button"
       disabled={disabled}
       className={`
-        transition-all duration-200 rounded-full p-3 flex items-center justify-center gap-2 w-full
+        cursor-pointer transition-all duration-200 rounded-full p-3 flex items-center justify-center gap-2 w-full
         
         ${disabled ? disabledClassName : activeClassName}
         ${className}

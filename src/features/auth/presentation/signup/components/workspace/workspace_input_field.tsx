@@ -6,10 +6,13 @@ import { FONT_STYLES } from "../../../../../../assets/fonts/font_style";
 
 type WorkSpaceInputFieldProps = {
   workSpaceMode: Exclude<WorkspaceMode, null>;
-  handleInputValue:(text:string)=>void
+  handleInputValue: (text: string) => void;
 };
 
-export const WorkSpaceInputField = ({ workSpaceMode,handleInputValue }: WorkSpaceInputFieldProps) => {
+export const WorkSpaceInputField = ({
+  workSpaceMode,
+  handleInputValue,
+}: WorkSpaceInputFieldProps) => {
   const { t } = useTranslation("signup");
   const workSpaceModeProperties =
     workSpaceMode === "join"
@@ -30,12 +33,11 @@ export const WorkSpaceInputField = ({ workSpaceMode,handleInputValue }: WorkSpac
             icon={workSpaceModeProperties.icon}
             placeholder={workSpaceModeProperties.placeholder}
             label={workSpaceModeProperties.labelName}
-            onChange={(e)=>handleInputValue(e.target.value)}
-            
+            onChange={(event) => handleInputValue(event.target.value)}
           />
 
           <div className="flex items-center gap-2">
-            <Info className="text-info" size={15} />
+            <Info className="h-4 w-4 shrink-0 text-info" aria-hidden />
             <p className={FONT_STYLES.bodySm}>
               {t("workspace.input.hint")}
             </p>
