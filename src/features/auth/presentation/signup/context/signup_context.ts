@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { SignupEntity } from "../../../domain/entity/signup_entity";
+import type { CreateUserStepEntity } from "../../../domain/entity/crate_user_entity";
 
 type SignupContextType = {
     totalSteps: number;
@@ -7,8 +7,8 @@ type SignupContextType = {
     nextStep: () => void;
     previousStep: () => void;
 
-    signupData:SignupEntity
-    updateSignupData: (data: Partial<SignupEntity>) => void;
+    signupData:CreateUserStepEntity
+    updateSignupData: (data: Partial<CreateUserStepEntity>) => void;
    
 
 }

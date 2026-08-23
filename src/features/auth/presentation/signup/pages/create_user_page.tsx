@@ -12,9 +12,12 @@ import {
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../../../routes/route_path";
 import { useSignupContext } from "../hooks/use_signup_context";
-import type { SignupEntity } from "../../../domain/entity/signup_entity";
+import type { CreateUserStepEntity } from "../../../domain/entity/crate_user_entity";
 import { NavigationButtons } from "../components/navigation_btns";
 import { AuthSectionHeader } from "../components/auth_header";
+import { useCreateUserMutation } from "../hooks/use_create_user_mutatuion";
+import { useToast } from "../../../../../hooks/use_toast";
+import { useEffect } from "react";
 
 export const CreateUserPage = () => {
   const { t } = useTranslation("signup");
@@ -33,19 +36,48 @@ export const CreateUserPage = () => {
   const {
     formState: { isValid },
     handleSubmit,
+    watch,
   } = methods;
+  const formValues = watch();
 
-  const onSubmit = (data: SignupEntity) => {
-    updateSignupData(data);
-    nextStep();
-    navigate(ROUTES.VERIFICATION);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      updateSignupData({
+        fullName: formValues.fullName ?? "",
+        email: formValues.email ?? "",
+        password: formValues.password ?? "",
+      });
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [formValues, updateSignupData]);
+
+  const { showToast } = useToast();
+
+  const { createUserFn, isLoading } = useCreateUserMutation();
+
+  const onSubmit = (data: CreateUserStepEntity) => {
+    createUserFn(data, {
+      onSuccess: () => {
+        updateSignupData(data);
+        nextStep();
+        navigate(ROUTES.VERIFICATION);
+      },
+
+      onError: (error) => {
+        showToast(error.message, "error");
+      },
+    });
   };
 
   return (
     <FormProvider {...methods}>
       <div className="flex w-full flex-col gap-6 overflow-x-hidden lg:flex-row lg:gap-8">
         <div className="flex w-full min-w-0 flex-col gap-4 lg:flex-[2]">
-          <AuthSectionHeader title={t("title")} description={t("description")} />
+          <AuthSectionHeader
+            title={t("title")}
+            description={t("description")}
+          />
           <SignupInputs />
 
           <NavigationButtons
@@ -53,6 +85,7 @@ export const CreateUserPage = () => {
             isNextDisabled={!isValid}
             showBackButton={false}
             onNext={handleSubmit(onSubmit)}
+            isNextLoading={isLoading}
           />
 
           <TextLink

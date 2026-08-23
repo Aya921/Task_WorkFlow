@@ -16,6 +16,8 @@ type NavigationButtonsProps = {
 
   backButtonClassName?: string;
   nextButtonClassName?: string;
+
+  isNextLoading?:boolean
 };
 export const NavigationButtons = ({
   onBack,
@@ -27,6 +29,7 @@ export const NavigationButtons = ({
   nextButtonClassName,
   showBackButton = true,
   showNextButton = true,
+  isNextLoading
 }: NavigationButtonsProps) => {
   return (
     <div className="mt-4 flex w-full flex-col-reverse gap-3 sm:mt-5 sm:flex-row sm:items-center sm:justify-between">
@@ -50,6 +53,7 @@ export const NavigationButtons = ({
           onClick={onNext}
           disabled={isNextDisabled}
           className={`w-full ${nextButtonClassName ?? ""}`}
+          isLoading={isNextLoading}
           activeClassName=" bg-gradient-to-r
 from-primary-600/90
 via-primary-500/80

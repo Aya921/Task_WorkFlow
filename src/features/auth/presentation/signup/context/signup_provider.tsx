@@ -2,10 +2,10 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { SignupContext } from "./signup_context";
 import { signupSteps } from "../types/signup_progress_bar_types";
 import { StorageKeys } from "../../../../../constants/storage_keys";
-import type { SignupEntity } from "../../../domain/entity/signup_entity";
+import type { CreateUserStepEntity } from "../../../domain/entity/crate_user_entity";
 
 export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
-  const [signupData, setSignupData] = useState<SignupEntity>(() => {
+  const [signupData, setSignupData] = useState<CreateUserStepEntity>(() => {
     const savedData = sessionStorage.getItem(StorageKeys.SIGNUP_DATA);
     if (savedData) {
       return JSON.parse(savedData);
@@ -16,6 +16,11 @@ export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
       password: "",
     };
   });
+
+  useEffect(() => {
+    sessionStorage.setItem(StorageKeys.SIGNUP_DATA, JSON.stringify(signupData));
+  }, [signupData]);
+
   const [currentStep, setCurrentStep] = useState(() => {
     const savedStep = sessionStorage.getItem(StorageKeys.CURRENT_STEP);
 
@@ -25,15 +30,6 @@ export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     sessionStorage.setItem(StorageKeys.CURRENT_STEP, currentStep.toString());
   }, [currentStep]);
-
-  useEffect(() => {
-  sessionStorage.setItem(
-    StorageKeys.SIGNUP_DATA,
-    JSON.stringify(signupData)
-  );
-}, [signupData]);
-
-  
 
   const totalSteps = signupSteps.length;
 
@@ -53,12 +49,15 @@ export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
     });
   }, []);
 
-  const updateSignupData = useCallback((data: Partial<SignupEntity>) => {
-    setSignupData((prev) => ({
-      ...prev,
-      ...data,
-    }));
-  }, []);
+  const updateSignupData = useCallback(
+    (data: Partial<CreateUserStepEntity>) => {
+      setSignupData((prev) => ({
+        ...prev,
+        ...data,
+      }));
+    },
+    [],
+  );
 
   const value = useMemo(
     () => ({
