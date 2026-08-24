@@ -6,5 +6,11 @@ export const SignupRepoImp=(
 ): SignupRepo=>({
     createUserStep(signupEntity){
         return signupDataSource.createUserStep(signupEntity)
+    },
+
+
+
+    createWorkSpace(createWorkSpaceEntity){
+        return signupDataSource.createWorkSpace(createWorkSpaceEntity)
     }
 })

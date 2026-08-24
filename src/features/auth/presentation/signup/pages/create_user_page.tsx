@@ -17,7 +17,6 @@ import { NavigationButtons } from "../components/navigation_btns";
 import { AuthSectionHeader } from "../components/auth_header";
 import { useCreateUserMutation } from "../hooks/use_create_user_mutatuion";
 import { useToast } from "../../../../../hooks/use_toast";
-import { useEffect } from "react";
 
 export const CreateUserPage = () => {
   const { t } = useTranslation("signup");
@@ -36,21 +35,21 @@ export const CreateUserPage = () => {
   const {
     formState: { isValid },
     handleSubmit,
-    watch,
+   // watch,
   } = methods;
-  const formValues = watch();
+  //const formValues = watch();
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      updateSignupData({
-        fullName: formValues.fullName ?? "",
-        email: formValues.email ?? "",
-        password: formValues.password ?? "",
-      });
-    }, 500);
+  // useEffect(() => {  // this fn to save the values of inputs in session storage if user go out or make refresh
+  //   const timeout = setTimeout(() => {
+  //     updateSignupData({
+  //       fullName: formValues.fullName ?? "",
+  //       email: formValues.email ?? "",
+  //       password: formValues.password ?? "",
+  //     });
+  //   }, 500);
 
-    return () => clearTimeout(timeout);
-  }, [formValues, updateSignupData]);
+  //   return () => clearTimeout(timeout);
+  // }, [formValues, updateSignupData]);
 
   const { showToast } = useToast();
 
@@ -62,6 +61,7 @@ export const CreateUserPage = () => {
         updateSignupData(data);
         nextStep();
         navigate(ROUTES.VERIFICATION);
+
       },
 
       onError: (error) => {

@@ -2,6 +2,7 @@ import { SignupApiService } from "../../features/auth/api/client/signup_api_serv
 import { SignupDataSourceImp } from "../../features/auth/api/data_source/signup_datasource_imp";
 import { SignupRepoImp } from "../../features/auth/data/repo/signup_repo_imp";
 import { createSignUpUseCase } from "../../features/auth/domain/usecase/create_user";
+import { CreateWorkSpace } from "../../features/auth/domain/usecase/create_work_space";
 
 
 const signupApiService = new SignupApiService();
@@ -14,3 +15,5 @@ const signupRepo =
 
 export const createUserUseCase =
   createSignUpUseCase(signupRepo);
+export const createWorkSpaceUseCase =
+  CreateWorkSpace(signupRepo);

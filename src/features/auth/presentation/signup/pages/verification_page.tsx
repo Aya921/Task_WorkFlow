@@ -9,12 +9,20 @@ import { NavigationButtons } from "../components/navigation_btns";
 import { useNavigate } from "react-router-dom";
 import { useSignupContext } from "../hooks/use_signup_context";
 import { ROUTES } from "../../../../../routes/route_path";
+import { useCheckEmailVerification } from "../hooks/use_check_email_verification";
 
 export const VerificationPage = () => {
   const [otp, setOtp] = useState<string>("");
   const { t } = useTranslation("signup");
   const { nextStep, previousStep } = useSignupContext();
   const navigate = useNavigate();
+
+
+  useCheckEmailVerification(() => {
+    console.log("came here")
+  nextStep();
+  navigate(ROUTES.CREATE_WORKSPACE);
+});
 
   return (
     <div className="w-full flex flex-col items-center justify-between overflow-x-hidden">
@@ -36,8 +44,7 @@ export const VerificationPage = () => {
           navigate("/");
         }}
         onNext={() => {
-          nextStep();
-          navigate(ROUTES.CREATE_WORKSPACE);
+          
         }}
       />
     </div>
