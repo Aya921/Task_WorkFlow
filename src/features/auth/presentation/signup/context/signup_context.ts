@@ -4,7 +4,7 @@ import type { CreateUserStepEntity } from "../../../domain/entity/crate_user_ent
 type SignupContextType = {
     totalSteps: number;
     currentStep: number;
-    nextStep: () => void;
+    nextStep: () => string;
     previousStep: () => void;
 
     signupData:CreateUserStepEntity

@@ -1,23 +1,26 @@
 import type { ApiResponse } from "../../../../core/api/api_type";
-import type { SignupDataSource } from "../../data/dataSources/signup_datasource";
+import type { AuthDataSource } from "../../data/dataSources/auth_datasource";
 import { toCreateUserResult } from "../mappers/to_create_user_result";
 import { toSignupRequestDto } from "../mappers/to_signup_request_dto";
 import type { CreateUserResult } from "../../domain/entity/create_user_result";
-import { SignupApiService } from "../client/signup_api_service";
+import { AuthApiService } from "../client/auth_api_service";
 import type { CreateWorkspaceRequest } from "../../domain/entity/create_work_space_request";
 import type { CreateWorkspaceResponse } from "../../domain/entity/create_work_space_response";
 import { CreateWorkspaceRequestDtoMapper } from "../mappers/to_create_workspace_request_dto";
 import type { CreateWorkspaceResponseDto } from "../dtos/create_work_space_response_dto";
 import { CreateWorkspaceResponseDtoMapper } from "../mappers/to_create_work_space_response";
+import type { Profile } from "../../domain/entity/profile";
+import { toProfileEntity } from "../mappers/to_profile_entity";
 export const SignupDataSourceImp = (
-  apiService: SignupApiService,
-): SignupDataSource => ({
+  apiService: AuthApiService,
+): AuthDataSource => ({
   async createUserStep(
     createUserEntity,
   ): Promise<ApiResponse<CreateUserResult>> {
     const { data, error } = await apiService.createUser(
       toSignupRequestDto(createUserEntity),
     );
+
 
     if (error)
       return {
@@ -35,7 +38,6 @@ export const SignupDataSourceImp = (
   async createWorkSpace(
     entity: CreateWorkspaceRequest,
   ): Promise<ApiResponse<CreateWorkspaceResponse>> {
-    console.log("Created By:", entity.created_by);
     const { data, error } = await apiService.createWorkSpace(
       CreateWorkspaceRequestDtoMapper(entity),
     );
@@ -46,14 +48,36 @@ export const SignupDataSourceImp = (
         message: error.message,
       };
     else {
-
+      console.log("workspaces are",data)
       const response = data as CreateWorkspaceResponseDto[];
-      const responseEntity= CreateWorkspaceResponseDtoMapper(response[0])
-       
+      console.log("after type the data",response)
+      const responseEntity = CreateWorkspaceResponseDtoMapper(response[0]);
+      console.log("after amp",responseEntity)
+
       return {
         success: true,
         data: responseEntity,
       };
     }
   },
+  async getProfileData(userId: string): Promise<ApiResponse<Profile>> {
+  const { data, error } = await apiService.getProfileData(userId);
+
+  
+
+ 
+
+  if (error) {
+    return {
+      success: false,
+      message: error.message,
+    };
+  }
+ 
+
+  return {
+    success: true,
+    data: toProfileEntity(data),
+  };
+},
 });

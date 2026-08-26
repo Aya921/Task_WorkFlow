@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { createUserUseCase } from "../../../../../di/auth/signup_di";
+import { createUserUseCase } from "../../../../../di/auth/auth_di";
 import type { CreateUserStepEntity } from "../../../domain/entity/crate_user_entity";
 
 export const useCreateUserMutation = () => {

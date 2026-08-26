@@ -7,13 +7,16 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./query/query_client.ts";
 import { ToastProvider } from "./context/toast_context/toast_provider.tsx";
 import { ToastContainer } from "./shared/components/toast_container.tsx";
+import { AuthProvider } from "./context/auth_context/auth_provider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-           <App />
+          <AuthProvider>
+             <App />
+          </AuthProvider>
            <ToastContainer/>
         </ToastProvider>
        

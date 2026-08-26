@@ -9,7 +9,10 @@ export const useCheckEmailVerification = (onVerified: () => void) => {
         data: { user },
       } = await supabase.auth.getUser();
 
-      if (user?.email_confirmed_at) onVerified();
+      if (user?.email_confirmed_at) {
+        onVerified()
+        
+      };
       
     };
    

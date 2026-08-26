@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import { NavigationButtons } from "../components/navigation_btns";
 import { useNavigate } from "react-router-dom";
 import { useSignupContext } from "../hooks/use_signup_context";
-import { ROUTES } from "../../../../../routes/route_path";
 import { useCheckEmailVerification } from "../hooks/use_check_email_verification";
 
 export const VerificationPage = () => {
@@ -17,12 +16,12 @@ export const VerificationPage = () => {
   const { nextStep, previousStep } = useSignupContext();
   const navigate = useNavigate();
 
-
   useCheckEmailVerification(() => {
-    console.log("came here")
-  nextStep();
-  navigate(ROUTES.CREATE_WORKSPACE);
-});
+    
+    const nextParm=nextStep();
+   
+    navigate(`/${nextParm}`);
+  });
 
   return (
     <div className="w-full flex flex-col items-center justify-between overflow-x-hidden">
@@ -35,7 +34,6 @@ export const VerificationPage = () => {
       <ResendOtpBtn />
 
       <NavigationButtons
-      
         backLabel={t("verification.buttons.back")}
         nextLabel={t("verification.buttons.verifyContinue")}
         isNextDisabled={otp.length !== OTP_LENGTH}
@@ -43,9 +41,7 @@ export const VerificationPage = () => {
           previousStep();
           navigate("/");
         }}
-        onNext={() => {
-          
-        }}
+        onNext={() => {}}
       />
     </div>
   );

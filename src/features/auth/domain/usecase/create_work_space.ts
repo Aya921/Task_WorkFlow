@@ -1,7 +1,7 @@
 import type { CreateWorkspaceRequest } from "../entity/create_work_space_request";
-import type { SignupRepo } from "../repo/signup_repo";
+import type { AuthRepo } from "../repo/signup_repo";
 
 export const CreateWorkSpace =
-  (repo: SignupRepo) => async (entity: CreateWorkspaceRequest) => {
+  (repo: AuthRepo) => async (entity: CreateWorkspaceRequest) => {
     return await repo.createWorkSpace(entity);
   };

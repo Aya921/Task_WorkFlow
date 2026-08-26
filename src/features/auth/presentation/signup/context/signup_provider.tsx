@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SignupContext } from "./signup_context";
 import { signupSteps } from "../types/signup_progress_bar_types";
 import { StorageKeys } from "../../../../../constants/storage_keys";
@@ -33,13 +33,13 @@ export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
 
   const totalSteps = signupSteps.length;
 
-  const nextStep = useCallback(() => {
-    setCurrentStep((prev) => {
-      const next = Math.min(prev + 1, totalSteps);
+  const nextStep = () => {
+    const next = Math.min(currentStep + 1, totalSteps);
 
-      return next;
-    });
-  }, [totalSteps]);
+    setCurrentStep(next);
+
+    return signupSteps[next - 1].stepKey;
+  };
 
   const previousStep = useCallback(() => {
     setCurrentStep((prev) => {

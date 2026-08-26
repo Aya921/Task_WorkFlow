@@ -59,8 +59,9 @@ export const CreateUserPage = () => {
     createUserFn(data, {
       onSuccess: () => {
         updateSignupData(data);
-        nextStep();
-        navigate(ROUTES.VERIFICATION);
+        const nextParm=nextStep();
+        console.log("next is ",nextParm)
+        navigate(`/signup/${nextParm}`);
 
       },
 
@@ -68,7 +69,9 @@ export const CreateUserPage = () => {
         showToast(error.message, "error");
       },
     });
-  };
+  }
+    
+
 
   return (
     <FormProvider {...methods}>
@@ -85,7 +88,7 @@ export const CreateUserPage = () => {
             isNextDisabled={!isValid}
             showBackButton={false}
             onNext={handleSubmit(onSubmit)}
-            isNextLoading={isLoading}
+           // isNextLoading={isLoading}
           />
 
           <TextLink
@@ -101,4 +104,5 @@ export const CreateUserPage = () => {
       </div>
     </FormProvider>
   );
-};
+}
+
