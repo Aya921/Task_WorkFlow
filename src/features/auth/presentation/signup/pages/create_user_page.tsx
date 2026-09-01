@@ -60,7 +60,7 @@ export const CreateUserPage = () => {
       onSuccess: () => {
         updateSignupData(data);
         const nextParm=nextStep();
-        console.log("next is ",nextParm)
+     
         navigate(`/signup/${nextParm}`);
 
       },

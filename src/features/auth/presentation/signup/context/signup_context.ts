@@ -5,7 +5,7 @@ type SignupContextType = {
     totalSteps: number;
     currentStep: number;
     nextStep: () => string;
-    previousStep: () => void;
+   
 
     signupData:CreateUserStepEntity
     updateSignupData: (data: Partial<CreateUserStepEntity>) => void;

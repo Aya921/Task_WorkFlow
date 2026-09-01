@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { SignupContext } from "./signup_context";
 import { signupSteps } from "../types/signup_progress_bar_types";
 import { StorageKeys } from "../../../../../constants/storage_keys";
 import type { CreateUserStepEntity } from "../../../domain/entity/crate_user_entity";
+import { useParams } from "react-router-dom";
 
 export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
   const [signupData, setSignupData] = useState<CreateUserStepEntity>(() => {
@@ -21,11 +22,10 @@ export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
     sessionStorage.setItem(StorageKeys.SIGNUP_DATA, JSON.stringify(signupData));
   }, [signupData]);
 
-  const [currentStep, setCurrentStep] = useState(() => {
-    const savedStep = sessionStorage.getItem(StorageKeys.CURRENT_STEP);
+  const { step } = useParams();
 
-    return savedStep ? Number(savedStep) : 1;
-  });
+const currentStep =
+  signupSteps.find((s) => s.stepKey === step)?.stepNumber ?? 1;
 
   useEffect(() => {
     sessionStorage.setItem(StorageKeys.CURRENT_STEP, currentStep.toString());
@@ -35,19 +35,10 @@ export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
 
   const nextStep = () => {
     const next = Math.min(currentStep + 1, totalSteps);
-
-    setCurrentStep(next);
-
     return signupSteps[next - 1].stepKey;
   };
 
-  const previousStep = useCallback(() => {
-    setCurrentStep((prev) => {
-      const prevStep = Math.max(1, prev - 1);
 
-      return prevStep;
-    });
-  }, []);
 
   const updateSignupData = useCallback(
     (data: Partial<CreateUserStepEntity>) => {
@@ -64,7 +55,7 @@ export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
       totalSteps,
       currentStep,
       nextStep,
-      previousStep,
+     
       signupData,
       updateSignupData,
     }),
@@ -72,7 +63,7 @@ export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
       totalSteps,
       currentStep,
       nextStep,
-      previousStep,
+      
       signupData,
       updateSignupData,
     ],

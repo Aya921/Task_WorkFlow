@@ -48,11 +48,11 @@ export const SignupDataSourceImp = (
         message: error.message,
       };
     else {
-      console.log("workspaces are",data)
+      
       const response = data as CreateWorkspaceResponseDto[];
-      console.log("after type the data",response)
+     
       const responseEntity = CreateWorkspaceResponseDtoMapper(response[0]);
-      console.log("after amp",responseEntity)
+      
 
       return {
         success: true,

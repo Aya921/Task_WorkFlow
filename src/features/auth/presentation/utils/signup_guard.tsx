@@ -12,6 +12,7 @@ export const SignupGuard = ({
 }: {
   children: React.ReactNode;
 }) => {
+  
   const { step } = useParams<{ step: SignupStepKey }>();
 
   const {
@@ -21,7 +22,6 @@ export const SignupGuard = ({
     sessionLoading,
   } = useAuth();
 
-  
 
   if (sessionLoading || profileLoading) {
     return <h1 className="text-[80] font-bold">Loading in Guard.....</h1>;
@@ -40,10 +40,10 @@ export const SignupGuard = ({
     const completedStep =
     (profile?.onboardingStep ?? "account") as SignupStepKey;
 
-    console.log("completeStep is", completedStep)
-
+    console.log(completedStep, "completed step in guard");
+    
   if (!isValidStep) {
-    console.log("not valid step")
+    console.log("here is invalid step in guard", step);
     return (
       <Navigate
         to={`/signup/${completedStep}`}

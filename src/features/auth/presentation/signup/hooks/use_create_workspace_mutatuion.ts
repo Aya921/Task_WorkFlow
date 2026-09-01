@@ -10,7 +10,7 @@ export const useCreateWorkSpaceMutation = () => {
         if(!response.success){
             throw new Error(response.message ?? "Failed to create workSpace Please Try again Later");
         }
-        console.log("mutatui data",response.data)
+       
         return response.data;
 
     }
