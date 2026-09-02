@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     data: profile,
     isLoading: profileLoading,
     error: profileError,
+    isFetching: profileFetching,
   } = useProfile(user?.id);
 
   const getProfile = useCallback(() => {
@@ -54,6 +55,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       profileLoading,
       profileError,
       getProfile,
+      profileFetching,
     }),
     [
       user,
@@ -63,6 +65,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       profileError,
       profileLoading,
       getProfile,
+      profileFetching,
     ],
   );
 

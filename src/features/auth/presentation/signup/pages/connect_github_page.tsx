@@ -4,8 +4,41 @@ import { Button } from "../../../../../shared/components/button";
 import { FaGithub } from "react-icons/fa";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { ArrowRight } from "lucide-react";
+import { useUpdateOnboardingStepMutation } from "../../profile/hook/use_update_onboarding_step";
+import { useAuth } from "../../../../../hooks/use_auth";
+import { useSignupContext } from "../hooks/use_signup_context";
+import { useNavigate } from "react-router-dom";
 
 export const ConnectGitHubPage = () => {
+  const { user,getProfile } = useAuth();
+  const { nextStep } = useSignupContext();
+  const navigate = useNavigate();
+  const {
+      updateOnboardingStepFn,
+      isLoading: isUpdatingOnboardingStep,
+      error: updatingOnboardingStepError,
+    } = useUpdateOnboardingStepMutation();
+
+     const handleContinue = () => {
+    if (!user?.id) return;
+
+    updateOnboardingStepFn(
+      {
+        userId: user.id,
+        onboardingStep: "success",
+        onboardingCompleted: true,
+       
+      },
+      {
+        onSuccess: () => {
+           getProfile();
+    const nextKeyStep = nextStep();
+   
+    navigate(`/signup/${nextKeyStep}`);
+        },
+      },
+    );
+  };
   const { t } = useTranslation("signup");
   return (
     <div className="flex w-full flex-col items-center justify-between gap-8 py-2 sm:gap-10 sm:py-4 md:gap-12 ">
@@ -14,7 +47,8 @@ export const ConnectGitHubPage = () => {
         title={t("github.title")}
         description={t("github.description")}
       />
-      <Button
+    
+       <Button
         aria-label={t("github.connect")}
         className="max-w-xl rounded-xl p-4 sm:p-5"
         activeClassName="bg-neutral-200 text-white "
@@ -22,6 +56,8 @@ export const ConnectGitHubPage = () => {
         <FaGithub className="h-5 w-5 shrink-0" aria-hidden />
         <span className={FONT_STYLES.button}>{t("github.connect")}</span>
       </Button>
+
+    
 
 
     <div className="flex justify-center">
@@ -55,9 +91,9 @@ export const ConnectGitHubPage = () => {
       /> */}
 
       <Button
-        onClick={() => {}}
-     
-        isLoading={false}
+        onClick={handleContinue}
+        isLoading={isUpdatingOnboardingStep}
+        error={updatingOnboardingStepError}
         activeClassName=" bg-gradient-to-r
 from-primary-600/90
 via-primary-500/80

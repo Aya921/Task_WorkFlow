@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { NavigationButtons } from "../components/navigation_btns";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../../../routes/route_path";
 import { WorkSpaceCards } from "../components/workspace/workspace_cards";
@@ -10,38 +9,32 @@ import { AuthSectionHeader } from "../components/auth_header";
 import { useCreateWorkSpaceMutation } from "../hooks/use_create_workspace_mutatuion";
 import type { CreateWorkspaceRequest } from "../../../domain/entity/create_work_space_request";
 import { useAuth } from "../../../../../hooks/use_auth";
-import { WorkspaceCodeView } from "../components/WorkspaceCodeView";
-import { StorageKeys } from "../../../../../constants/storage_keys";
+import { WorkspaceCodeView } from "../components/workspace_code_view";
 import { useSignupContext } from "../hooks/use_signup_context";
-
-
+import { Button } from "../../../../../shared/components/button";
+import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 
 export const CreateWorkSpacePage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("signup");
   const [workspaceMode, setWorkspaceMode] = useState<WorkspaceMode>(null);
   const [inputValue, setInputValue] = useState("");
-  const { user,getProfile } = useAuth();
+  const { user, getProfile } = useAuth();
   const { nextStep } = useSignupContext();
-  const [isWorkSpaceCreatedSuccess, setIsWorkSpaceCreatedSuccess] = useState(()=>{
-    const storedWorkspaceId = sessionStorage.getItem(StorageKeys.WORKSPACE_Id);
-    return storedWorkspaceId !== null && storedWorkspaceId !== "";
-  });
+  const [isWorkSpaceCreatedSuccess, setIsWorkSpaceCreatedSuccess] =
+    useState(false);
 
   const handleSelectWorkspace = (mode: WorkspaceMode) => {
     setWorkspaceMode(mode);
     setInputValue("");
   };
 
-  const { createWorkSpaceFn, isLoading } = useCreateWorkSpaceMutation();
+  const { createWorkSpaceFn, isLoading, data } = useCreateWorkSpaceMutation();
 
   const handleSubmit = (entity: CreateWorkspaceRequest) => {
     createWorkSpaceFn(entity, {
-      onSuccess: (data) => {
+      onSuccess: () => {
         setIsWorkSpaceCreatedSuccess(true);
-        sessionStorage.setItem(StorageKeys.WORKSPACE_Id, data?.inviteCode ?? "");
-        getProfile(); 
-      
       },
 
       onError: (error) => {
@@ -51,22 +44,18 @@ export const CreateWorkSpacePage = () => {
   };
 
   const handleContinue = () => {
-    const nextKeyStep = nextStep();
-    console.log("next step is", nextKeyStep);
-   
-    navigate(`/signup/${nextKeyStep}`);
+     getProfile();
+    // const nextKeyStep = nextStep();
+    // navigate(`/signup/${nextKeyStep}`);
   };
 
   // Show success view if workspace was created
   if (isWorkSpaceCreatedSuccess) {
     return (
       <div className="flex w-full flex-col items-center justify-between gap-6 sm:gap-8 md:gap-10">
-       
-
         <WorkspaceCodeView
-          inviteCode={sessionStorage.getItem(StorageKeys.WORKSPACE_Id) ?? ""}
+          inviteCode={data?.inviteCode ?? ""}
           onContinue={handleContinue}
-         
         />
       </div>
     );
@@ -93,22 +82,23 @@ export const CreateWorkSpacePage = () => {
         />
       )}
 
-      <NavigationButtons
-        backLabel={t("workspace.buttons.back")}
-        nextLabel={t("workspace.buttons.continue")}
-        isNextDisabled={workspaceMode === null || inputValue.trim() === ""}
-        isNextLoading={isLoading}
-        onBack={() => {
-          
-          navigate(ROUTES.VERIFICATION);
-        }}
-        onNext={() => {
+      <Button
+        onClick={() => {
           handleSubmit({
             name: inputValue,
             created_by: user?.id ?? "",
           });
         }}
-      />
+        isLoading={isLoading}
+        disabled={workspaceMode === null || inputValue.trim() === ""}
+        activeClassName="bg-gradient-to-r from-primary-600 via-primary-500 to-violet-500 text-white shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30"
+        disabledClassName="bg-slate-200 text-slate-500 cursor-not-allowed"
+        className="w-full"
+      >
+        <span className={FONT_STYLES.button}>
+          {t("workspace.buttons.continue")}
+        </span>
+      </Button>
     </div>
   );
 };

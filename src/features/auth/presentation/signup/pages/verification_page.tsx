@@ -5,15 +5,15 @@ import { VerificationHeader } from "../components/verification/verification_head
 import { IconContainer } from "../../../../../shared/components/icon_container";
 import { Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { NavigationButtons } from "../components/navigation_btns";
 import { useNavigate } from "react-router-dom";
 import { useSignupContext } from "../hooks/use_signup_context";
 import { useCheckEmailVerification } from "../hooks/use_check_email_verification";
+import { Button } from "../../../../../shared/components/button";
 
 export const VerificationPage = () => {
   const [otp, setOtp] = useState<string>("");
   const { t } = useTranslation("signup");
-  const { nextStep, previousStep } = useSignupContext();
+  const { nextStep } = useSignupContext();
   const navigate = useNavigate();
 
   useCheckEmailVerification(() => {
@@ -33,7 +33,7 @@ export const VerificationPage = () => {
 
       <ResendOtpBtn />
 
-      <NavigationButtons
+      {/* <NavigationButtons
         backLabel={t("verification.buttons.back")}
         nextLabel={t("verification.buttons.verifyContinue")}
         isNextDisabled={otp.length !== OTP_LENGTH}
@@ -42,7 +42,10 @@ export const VerificationPage = () => {
           navigate("/");
         }}
         onNext={() => {}}
-      />
+      /> */}
+
+
+      
     </div>
   );
 };

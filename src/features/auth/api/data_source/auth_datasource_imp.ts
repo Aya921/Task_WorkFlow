@@ -10,7 +10,9 @@ import { CreateWorkspaceRequestDtoMapper } from "../mappers/to_create_workspace_
 import type { CreateWorkspaceResponseDto } from "../dtos/create_work_space_response_dto";
 import { CreateWorkspaceResponseDtoMapper } from "../mappers/to_create_work_space_response";
 import type { Profile } from "../../domain/entity/profile";
+import type { UpdateOnboardingStepRequest } from "../../domain/entity/update_onboarding_step_request";
 import { toProfileEntity } from "../mappers/to_profile_entity";
+import { toUpdateOnboardingStepRequestDto } from "../mappers/to_update_onboarding_step_request_dto";
 export const SignupDataSourceImp = (
   apiService: AuthApiService,
 ): AuthDataSource => ({
@@ -80,4 +82,23 @@ export const SignupDataSourceImp = (
     data: toProfileEntity(data),
   };
 },
+  async updateOnboardingStep(
+    entity: UpdateOnboardingStepRequest,
+  ): Promise<ApiResponse<Profile>> {
+    const { data, error } = await apiService.updateOnboardingStep(
+      toUpdateOnboardingStepRequestDto(entity),
+    );
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+
+    return {
+      success: true,
+      data: toProfileEntity(data),
+    };
+  },
 });

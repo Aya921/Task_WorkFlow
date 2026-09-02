@@ -6,6 +6,7 @@ import {
   type SignupStepKey,
 } from "../signup/types/signup_progress_bar_types";
 import { ROUTES } from "../../../../routes/route_path";
+import { LazyLoadingAnimation } from "../../../../animations/lazy_loading_animation";
 
 export const SignupGuard = ({
   children,
@@ -20,11 +21,17 @@ export const SignupGuard = ({
     profile,
     profileLoading,
     sessionLoading,
+    profileFetching,
   } = useAuth();
 
 
-  if (sessionLoading || profileLoading) {
-    return <h1 className="text-[80] font-bold">Loading in Guard.....</h1>;
+  if (sessionLoading || profileLoading|| profileFetching) {
+    console.log("loading profile or session data in guard");
+    return <div className="flex justify-center items-center h-screen">
+      
+      <LazyLoadingAnimation />
+
+    </div>;
   }
 
  
@@ -67,22 +74,22 @@ export const SignupGuard = ({
     );
   }
 
-  // User already finished onboarding
-  if (profile?.onboardingCompleted) {
-    return <h1>dashboard page...</h1>;
-    // or:
-    // return <Navigate to={ROUTES.DASHBOARD} replace />;
-  }
+  // // User already finished onboarding
+  // if (profile?.onboardingCompleted) {
+  //   return <h1>dashboard page...</h1>;
+  //   // or:
+  //   // return <Navigate to={ROUTES.DASHBOARD} replace />;
+  // }
 
 
   
 
   const allowedIndex = signupSteps.findIndex(
-    (s) => s.stepKey === completedStep,
+    (s) => s.stepKey === completedStep,  // github
   );
 
   const currentIndex = signupSteps.findIndex(
-    (s) => s.stepKey === step,
+    (s) => s.stepKey === step,  // workspace
   );
 
   

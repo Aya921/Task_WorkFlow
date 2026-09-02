@@ -4,9 +4,11 @@ import type { CreateUserResult } from "../entity/create_user_result";
 import type { CreateWorkspaceRequest } from "../entity/create_work_space_request";
 import type { CreateWorkspaceResponse } from "../entity/create_work_space_response";
 import type { Profile } from "../entity/profile";
+import type { UpdateOnboardingStepRequest } from "../entity/update_onboarding_step_request";
 
 export interface AuthRepo {
   createUserStep(createUserEntity: CreateUserStepEntity): Promise<ApiResponse<CreateUserResult>>;
   createWorkSpace(entity:CreateWorkspaceRequest):Promise<ApiResponse<CreateWorkspaceResponse>>
   getProfileData(userId:string):Promise<ApiResponse<Profile>>
+  updateOnboardingStep(entity: UpdateOnboardingStepRequest): Promise<ApiResponse<Profile>>;
 }

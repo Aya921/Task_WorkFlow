@@ -10,13 +10,13 @@ import {
   type SignupFormData,
 } from "../types/signup_schema";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../../../../routes/route_path";
 import { useSignupContext } from "../hooks/use_signup_context";
 import type { CreateUserStepEntity } from "../../../domain/entity/crate_user_entity";
-import { NavigationButtons } from "../components/navigation_btns";
 import { AuthSectionHeader } from "../components/auth_header";
 import { useCreateUserMutation } from "../hooks/use_create_user_mutatuion";
 import { useToast } from "../../../../../hooks/use_toast";
+import { Button } from "../../../../../shared/components/button";
+import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 
 export const CreateUserPage = () => {
   const { t } = useTranslation("signup");
@@ -83,13 +83,18 @@ export const CreateUserPage = () => {
           />
           <SignupInputs />
 
-          <NavigationButtons
-            nextLabel={t("buttons.continue")}
-            isNextDisabled={!isValid}
-            showBackButton={false}
-            onNext={handleSubmit(onSubmit)}
-           // isNextLoading={isLoading}
-          />
+
+
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            isLoading={isLoading}
+            disabled={!isValid}
+            activeClassName="bg-gradient-to-r from-primary-600 via-primary-500 to-violet-500 text-white shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30"
+            disabledClassName="bg-slate-200 text-slate-500 cursor-not-allowed"
+            className="w-full"
+          >
+            <span className={FONT_STYLES.button}>{t("buttons.continue")}</span>
+          </Button>
 
           <TextLink
             className="text-primary-800"

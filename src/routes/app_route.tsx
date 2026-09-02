@@ -5,6 +5,8 @@ import { RegisterLayout } from "../features/auth/presentation/signup/layout/regi
 import { LazyLoader } from "../shared/components/lazy_loader";
 import { SignupRouter } from "../features/auth/presentation/utils/signup_router";
 import { HomePage } from "../features/home/pages/home_page";
+import { DashboardPage } from "../features/home/pages/dashboard_page";
+import { ROUTES } from "./route_path";
 
 
 
@@ -16,6 +18,8 @@ export const AppRoutes = () => {
         <Route element={<RegisterLayout />}>
           <Route path="/signup/:step" element={<SignupRouter />} />
         </Route>
+
+        <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
       </Routes>
     </Suspense>
   );

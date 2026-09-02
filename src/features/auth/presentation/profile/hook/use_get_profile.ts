@@ -5,9 +5,7 @@ export function useProfile(userId: string | undefined) {
   return useQuery({
     queryKey: ['profile', userId],
     queryFn: async () => {
-      console.log("update profile query function is called with userId:", userId);
-
-
+      
         const response =await getProfileUseCase(userId!)
        
        if (!response.success) throw new Error(response.message);
