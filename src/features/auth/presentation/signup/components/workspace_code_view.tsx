@@ -4,6 +4,9 @@ import { Button } from "../../../../../shared/components/button";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { useUpdateOnboardingStepMutation } from "../../profile/hook/use_update_onboarding_step";
 import { useAuth } from "../../../../../hooks/use_auth";
+import { queryClient } from "../../../../../query/query_client";
+import { useNavigate } from "react-router-dom";
+import { useSignupContext } from "../hooks/use_signup_context";
 
 interface WorkspaceCodeViewProps {
   inviteCode: string;
@@ -16,11 +19,13 @@ export const WorkspaceCodeView = ({
 }: WorkspaceCodeViewProps) => {
   const [copied, setCopied] = useState(false);
   const { user } = useAuth();
+  const { nextStep } = useSignupContext();
   const {
     updateOnboardingStepFn,
     isLoading: isUpdatingOnboardingStep,
     error: updatingOnboardingStepError,
   } = useUpdateOnboardingStepMutation();
+  const navigate = useNavigate();
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText(inviteCode);
@@ -35,11 +40,12 @@ export const WorkspaceCodeView = ({
       {
         userId: user.id,
         onboardingStep: "github",
-       
       },
       {
-        onSuccess: () => {
-          onContinue?.();
+        onSuccess: (response) => {
+          queryClient.setQueryData(["profile", user.id], response);
+
+         // navigate(`/signup/${response?.onboardingStep}`);
         },
       },
     );
@@ -69,7 +75,9 @@ export const WorkspaceCodeView = ({
           <p className={`${FONT_STYLES.bodySm} mb-3 text-secondary-600`}>
             Workspace Invite Code
           </p>
-          <p className={`${FONT_STYLES.h3} font-mono tracking-wider text-primary-900`}>
+          <p
+            className={`${FONT_STYLES.h3} font-mono tracking-wider text-primary-900`}
+          >
             {inviteCode}
           </p>
         </div>

@@ -17,11 +17,12 @@ import { useCreateUserMutation } from "../hooks/use_create_user_mutatuion";
 import { useToast } from "../../../../../hooks/use_toast";
 import { Button } from "../../../../../shared/components/button";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import { PageTransition } from "../layout/page_transtion";
 
 export const CreateUserPage = () => {
   const { t } = useTranslation("signup");
   const navigate = useNavigate();
-  const { nextStep, updateSignupData, signupData } = useSignupContext();
+  const { nextStep, signupData } = useSignupContext();
   const methods = useForm<SignupFormData>({
     resolver: zodResolver(createSignupSchema(t)),
     mode: "onChange",
@@ -58,7 +59,7 @@ export const CreateUserPage = () => {
   const onSubmit = (data: CreateUserStepEntity) => {
     createUserFn(data, {
       onSuccess: () => {
-        updateSignupData(data);
+        // updateSignupData(data);
         const nextParm=nextStep();
      
         navigate(`/signup/${nextParm}`);
@@ -74,8 +75,9 @@ export const CreateUserPage = () => {
 
 
   return (
-    <FormProvider {...methods}>
-      <div className="flex w-full flex-col gap-6 overflow-x-hidden lg:flex-row lg:gap-8">
+   <PageTransition>
+     <FormProvider {...methods}>
+      <div className="flex w-full flex-1 flex-col gap-6 overflow-x-hidden lg:flex-row lg:gap-8">
         <div className="flex w-full min-w-0 flex-col gap-4 lg:flex-[2]">
           <AuthSectionHeader
             title={t("title")}
@@ -108,6 +110,7 @@ export const CreateUserPage = () => {
         </div>
       </div>
     </FormProvider>
+   </PageTransition>
   );
 }
 

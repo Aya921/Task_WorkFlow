@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { useSignupContext } from "../hooks/use_signup_context";
 import { signupSteps } from "../types/signup_progress_bar_types";
+import { motion } from "framer-motion";
 
 const outerCircleBase =
   "flex items-center justify-center rounded-full border-2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14";
@@ -11,6 +12,7 @@ const innerCircleBase =
   "flex items-center justify-center rounded-full font-bold w-5 h-5 text-xs sm:w-6 sm:h-6 sm:text-sm md:w-8 md:h-8 md:text-base";
 
 export const SignupProgressBar = () => {
+  console.log("progress bar rendered/mounted");
   const { t } = useTranslation("signup");
   const { currentStep, totalSteps } = useSignupContext();
   const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
@@ -36,9 +38,16 @@ export const SignupProgressBar = () => {
     <div className="relative w-full max-w-5xl px-1 sm:px-2">
       <div className="absolute start-0 top-5 h-0.5 w-full bg-neutral-300 sm:top-6 md:top-7" />
 
-      <div
-        className="absolute start-0 top-5 h-0.5 bg-primary-800 transition-all duration-300 ease-in-out sm:top-6 md:top-7"
-        style={{ width: `${progressPercentage}%` }}
+      <motion.div
+        className="absolute start-0 top-5 h-0.5 bg-primary-800 sm:top-6 md:top-7"
+         initial={false}
+        animate={{
+          width: `${progressPercentage}%`,
+        }}
+        transition={{
+          duration: 0.6,
+          ease: "easeInOut",
+        }}
       />
 
       <div className="relative z-10 flex justify-between gap-1 sm:gap-2">

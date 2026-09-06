@@ -33,22 +33,21 @@ const currentStep =
 
   const totalSteps = signupSteps.length;
 
-  const nextStep = () => {
-    const next = Math.min(currentStep + 1, totalSteps);
-    return signupSteps[next - 1].stepKey;
-  };
+  const nextStep = useCallback(() => {
+  const next = Math.min(currentStep + 1, totalSteps);
+  return signupSteps[next - 1].stepKey;
+}, [currentStep, totalSteps]);
 
 
-
-  const updateSignupData = useCallback(
-    (data: Partial<CreateUserStepEntity>) => {
-      setSignupData((prev) => ({
-        ...prev,
-        ...data,
-      }));
-    },
-    [],
-  );
+  // const updateSignupData = useCallback(
+  //   (data: Partial<CreateUserStepEntity>) => {
+  //     setSignupData((prev) => ({
+  //       ...prev,
+  //       ...data,
+  //     }));
+  //   },
+  //   [],
+  // );
 
   const value = useMemo(
     () => ({
@@ -57,7 +56,7 @@ const currentStep =
       nextStep,
      
       signupData,
-      updateSignupData,
+     // updateSignupData,
     }),
     [
       totalSteps,
@@ -65,7 +64,7 @@ const currentStep =
       nextStep,
       
       signupData,
-      updateSignupData,
+     // updateSignupData,
     ],
   );
 

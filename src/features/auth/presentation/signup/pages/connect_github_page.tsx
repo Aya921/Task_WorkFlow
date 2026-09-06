@@ -8,18 +8,20 @@ import { useUpdateOnboardingStepMutation } from "../../profile/hook/use_update_o
 import { useAuth } from "../../../../../hooks/use_auth";
 import { useSignupContext } from "../hooks/use_signup_context";
 import { useNavigate } from "react-router-dom";
+import { queryClient } from "../../../../../query/query_client";
+import { PageTransition } from "../layout/page_transtion";
 
 export const ConnectGitHubPage = () => {
-  const { user,getProfile } = useAuth();
+  const { user } = useAuth();
   const { nextStep } = useSignupContext();
   const navigate = useNavigate();
   const {
-      updateOnboardingStepFn,
-      isLoading: isUpdatingOnboardingStep,
-      error: updatingOnboardingStepError,
-    } = useUpdateOnboardingStepMutation();
+    updateOnboardingStepFn,
+    isLoading: isUpdatingOnboardingStep,
+    error: updatingOnboardingStepError,
+  } = useUpdateOnboardingStepMutation();
 
-     const handleContinue = () => {
+  const handleContinue = () => {
     if (!user?.id) return;
 
     updateOnboardingStepFn(
@@ -27,28 +29,28 @@ export const ConnectGitHubPage = () => {
         userId: user.id,
         onboardingStep: "success",
         onboardingCompleted: true,
-       
       },
       {
-        onSuccess: () => {
-           getProfile();
-    const nextKeyStep = nextStep();
-   
-    navigate(`/signup/${nextKeyStep}`);
+        onSuccess: (response) => {
+          queryClient.setQueryData(["profile", user.id], response);
+          console.log("onboarding step updated successfully:", response?.onboardingStep);
+
+           //navigate(`/signup/${response?.onboardingStep}`);
         },
       },
     );
   };
   const { t } = useTranslation("signup");
   return (
-    <div className="flex w-full flex-col items-center justify-between gap-8 py-2 sm:gap-10 sm:py-4 md:gap-12 ">
+   <PageTransition >
+     <div className="  flex flex-1 w-full flex-col items-center justify-between gap-8 py-2 sm:gap-10 sm:py-4 md:gap-12 ">
       <AuthSectionHeader
         className="mx-auto text-center"
         title={t("github.title")}
         description={t("github.description")}
       />
-    
-       <Button
+
+      <Button
         aria-label={t("github.connect")}
         className="max-w-xl rounded-xl p-4 sm:p-5"
         activeClassName="bg-neutral-200 text-white "
@@ -57,12 +59,9 @@ export const ConnectGitHubPage = () => {
         <span className={FONT_STYLES.button}>{t("github.connect")}</span>
       </Button>
 
-    
-
-
-    <div className="flex justify-center">
-  <span
-    className="
+      <div className="flex justify-center">
+        <span
+          className="
       rounded-full
       border border-emerald-400/30
       bg-emerald-500/10
@@ -72,10 +71,10 @@ export const ConnectGitHubPage = () => {
       shadow-[0_0_20px_rgba(16,185,129,0.35)]
       animate-pulse
     "
-  >
-    ✨ Coming Soon
-  </span>
-</div>
+        >
+          ✨ Coming Soon
+        </span>
+      </div>
 
       {/* <NavigationButtons
         backLabel={t("github.buttons.back")}
@@ -109,8 +108,7 @@ transition-all  text-white cursor-pointer"
 
         <ArrowRight size={20} className="shrink-0 rtl:rotate-180" aria-hidden />
       </Button>
-
-      
     </div>
+   </PageTransition>
   );
 };

@@ -10,17 +10,15 @@ import { ROUTES } from "./route_path";
 
 
 
+// AppRoutes.tsx
 export const AppRoutes = () => {
   return (
-    <Suspense fallback={<LazyLoader show={true} delay={500} />}>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route element={<RegisterLayout />}>
-          <Route path="/signup/:step" element={<SignupRouter />} />
-        </Route>
-
-        <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
-      </Routes>
-    </Suspense>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route element={<RegisterLayout />}>
+        <Route path="/signup/:step" element={<SignupRouter />} />
+      </Route>
+      <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
+    </Routes>
   );
 };

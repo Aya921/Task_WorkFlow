@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useSignupContext } from "../hooks/use_signup_context";
 import { useCheckEmailVerification } from "../hooks/use_check_email_verification";
 import { Button } from "../../../../../shared/components/button";
+import { PageTransition } from "../layout/page_transtion";
 
 export const VerificationPage = () => {
   const [otp, setOtp] = useState<string>("");
@@ -24,7 +25,8 @@ export const VerificationPage = () => {
   });
 
   return (
-    <div className="w-full flex flex-col items-center justify-between overflow-x-hidden">
+   <PageTransition>
+     <div className="w-full flex  flex-1 flex-col items-center justify-between overflow-x-hidden">
       <IconContainer icon={Mail} />
 
       <VerificationHeader />
@@ -47,5 +49,6 @@ export const VerificationPage = () => {
 
       
     </div>
+   </PageTransition>
   );
 };

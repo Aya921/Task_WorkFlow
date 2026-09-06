@@ -48,8 +48,7 @@ export class AuthApiService {
       if (dto.onboarding_completed !== undefined) {
         updateData.onboarding_completed = dto.onboarding_completed;
       }
-      console.log("updateData", updateData);
-      console.log("dto.id", dto);
+     
 
       const response = await supabase
         .from("profiles")
@@ -58,7 +57,6 @@ export class AuthApiService {
         .select("*")
         .maybeSingle();
 
-        console.log("updateOnboardingStep response", response);
 
       return response;
     }

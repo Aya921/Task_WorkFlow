@@ -4,13 +4,15 @@ import { AuthSectionHeader } from "../components/auth_header";
 import { BackGroundSuccessAnimation } from "../../../../../animations/background_success_animation";
 import { Button } from "../../../../../shared/components/button";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import { PageTransition } from "../layout/page_transtion";
 
 export const SuccessRegisterPage = () => {
   const { t } = useTranslation("signup");
   const navigate = useNavigate();
 
   return (
-    <div className="relative flex min-h-[22rem] w-full items-center justify-center overflow-hidden py-8 sm:min-h-[26rem] sm:py-10">
+   <PageTransition>
+     <div className="relative flex flex-1 min-h-[22rem] w-full items-center justify-center overflow-hidden py-8 sm:min-h-[26rem] sm:py-10">
       <div className="pointer-events-none absolute inset-0">
         <BackGroundSuccessAnimation />
       </div>
@@ -34,5 +36,6 @@ export const SuccessRegisterPage = () => {
         </div>
       </div>
     </div>
+   </PageTransition>
   );
 };

@@ -25,14 +25,23 @@ export const SignupGuard = ({
   } = useAuth();
 
 
-  if (sessionLoading || profileLoading|| profileFetching) {
-    console.log("loading profile or session data in guard");
-    return <div className="flex justify-center items-center h-screen">
+  // if (sessionLoading || profileLoading|| profileFetching) {
+  //   console.log("loading profile or session data in guard");
+  //   return <div className="flex justify-center items-center h-screen">
       
-      <LazyLoadingAnimation />
+  //     <LazyLoadingAnimation />
 
-    </div>;
-  }
+  //   </div>;
+  // }
+
+
+//   console.log({
+//   profileLoading,
+//   sessionLoading,
+//   profileFetching,
+// });
+
+
 
  
 
@@ -47,10 +56,9 @@ export const SignupGuard = ({
     const completedStep =
     (profile?.onboardingStep ?? "account") as SignupStepKey;
 
-    console.log(completedStep, "completed step in guard");
     
   if (!isValidStep) {
-    console.log("here is invalid step in guard", step);
+
     return (
       <Navigate
         to={`/signup/${completedStep}`}
@@ -61,7 +69,6 @@ export const SignupGuard = ({
 
   // Allow unauthenticated users only on the first step
   if (!user) {
-    console.log("there is no user exist to continue")
     if (step === "account") {
       return <>{children}</>;
     }
@@ -92,7 +99,9 @@ export const SignupGuard = ({
     (s) => s.stepKey === step,  // workspace
   );
 
-  
+
+  console.log({ step, completedStep, currentIndex, allowedIndex });
+    
   if (currentIndex !== allowedIndex) {
    
     return (

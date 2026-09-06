@@ -13,6 +13,8 @@ import { WorkspaceCodeView } from "../components/workspace_code_view";
 import { useSignupContext } from "../hooks/use_signup_context";
 import { Button } from "../../../../../shared/components/button";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import { PageTransition } from "../layout/page_transtion";
+import { motion } from "framer-motion";
 
 export const CreateWorkSpacePage = () => {
   const navigate = useNavigate();
@@ -44,61 +46,66 @@ export const CreateWorkSpacePage = () => {
   };
 
   const handleContinue = () => {
-     getProfile();
-    // const nextKeyStep = nextStep();
-    // navigate(`/signup/${nextKeyStep}`);
+    // getProfile();
   };
 
   // Show success view if workspace was created
   if (isWorkSpaceCreatedSuccess) {
     return (
-      <div className="flex w-full flex-col items-center justify-between gap-6 sm:gap-8 md:gap-10">
+      <motion.div
+        className="flex w-full flex-1 flex-col items-center justify-between gap-6 sm:gap-8 md:gap-10"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+      >
         <WorkspaceCodeView
           inviteCode={data?.inviteCode ?? ""}
           onContinue={handleContinue}
         />
-      </div>
+      </motion.div>
     );
   }
 
   // Show form view
   return (
-    <div className="flex w-full flex-col items-center justify-between gap-6 sm:gap-8 md:gap-10">
-      <AuthSectionHeader
-        className="text-center"
-        title={t("workspace.title")}
-        description={t("workspace.description")}
-      />
-
-      <WorkSpaceCards
-        handleSelectWorkSpace={handleSelectWorkspace}
-        workSpaceMode={workspaceMode}
-      />
-
-      {workspaceMode !== null && (
-        <WorkSpaceInputField
-          workSpaceMode={workspaceMode}
-          handleInputValue={setInputValue}
+    <PageTransition>
+      <div className="flex w-full flex-1 flex-col items-center justify-between gap-6 sm:gap-8 md:gap-10">
+        <AuthSectionHeader
+          className="text-center"
+          title={t("workspace.title")}
+          description={t("workspace.description")}
         />
-      )}
 
-      <Button
-        onClick={() => {
-          handleSubmit({
-            name: inputValue,
-            created_by: user?.id ?? "",
-          });
-        }}
-        isLoading={isLoading}
-        disabled={workspaceMode === null || inputValue.trim() === ""}
-        activeClassName="bg-gradient-to-r from-primary-600 via-primary-500 to-violet-500 text-white shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30"
-        disabledClassName="bg-slate-200 text-slate-500 cursor-not-allowed"
-        className="w-full"
-      >
-        <span className={FONT_STYLES.button}>
-          {t("workspace.buttons.continue")}
-        </span>
-      </Button>
-    </div>
+        <WorkSpaceCards
+          handleSelectWorkSpace={handleSelectWorkspace}
+          workSpaceMode={workspaceMode}
+        />
+
+        {workspaceMode !== null && (
+          <WorkSpaceInputField
+            workSpaceMode={workspaceMode}
+            handleInputValue={setInputValue}
+          />
+        )}
+
+        <Button
+          onClick={() => {
+            handleSubmit({
+              name: inputValue,
+              created_by: user?.id ?? "",
+            });
+          }}
+          isLoading={isLoading}
+          disabled={workspaceMode === null || inputValue.trim() === ""}
+          activeClassName="bg-gradient-to-r from-primary-600 via-primary-500 to-violet-500 text-white shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30"
+          disabledClassName="bg-slate-200 text-slate-500 cursor-not-allowed"
+          className="w-full"
+        >
+          <span className={FONT_STYLES.button}>
+            {t("workspace.buttons.continue")}
+          </span>
+        </Button>
+      </div>
+    </PageTransition>
   );
 };

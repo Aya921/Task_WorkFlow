@@ -16,7 +16,7 @@ export const BackGroundLayout = ({
       />
 
       {/* Glows */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 -z-10 ">
         <div className="absolute -top-48 -left-48 w-[600px] h-[600px] rounded-full bg-primary-500/15 blur-[140px]" />
 
         <div className="absolute top-1/3 -right-48 w-[550px] h-[550px] rounded-full bg-accent-400/15 blur-[140px]" />
