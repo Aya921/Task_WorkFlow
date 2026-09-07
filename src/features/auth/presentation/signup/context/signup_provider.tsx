@@ -6,21 +6,21 @@ import type { CreateUserStepEntity } from "../../../domain/entity/crate_user_ent
 import { useParams } from "react-router-dom";
 
 export const SignupProvider = ({ children }: { children: React.ReactNode }) => {
-  const [signupData, setSignupData] = useState<CreateUserStepEntity>(() => {
-    const savedData = sessionStorage.getItem(StorageKeys.SIGNUP_DATA);
-    if (savedData) {
-      return JSON.parse(savedData);
-    }
-    return {
-      fullName: "",
-      email: "",
-      password: "",
-    };
-  });
+  // const [signupData, setSignupData] = useState<CreateUserStepEntity>(() => {
+  //   const savedData = sessionStorage.getItem(StorageKeys.SIGNUP_DATA);
+  //   if (savedData) {
+  //     return JSON.parse(savedData);
+  //   }
+  //   return {
+  //     fullName: "",
+  //     email: "",
+  //     password: "",
+  //   };
+  // });
 
-  useEffect(() => {
-    sessionStorage.setItem(StorageKeys.SIGNUP_DATA, JSON.stringify(signupData));
-  }, [signupData]);
+  // useEffect(() => {
+  //   sessionStorage.setItem(StorageKeys.SIGNUP_DATA, JSON.stringify(signupData));
+  // }, [signupData]);
 
   const { step } = useParams();
 
@@ -55,7 +55,7 @@ const currentStep =
       currentStep,
       nextStep,
      
-      signupData,
+      //signupData,
      // updateSignupData,
     }),
     [
@@ -63,7 +63,7 @@ const currentStep =
       currentStep,
       nextStep,
       
-      signupData,
+     // signupData,
      // updateSignupData,
     ],
   );

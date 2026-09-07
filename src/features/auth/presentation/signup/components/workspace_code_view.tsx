@@ -5,27 +5,24 @@ import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { useUpdateOnboardingStepMutation } from "../../profile/hook/use_update_onboarding_step";
 import { useAuth } from "../../../../../hooks/use_auth";
 import { queryClient } from "../../../../../query/query_client";
-import { useNavigate } from "react-router-dom";
-import { useSignupContext } from "../hooks/use_signup_context";
+
 
 interface WorkspaceCodeViewProps {
   inviteCode: string;
-  onContinue?: () => void;
+
 }
 
 export const WorkspaceCodeView = ({
   inviteCode,
-  onContinue,
 }: WorkspaceCodeViewProps) => {
   const [copied, setCopied] = useState(false);
   const { user } = useAuth();
-  const { nextStep } = useSignupContext();
   const {
     updateOnboardingStepFn,
     isLoading: isUpdatingOnboardingStep,
     error: updatingOnboardingStepError,
   } = useUpdateOnboardingStepMutation();
-  const navigate = useNavigate();
+ 
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText(inviteCode);
@@ -47,6 +44,7 @@ export const WorkspaceCodeView = ({
 
          // navigate(`/signup/${response?.onboardingStep}`);
         },
+        // TODO: add error handling for the mutation
       },
     );
   };

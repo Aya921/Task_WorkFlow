@@ -1,28 +1,25 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../../../../routes/route_path";
 import { WorkSpaceCards } from "../components/workspace/workspace_cards";
 import type { WorkspaceMode } from "../types/workspace_mode";
 import { WorkSpaceInputField } from "../components/workspace/workspace_input_field";
 import { AuthSectionHeader } from "../components/auth_header";
-import { useCreateWorkSpaceMutation } from "../hooks/use_create_workspace_mutatuion";
+import { useCreateWorkSpaceMutation } from "../hooks/use_create_workspace_mutation";
+import { useJoinWorkspaceByInviteMutation } from "../hooks/use_join_workspace_by_invite_mutation";
 import type { CreateWorkspaceRequest } from "../../../domain/entity/create_work_space_request";
 import { useAuth } from "../../../../../hooks/use_auth";
 import { WorkspaceCodeView } from "../components/workspace_code_view";
-import { useSignupContext } from "../hooks/use_signup_context";
 import { Button } from "../../../../../shared/components/button";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
-import { PageTransition } from "../layout/page_transtion";
+import { PageTransition } from "../layout/page_transition";
 import { motion } from "framer-motion";
 
 export const CreateWorkSpacePage = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation("signup");
   const [workspaceMode, setWorkspaceMode] = useState<WorkspaceMode>(null);
   const [inputValue, setInputValue] = useState("");
   const { user, getProfile } = useAuth();
-  const { nextStep } = useSignupContext();
+
   const [isWorkSpaceCreatedSuccess, setIsWorkSpaceCreatedSuccess] =
     useState(false);
 
@@ -32,21 +29,29 @@ export const CreateWorkSpacePage = () => {
   };
 
   const { createWorkSpaceFn, isLoading, data } = useCreateWorkSpaceMutation();
+  const { joinWorkspaceByInviteFn, isLoading: isJoiningWorkspace } =
+    useJoinWorkspaceByInviteMutation();
 
   const handleSubmit = (entity: CreateWorkspaceRequest) => {
+    if (workspaceMode === "join") {
+      joinWorkspaceByInviteFn(
+        { code: inputValue },
+        {
+          onSuccess: (joined) => {
+            if (joined) {
+              getProfile();
+            }
+          },
+        },
+      );
+      return;
+    }
+
     createWorkSpaceFn(entity, {
       onSuccess: () => {
         setIsWorkSpaceCreatedSuccess(true);
       },
-
-      onError: (error) => {
-        console.log(error.message);
-      },
     });
-  };
-
-  const handleContinue = () => {
-    // getProfile();
   };
 
   // Show success view if workspace was created
@@ -58,10 +63,7 @@ export const CreateWorkSpacePage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: "easeOut" }}
       >
-        <WorkspaceCodeView
-          inviteCode={data?.inviteCode ?? ""}
-          onContinue={handleContinue}
-        />
+        <WorkspaceCodeView inviteCode={data?.inviteCode ?? ""} />
       </motion.div>
     );
   }
@@ -95,7 +97,7 @@ export const CreateWorkSpacePage = () => {
               created_by: user?.id ?? "",
             });
           }}
-          isLoading={isLoading}
+          isLoading={isLoading || isJoiningWorkspace}
           disabled={workspaceMode === null || inputValue.trim() === ""}
           activeClassName="bg-gradient-to-r from-primary-600 via-primary-500 to-violet-500 text-white shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30"
           disabledClassName="bg-slate-200 text-slate-500 cursor-not-allowed"

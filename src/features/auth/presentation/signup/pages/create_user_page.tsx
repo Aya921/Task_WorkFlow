@@ -13,23 +13,22 @@ import { useNavigate } from "react-router-dom";
 import { useSignupContext } from "../hooks/use_signup_context";
 import type { CreateUserStepEntity } from "../../../domain/entity/crate_user_entity";
 import { AuthSectionHeader } from "../components/auth_header";
-import { useCreateUserMutation } from "../hooks/use_create_user_mutatuion";
-import { useToast } from "../../../../../hooks/use_toast";
 import { Button } from "../../../../../shared/components/button";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
-import { PageTransition } from "../layout/page_transtion";
+import { useCreateUserMutation } from "../hooks/use_create_user_mutation";
+import { PageTransition } from "../layout/page_transition";
 
 export const CreateUserPage = () => {
   const { t } = useTranslation("signup");
   const navigate = useNavigate();
-  const { nextStep, signupData } = useSignupContext();
+  const { nextStep } = useSignupContext();
   const methods = useForm<SignupFormData>({
     resolver: zodResolver(createSignupSchema(t)),
     mode: "onChange",
     defaultValues: {
-      fullName: signupData.fullName,
-      email: signupData.email,
-      password: signupData.password,
+      fullName: "",
+      email: "",
+      password: "",
     },
   });
 
@@ -52,7 +51,6 @@ export const CreateUserPage = () => {
   //   return () => clearTimeout(timeout);
   // }, [formValues, updateSignupData]);
 
-  const { showToast } = useToast();
 
   const { createUserFn, isLoading } = useCreateUserMutation();
 
@@ -66,9 +64,7 @@ export const CreateUserPage = () => {
 
       },
 
-      onError: (error) => {
-        showToast(error.message, "error");
-      },
+     
     });
   }
     

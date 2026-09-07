@@ -6,7 +6,6 @@ import {
   type SignupStepKey,
 } from "../signup/types/signup_progress_bar_types";
 import { ROUTES } from "../../../../routes/route_path";
-import { LazyLoadingAnimation } from "../../../../animations/lazy_loading_animation";
 
 export const SignupGuard = ({
   children,
@@ -19,33 +18,8 @@ export const SignupGuard = ({
   const {
     user,
     profile,
-    profileLoading,
-    sessionLoading,
-    profileFetching,
   } = useAuth();
 
-
-  // if (sessionLoading || profileLoading|| profileFetching) {
-  //   console.log("loading profile or session data in guard");
-  //   return <div className="flex justify-center items-center h-screen">
-      
-  //     <LazyLoadingAnimation />
-
-  //   </div>;
-  // }
-
-
-//   console.log({
-//   profileLoading,
-//   sessionLoading,
-//   profileFetching,
-// });
-
-
-
- 
-
-  
 
   const isValidStep =
     !!step &&
@@ -71,6 +45,7 @@ export const SignupGuard = ({
   if (!user) {
     if (step === "account") {
       return <>{children}</>;
+     // return <>{<VerificationPage/>}</>;
     }
 
     return (
@@ -80,13 +55,6 @@ export const SignupGuard = ({
       />
     );
   }
-
-  // // User already finished onboarding
-  // if (profile?.onboardingCompleted) {
-  //   return <h1>dashboard page...</h1>;
-  //   // or:
-  //   // return <Navigate to={ROUTES.DASHBOARD} replace />;
-  // }
 
 
   

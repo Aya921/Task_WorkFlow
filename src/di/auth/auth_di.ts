@@ -5,6 +5,7 @@ import { createSignUpUseCase } from "../../features/auth/domain/usecase/create_u
 import { CreateWorkSpace } from "../../features/auth/domain/usecase/create_work_space";
 import { GetProfileDataUseCase } from "../../features/auth/domain/usecase/get_profile_data";
 import { UpdateOnboardingStep } from "../../features/auth/domain/usecase/update_onboarding_step";
+import { JoinWorkspaceByInvite } from "../../features/auth/domain/usecase/join_workspace_by_invite";
 
 
 const authApiService = new AuthApiService();
@@ -23,3 +24,4 @@ export const createWorkSpaceUseCase =
   export const getProfileUseCase=GetProfileDataUseCase(authRepo)
 
   export const updateOnboardingStepUseCase = UpdateOnboardingStep(authRepo);
+  export const joinWorkspaceByInviteUseCase = JoinWorkspaceByInvite(authRepo);

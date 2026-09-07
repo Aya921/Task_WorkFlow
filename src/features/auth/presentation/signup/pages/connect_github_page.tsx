@@ -9,7 +9,7 @@ import { useAuth } from "../../../../../hooks/use_auth";
 import { useSignupContext } from "../hooks/use_signup_context";
 import { useNavigate } from "react-router-dom";
 import { queryClient } from "../../../../../query/query_client";
-import { PageTransition } from "../layout/page_transtion";
+import { PageTransition } from "../layout/page_transition";
 
 export const ConnectGitHubPage = () => {
   const { user } = useAuth();

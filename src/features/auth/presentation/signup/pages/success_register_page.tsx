@@ -4,7 +4,7 @@ import { AuthSectionHeader } from "../components/auth_header";
 import { BackGroundSuccessAnimation } from "../../../../../animations/background_success_animation";
 import { Button } from "../../../../../shared/components/button";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
-import { PageTransition } from "../layout/page_transtion";
+import { PageTransition } from "../layout/page_transition";
 
 export const SuccessRegisterPage = () => {
   const { t } = useTranslation("signup");

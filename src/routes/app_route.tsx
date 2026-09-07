@@ -1,12 +1,11 @@
-import {  Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { RegisterLayout } from "../features/auth/presentation/signup/layout/register_layout";
-import { LazyLoader } from "../shared/components/lazy_loader";
 import { SignupRouter } from "../features/auth/presentation/utils/signup_router";
 import { HomePage } from "../features/home/pages/home_page";
 import { DashboardPage } from "../features/home/pages/dashboard_page";
 import { ROUTES } from "./route_path";
+import { NotFoundPage } from "../shared/pages/not_found_page";
 
 
 
@@ -19,6 +18,7 @@ export const AppRoutes = () => {
         <Route path="/signup/:step" element={<SignupRouter />} />
       </Route>
       <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

@@ -1,6 +1,13 @@
-import { QueryClient } from "@tanstack/react-query";
+import { MutationCache, QueryCache, QueryClient } from "@tanstack/react-query";
+import { notifyErrorToast } from "../utils/toast_error_event";
 
 export const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError: (error) => notifyErrorToast(error),
+  }),
+  mutationCache: new MutationCache({
+    onError: (error) => notifyErrorToast(error),
+  }),
   defaultOptions: {
     queries: {
       retry: 1,

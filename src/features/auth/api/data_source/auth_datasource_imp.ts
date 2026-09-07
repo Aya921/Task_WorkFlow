@@ -13,6 +13,8 @@ import type { Profile } from "../../domain/entity/profile";
 import type { UpdateOnboardingStepRequest } from "../../domain/entity/update_onboarding_step_request";
 import { toProfileEntity } from "../mappers/to_profile_entity";
 import { toUpdateOnboardingStepRequestDto } from "../mappers/to_update_onboarding_step_request_dto";
+import type { JoinWorkspaceByInviteRequest } from "../../domain/entity/join_workspace_by_invite_request";
+import { toJoinWorkspaceByInviteRequestDto } from "../mappers/to_join_workspace_by_invite_request_dto";
 export const SignupDataSourceImp = (
   apiService: AuthApiService,
 ): AuthDataSource => ({
@@ -61,6 +63,25 @@ export const SignupDataSourceImp = (
         data: responseEntity,
       };
     }
+  },
+  async joinWorkspaceByInvite(
+    entity: JoinWorkspaceByInviteRequest,
+  ): Promise<ApiResponse<boolean>> {
+    const { data, error } = await apiService.joinWorkspaceByInvite(
+      toJoinWorkspaceByInviteRequestDto(entity),
+    );
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+
+    return {
+      success: true,
+      data,
+    };
   },
   async getProfileData(userId: string): Promise<ApiResponse<Profile>> {
   const { data, error } = await apiService.getProfileData(userId);

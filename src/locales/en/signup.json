@@ -57,8 +57,12 @@
 
     "verification": {
       "title": "Check your inbox",
-      "sentCode": "We sent a 6-digit code to {{email}}.",
-      "enterCode": "Please enter it below to verify your email.",
+      "sentEmail": "We sent a verification email to {{email}}.",
+      "sentTo": "Verification email sent to",
+      "checkEmail": "Open the email and follow the verification link.",
+      "checkSpam": "Check your spam folder if you do not see it soon.",
+      "openEmail": "Open email app",
+      "waiting": "This page will continue automatically once your email is verified.",
       "resend": "Resend Code",
       "buttons": {
         "back": "Back",

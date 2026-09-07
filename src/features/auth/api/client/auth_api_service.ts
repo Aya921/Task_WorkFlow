@@ -2,6 +2,7 @@ import { supabase } from "../../../../core/supabase/supabase_client";
 import type { CreateWorkspaceRequestDto } from "../dtos/create_work_space_request_dto";
 import type { SignupRequestDto } from "../dtos/signup_request_dto";
 import type { UpdateOnboardingStepRequestDto } from "../dtos/update_onboarding_step_request_dto";
+import type { JoinWorkspaceByInviteRequestDto } from "../dtos/join_workspace_by_invite_request_dto";
 
 export class AuthApiService {
   async createUser(dto: SignupRequestDto) {
@@ -22,6 +23,15 @@ export class AuthApiService {
     const response = await supabase.rpc("create_workspace", {
       p_name: dto.name,
       p_created_by: dto.created_by,
+    });
+
+    return response;
+  }
+
+  async joinWorkspaceByInvite(dto: JoinWorkspaceByInviteRequestDto) {
+    console.log("i came here to join workspace by invite", dto);
+    const response = await supabase.rpc("join_workspace_by_invite", {
+      p_code: dto.code,
     });
 
     return response;

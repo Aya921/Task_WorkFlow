@@ -16,6 +16,9 @@ export const AuthRepoImp=(
     createWorkSpace(createWorkSpaceEntity) {
         return authDataSource.createWorkSpace(createWorkSpaceEntity);
     },
+    joinWorkspaceByInvite(joinWorkspaceByInviteEntity) {
+        return authDataSource.joinWorkspaceByInvite(joinWorkspaceByInviteEntity);
+    },
     getProfileData (userId: string): Promise<ApiResponse<Profile>> {
        return authDataSource.getProfileData(userId)
     },

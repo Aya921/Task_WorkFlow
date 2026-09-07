@@ -8,15 +8,18 @@ import { queryClient } from "./query/query_client.ts";
 import { ToastProvider } from "./context/toast_context/toast_provider.tsx";
 import { ToastContainer } from "./shared/components/toast_container.tsx";
 import { AuthProvider } from "./context/auth_context/auth_provider.tsx";
+import { ErrorBoundary } from "./shared/components/error_boundary.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <AuthProvider>
-             <App />
-          </AuthProvider>
+          <ErrorBoundary>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
+          </ErrorBoundary>
            <ToastContainer/>
         </ToastProvider>
        
