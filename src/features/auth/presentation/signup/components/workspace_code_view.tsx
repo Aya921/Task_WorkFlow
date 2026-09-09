@@ -4,7 +4,6 @@ import { Button } from "../../../../../shared/components/button";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { useUpdateOnboardingStepMutation } from "../../profile/hook/use_update_onboarding_step";
 import { useAuth } from "../../../../../hooks/use_auth";
-import { queryClient } from "../../../../../query/query_client";
 
 
 interface WorkspaceCodeViewProps {
@@ -38,14 +37,7 @@ export const WorkspaceCodeView = ({
         userId: user.id,
         onboardingStep: "github",
       },
-      {
-        onSuccess: (response) => {
-          queryClient.setQueryData(["profile", user.id], response);
-
-         // navigate(`/signup/${response?.onboardingStep}`);
-        },
-        // TODO: add error handling for the mutation
-      },
+     
     );
   };
 

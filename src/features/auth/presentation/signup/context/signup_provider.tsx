@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { SignupContext } from "./signup_context";
 import { signupSteps } from "../types/signup_progress_bar_types";
 import { StorageKeys } from "../../../../../constants/storage_keys";
-import type { CreateUserStepEntity } from "../../../domain/entity/crate_user_entity";
 import { useParams } from "react-router-dom";
 
 export const SignupProvider = ({ children }: { children: React.ReactNode }) => {

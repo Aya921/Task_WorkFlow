@@ -46,6 +46,34 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [user?.id]);
 
+  useEffect(() => {
+    console.log("USER CHANGED", user?.id);
+    if (!user?.id) return;
+    console.log("subscribing to profile changes for user", user.id);
+
+    const channel = supabase
+      .channel(`profile-${user.id}`)
+      .on(
+        "postgres_changes",
+        {
+         event: "*",
+          schema: "public",
+          table: "profiles",
+          filter: `id=eq.${user.id}`,
+        },
+        () => {
+          getProfile();
+        },
+      )
+      .subscribe((status) => {
+        console.log(status);
+      });
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user?.id]);
+
   const values = useMemo(
     () => ({
       user,

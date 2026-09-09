@@ -1,7 +1,7 @@
 export const FONT_STYLES = {
   // Display
   display:
-    "text-3xl md:text-4xl lg:text-5xl font-bold leading-tight",
+    "text-3xl md:text-4xl lg:text-6xl font-bold leading-tight",
 
   // Headings
   h1:

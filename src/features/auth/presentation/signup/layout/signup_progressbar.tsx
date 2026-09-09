@@ -12,7 +12,7 @@ const innerCircleBase =
   "flex items-center justify-center rounded-full font-bold w-5 h-5 text-xs sm:w-6 sm:h-6 sm:text-sm md:w-8 md:h-8 md:text-base";
 
 export const SignupProgressBar = () => {
-  console.log("progress bar rendered/mounted");
+ 
   const { t } = useTranslation("signup");
   const { currentStep, totalSteps } = useSignupContext();
   const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;

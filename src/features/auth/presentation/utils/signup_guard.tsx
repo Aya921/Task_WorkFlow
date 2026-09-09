@@ -8,6 +8,7 @@ import {
 import { ROUTES } from "../../../../routes/route_path";
 
 export const SignupGuard = ({
+  
   children,
 }: {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ export const SignupGuard = ({
     user,
     profile,
   } = useAuth();
+  console.log("guard is being used", { step, user, profile });
 
 
   const isValidStep =

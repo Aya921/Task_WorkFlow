@@ -95,8 +95,17 @@
       "buttons": { "back": "Back", "continue": "Continue" }
     },
     "success": {
-      "title": "Welcome to Developer TaskFlow",
-      "description": "Your workspace is ready. You've successfully completed the setup. Let's start building something amazing together.",
-      "buttons": { "continue": "Continue" }
+      "badge": "Setup complete",
+      "title": "You're all set!",
+      "description": "Your workspace is ready and your onboarding journey is complete. You're one step away from turning ideas into momentum.",
+      "summaryTitle": "Everything is ready",
+      "support": "Start exploring your dashboard and bring your team’s workflow to life.",
+      "checklist": {
+        "account": "Account created",
+        "workspace": "Workspace configured",
+        "github": "GitHub connected",
+        "setup": "Setup completed"
+      },
+      "buttons": { "continue": "Open dashboard" }
     }
   }

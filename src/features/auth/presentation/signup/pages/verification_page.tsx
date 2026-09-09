@@ -2,9 +2,6 @@ import { VerificationHeader } from "../components/verification/verification_head
 import { IconContainer } from "../../../../../shared/components/icon_container";
 import { ExternalLink, MailCheck } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { useSignupContext } from "../hooks/use_signup_context";
-import { useCheckEmailVerification } from "../hooks/use_check_email_verification";
 import { PageTransition } from "../layout/page_transition";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { useAuth } from "../../../../../hooks/use_auth";
@@ -33,17 +30,15 @@ const getEmailInboxUrl = (email: string) => {
 
 export const VerificationPage = () => {
   const { t } = useTranslation("signup");
-  const { nextStep } = useSignupContext();
-  const{user}=useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
 
-  useCheckEmailVerification(() => {
+  // useCheckEmailVerification(() => {
     
-    const nextParm=nextStep();
+  //   const nextParm=nextStep();
    
    
-    navigate(`/signup/${nextParm}`);
-  });
+  //   navigate(`/signup/${nextParm}`);
+  // });
 
   return (
    <PageTransition>

@@ -26,11 +26,14 @@ export const SignupDataSourceImp = (
     );
 
 
-    if (error)
+    if (error){
+      console.log("error in createUserStep", error.message);
       return {
         success: false,
         message: error.message,
       };
+    }
+      
     else {
       return {
         success: true,

@@ -6,15 +6,12 @@ import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { ArrowRight } from "lucide-react";
 import { useUpdateOnboardingStepMutation } from "../../profile/hook/use_update_onboarding_step";
 import { useAuth } from "../../../../../hooks/use_auth";
-import { useSignupContext } from "../hooks/use_signup_context";
-import { useNavigate } from "react-router-dom";
-import { queryClient } from "../../../../../query/query_client";
+
 import { PageTransition } from "../layout/page_transition";
 
 export const ConnectGitHubPage = () => {
   const { user } = useAuth();
-  const { nextStep } = useSignupContext();
-  const navigate = useNavigate();
+  
   const {
     updateOnboardingStepFn,
     isLoading: isUpdatingOnboardingStep,
@@ -30,14 +27,7 @@ export const ConnectGitHubPage = () => {
         onboardingStep: "success",
         onboardingCompleted: true,
       },
-      {
-        onSuccess: (response) => {
-          queryClient.setQueryData(["profile", user.id], response);
-          console.log("onboarding step updated successfully:", response?.onboardingStep);
-
-           //navigate(`/signup/${response?.onboardingStep}`);
-        },
-      },
+      
     );
   };
   const { t } = useTranslation("signup");
