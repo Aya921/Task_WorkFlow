@@ -12,7 +12,9 @@ export class AuthApiService {
       options: {
         data: {
           full_name: dto.full_name,
+          
         },
+        emailRedirectTo: "http://localhost:5173/signup/verification",
       },
     });
 
@@ -66,6 +68,7 @@ export class AuthApiService {
         .eq("id", dto.id)
         .select("*")
         .maybeSingle();
+        console.log("the response from onboarding step fn is : ",response)
 
 
       return response;

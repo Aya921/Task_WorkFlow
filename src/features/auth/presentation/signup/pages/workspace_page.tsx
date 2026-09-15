@@ -39,6 +39,7 @@ export const CreateWorkSpacePage = () => {
         {
           onSuccess: (joined) => {
             if (joined) {
+              
               getProfile();
             }
           },

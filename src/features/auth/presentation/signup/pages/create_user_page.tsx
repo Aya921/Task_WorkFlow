@@ -15,6 +15,10 @@ import { Button } from "../../../../../shared/components/button";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { useCreateUserMutation } from "../hooks/use_create_user_mutation";
 import { PageTransition } from "../layout/page_transition";
+
+import { queryClient } from "../../../../../query/query_client";
+import type { Profile } from "../../../domain/entity/profile";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../../hooks/use_auth";
 
 export const CreateUserPage = () => {
@@ -33,17 +37,27 @@ export const CreateUserPage = () => {
     formState: { isValid },
     handleSubmit,
   } = methods;
-  const { getProfile } = useAuth();
 
   const { createUserFn, isLoading } = useCreateUserMutation();
+  const navigate = useNavigate();
 
   const onSubmit = (data: CreateUserStepEntity) => {
-    createUserFn(data,{
-      onSuccess: () => {
-        getProfile(); // because for realtime it listen after all modifications happen so i need to update it manually here
-      }
+    createUserFn(data, {
+      onSuccess(data) {
+        // set session storage then told guard if it verification then go noramal
+        // navigate to verification
+        // remove session storage
+        sessionStorage.setItem(
+          "pendingVerification",
+          JSON.stringify({
+            email: data?.email,
+          }),
+        );
+        console.log(data)
+
+        navigate("/signup/verification");
+      },
     });
-     
   };
 
   return (

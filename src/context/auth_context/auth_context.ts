@@ -11,7 +11,10 @@ import { createContext } from 'react';
   profileLoading: boolean;   
   profileError: Error | null;
   profileFetching:boolean;
-  getProfile:()=>void
+  getProfile:()=>void;
+  
+ 
+
 }
 export const AuthContext=createContext<AuthContextType|null>(null);
 

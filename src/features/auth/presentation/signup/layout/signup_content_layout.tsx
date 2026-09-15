@@ -16,7 +16,7 @@ export const SignupContentLayout = ({
       <SignupProgressBar />
 
       <div className="flex w-full max-w-6xl flex-col rounded-2xl bg-surface p-4 shadow-md sm:rounded-3xl sm:p-6 md:min-h-[70vh] md:p-8 lg:min-h-[75vh] lg:p-10">
-        {profileLoading || sessionLoading || profileFetching ? (
+        {profileLoading || sessionLoading || profileFetching ? (  // will came back here to see the problem of fetch
           <div className="flex w-full flex-1 items-center justify-center">
             <LazyLoadingAnimation />
           </div>

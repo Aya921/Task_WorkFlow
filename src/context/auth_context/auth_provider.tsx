@@ -1,5 +1,5 @@
 import type { User, Session } from "@supabase/supabase-js";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "../../core/supabase/supabase_client";
 import { AuthContext } from "./auth_context";
 import { useProfile } from "../../features/auth/presentation/profile/hook/use_get_profile";
@@ -17,18 +17,24 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!mount) return;
+  if (!mount) return;
 
-      setUser(session?.user ?? null);
-      setSessionLoading(false);
-      setSession(session);
-    });
+  const newUser = session?.user ?? null;
+
+  setSession(session);
+  setSessionLoading(false);
+  setUser(newUser);
+
+  console.log("came here to get user and session", { user: newUser, session });
+});
 
     return () => {
       mount = false;
       subscription.unsubscribe();
     };
   }, []);
+
+
 
   const {
     // if the user exist then he try to get his info
@@ -38,13 +44,33 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     isFetching: profileFetching,
   } = useProfile(user?.id);
 
-  const getProfile = useCallback(() => {
-    if (user?.id) {
+  const updataProfileData = useCallback((userId?:string) => {
+    
+    const id=userId??user?.id;
+    console.log("getProfile called");
+    if (id) {
+      console.log("invalidating profile query for user", id);
       queryClient.invalidateQueries({
-        queryKey: ["profile", user.id],
+        queryKey: ["profile", id],
       });
+      
     }
   }, [user?.id]);
+
+
+  const updateUser=(user:User)=>{
+    setUser(user)
+
+  }
+  useEffect(() => {
+  if (session?.user) {
+    sessionStorage.removeItem("pendingVerification");
+  }
+}, [session]);
+
+
+
+ 
 
   useEffect(() => {
     console.log("USER CHANGED", user?.id);
@@ -56,13 +82,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       .on(
         "postgres_changes",
         {
-         event: "*",
+          event: "*",
           schema: "public",
           table: "profiles",
           filter: `id=eq.${user.id}`,
         },
         () => {
-          getProfile();
+          updataProfileData();
         },
       )
       .subscribe((status) => {
@@ -74,6 +100,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, [user?.id]);
 
+
+  
+
   const values = useMemo(
     () => ({
       user,
@@ -82,8 +111,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       sessionLoading,
       profileLoading,
       profileError,
-      getProfile,
+      getProfile: updataProfileData,
       profileFetching,
+     updateUser
     }),
     [
       user,
@@ -92,8 +122,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       sessionLoading,
       profileError,
       profileLoading,
-      getProfile,
+      updataProfileData,
       profileFetching,
+      updateUser
     ],
   );
 
