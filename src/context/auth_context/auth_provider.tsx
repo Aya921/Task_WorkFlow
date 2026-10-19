@@ -1,5 +1,5 @@
 import type { User, Session } from "@supabase/supabase-js";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { supabase } from "../../core/supabase/supabase_client";
 import { AuthContext } from "./auth_context";
 import { useProfile } from "../../features/auth/presentation/profile/hook/use_get_profile";

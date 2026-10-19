@@ -1,5 +1,5 @@
 import type React from "react";
-import { Navigate, Outlet, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../../hooks/use_auth";
 import {
   signupSteps,
