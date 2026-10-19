@@ -1,14 +1,14 @@
-import { StorageKeys } from "./constants/storage_keys"
-
+import "./i18n";
+import { AppRoutes } from "./routes/app_route";
+import { ThemeToggle } from "./shared/components/theme_toggle";
 
 function App() {
-  
   return (
-    
-
- <h1>{StorageKeys.TOKEN}</h1>
-
-  )
+    <>
+      <AppRoutes />
+      <ThemeToggle />
+    </>
+  );
 }
 
-export default App
+export default App;

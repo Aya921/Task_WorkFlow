@@ -1,0 +1,111 @@
+{
+ 
+    "title": "Create Your Account",
+    "description": "Let's get your basic details set up for a secure environment.",
+
+    "inputs": {
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Mohamed Salah Saber"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "mohamedsalah@gmail.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      }
+    },
+
+    "passwordRequirements": {
+      "characters": "8+ Characters",
+      "uppercase": "Uppercase Letter",
+      "number": "Number",
+      "specialCharacter": "Special Character"
+    },
+
+    "validation": {
+      "fullNameLength": "Full name must be at least 3 characters",
+      "fullNameParts": "Please enter first and last name",
+      "email": "Please enter a valid email address",
+      "passwordLength": "Password must be at least 8 characters",
+      "passwordUppercase": "Password must contain at least one uppercase letter",
+      "passwordLowercase": "Password must contain at least one lowercase letter",
+      "passwordNumber": "Password must contain at least one number",
+      "passwordSpecialCharacter": "Password must contain at least one special character"
+    },
+
+    "buttons": {
+      "continue": "Continue to Verification"
+    },
+
+    "links": {
+      "alreadyHaveAccount": "Already Have Account?",
+      "loginHere": "Login Here"
+    },
+
+    "progress": {
+      "steps": {
+        "account": "Account",
+        "verification": "Verification",
+        "workspace": "Workspace",
+        "github": "GitHub",
+        "success": "Success"
+      }
+    },
+
+    "verification": {
+      "title": "Check your inbox",
+      "sentEmail": "We sent a verification email to {{email}}.",
+      "sentTo": "Verification email sent to",
+      "checkEmail": "Open the email and follow the verification link.",
+      "checkSpam": "Check your spam folder if you do not see it soon.",
+      "openEmail": "Open email app",
+      "waiting": "This page will continue automatically once your email is verified.",
+      "resend": "Resend Code",
+      "buttons": {
+        "back": "Back",
+        "verifyContinue": "Verify & Continue"
+      }
+    },
+
+    "workspace": {
+      "title": "Set up your workspace",
+      "description": "Create a new hub for your team or join an existing one to get started.",
+      "create": {
+        "title": "Create new",
+        "description": "Start fresh with a brand new workspace for your organization."
+      },
+      "join": {
+        "title": "Join existing",
+        "description": "Got an invite code? Join your team's current workspace."
+      },
+      "input": {
+        "create": { "label": "Workspace name", "placeholder": "e.g. Engineering workspace" },
+        "join": { "label": "Workspace URL", "placeholder": "Workspace URL" },
+        "hint": "You can change this later in settings."
+      },
+      "buttons": { "back": "Back", "continue": "Continue" }
+    },
+    "github": {
+      "title": "Connect GitHub",
+      "description": "Connect your GitHub account to link repositories and sync your development workflow directly into TaskFlow.",
+      "connect": "Connect GitHub account",
+      "buttons": { "back": "Back", "continue": "Continue" }
+    },
+    "success": {
+      "badge": "Setup complete",
+      "title": "You're all set!",
+      "description": "Your workspace is ready and your onboarding journey is complete. You're one step away from turning ideas into momentum.",
+      "summaryTitle": "Everything is ready",
+      "support": "Start exploring your dashboard and bring your team’s workflow to life.",
+      "checklist": {
+        "account": "Account created",
+        "workspace": "Workspace configured",
+        "github": "GitHub connected",
+        "setup": "Setup completed"
+      },
+      "buttons": { "continue": "Open dashboard" }
+    }
+  }
