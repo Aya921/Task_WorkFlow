@@ -8,12 +8,14 @@ A modern task and workflow management web app built with React 19, TypeScript, a
 
 ## ✨ Features
 
-- 🔐 Authentication with email and OTP verification
+- 🔐 Full authentication flow: sign up, log in, forgot password (with OTP), and user profile
 - ✅ Create, organize, and track tasks through your workflow
 - 🌍 Multi-language support (i18n)
+- 🌗 Theme switching via a theme context
+- 🔔 Global toast notifications
 - 📝 Validated forms with clear error feedback
 - 🎞️ Smooth animations and micro-interactions
-- 📱 Responsive design
+- 🧱 Clean architecture with a feature-based folder structure
 
 > Edit this list to match exactly what your app does.
 
@@ -82,15 +84,43 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## 📁 Project Structure
 
+The project follows a **feature-based clean architecture**: each feature is split into API, data, domain, and presentation layers.
+
 ```
-Task_WorkFlow/
-├── src/              # Application source code
-├── index.html        # App entry HTML
-├── vite.config.ts    # Vite configuration
-├── eslint.config.js  # ESLint configuration
-├── tsconfig*.json    # TypeScript configuration
-└── package.json
+src/
+├── animations/          # Lottie / animation assets
+├── assets/              # Images, icons, static files
+├── constants/           # App-wide constants
+├── context/             # React contexts
+│   ├── auth_context/    #   Auth context + provider
+│   ├── theme_context/   #   Light / dark theme
+│   └── toast_context/   #   Toast notifications
+├── core/
+│   ├── api/             #   Axios instance, endpoints, API types
+│   └── supabase/        #   Supabase client setup
+├── di/                  # Dependency injection
+├── features/
+│   ├── auth/
+│   │   ├── api/         #   client, data_source, dtos, mappers
+│   │   ├── data/        #   dataSources, repo implementations
+│   │   ├── domain/      #   entity, repo contracts, usecases
+│   │   └── presentation/#   login, signup, forget_password, profile, utils
+│   └── home/
+├── hooks/               # use_auth, use_theme, use_toast
+├── i18n/                # Translations and i18n config
+└── layout/              # Shared layout components
 ```
+
+### Architecture overview
+
+| Layer | Responsibility |
+| --- | --- |
+| **api** | Talks to the backend: clients, data sources, DTOs, and mappers that convert DTOs to domain entities |
+| **data** | Repository implementations that use the API layer |
+| **domain** | Pure business logic: entities, repository interfaces, and use cases |
+| **presentation** | UI: pages, components, and helpers for each screen |
+
+Data flows from **presentation → usecase → repo → data source → API**, and back through mappers into entities.
 
 ## 🌐 Deployment
 
