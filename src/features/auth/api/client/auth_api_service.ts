@@ -31,7 +31,6 @@ export class AuthApiService {
   }
 
   async joinWorkspaceByInvite(dto: JoinWorkspaceByInviteRequestDto) {
-    console.log("i came here to join workspace by invite", dto);
     const response = await supabase.rpc("join_workspace_by_invite", {
       p_code: dto.code,
     });

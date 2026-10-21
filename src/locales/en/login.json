@@ -1,0 +1,66 @@
+{
+  "brand": {
+    "name": "TaskFlow",
+    "badge": "Productivity Reimagined",
+    "headline": "Plan. Track. Ship.",
+    "description": "The minimal, calm workspace designed for focused teams to build fast without the clutter.",
+    "trustedBy": "Trusted by 10,000+ modern product teams",
+    "version": "v2.4 LTS"
+  },
+  "kanban": {
+    "sprint": "Sprint 42 • Mobile App Redesign",
+    "complete": "92% Complete",
+    "todo": "To Do",
+    "inProgress": "In Progress",
+    "done": "Done",
+    "low": "Low",
+    "med": "Med",
+    "high": "High",
+    "activeTask": "Audit contrast tokens",
+    "dropTarget": "Drop target",
+    "doneTaskOne": "Export Figma UI kit",
+    "doneTaskTwo": "Setup webhooks"
+  },
+  "header": {
+    "noAccount": "Don't have an account?",
+    "createAccount": "Create an account",
+    "createAccountShort": "Create account"
+  },
+  "title": "Welcome back",
+  "description": "Enter your credentials to access your workspace and tasks.",
+  "social": {
+    "google": "Continue with Google"
+  },
+  "divider": "or continue with email",
+  "inputs": {
+    "email": {
+      "label": "Work Email",
+      "placeholder": "name@company.com"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password"
+    }
+  },
+  "links": {
+    "forgotPassword": "Forgot password?",
+    "sso": "Log in with Enterprise SAML / SSO"
+  },
+  "rememberMe": "Keep me logged in for 30 days",
+  "buttons": {
+    "login": "Log in",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
+  },
+  "validation": {
+    "emailRequired": "Please enter your work email",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Please enter your password"
+  },
+  "footer": {
+    "copyright": "© 2024 TaskFlow Inc. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "status": "Systems Normal"
+  }
+}

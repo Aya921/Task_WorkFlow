@@ -3,6 +3,8 @@ import { initReactI18next } from "react-i18next";
 
 import signupEn from "../locales/en/signup.json";
 import signupAr from "../locales/ar/signup.json";
+import loginEn from "../locales/en/login.json";
+import loginAr from "../locales/ar/login.json";
 
 const setDocumentDirection = (language: string) => {
   const isRtl = language.startsWith("ar");
@@ -14,15 +16,17 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       signup: signupEn,
+      login: loginEn,
     },
     ar: {
       signup: signupAr,
+      login: loginAr,
     },
   },
 
   lng: "en",
   fallbackLng: "en",
-  ns: ["signup"],
+  ns: ["signup", "login"],
   defaultNS: "signup",
 
   interpolation: {

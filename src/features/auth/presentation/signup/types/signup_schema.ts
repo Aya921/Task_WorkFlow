@@ -10,9 +10,7 @@ export const createSignupSchema = (t: (key: string) => string) => z.object({
       { message: t("validation.fullNameParts") }
     ),
 
-  email: z.email({
-    message: t("validation.email"),
-  }),
+  email: z.email({ message: t("validation.emailInvalid") }),
 
   password: z
     .string()

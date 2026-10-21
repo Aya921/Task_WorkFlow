@@ -1,0 +1,66 @@
+{
+  "brand": {
+    "name": "TaskFlow",
+    "badge": "إنتاجية معاد تصوّرها",
+    "headline": "خطّط. تابع. سلّم.",
+    "description": "مساحة عمل هادئة وبسيطة مصممة للفرق المركّزة لتبني بسرعة دون فوضى.",
+    "trustedBy": "موثوق به من أكثر من 10,000 فريق منتجات حديث",
+    "version": "v2.4 LTS"
+  },
+  "kanban": {
+    "sprint": "Sprint 42 • إعادة تصميم تطبيق الجوال",
+    "complete": "مكتمل 92%",
+    "todo": "للتنفيذ",
+    "inProgress": "قيد التنفيذ",
+    "done": "تم",
+    "low": "منخفض",
+    "med": "متوسط",
+    "high": "مرتفع",
+    "activeTask": "مراجعة توكنات التباين",
+    "dropTarget": "منطقة الإفلات",
+    "doneTaskOne": "تصدير مجموعة واجهة Figma",
+    "doneTaskTwo": "إعداد webhooks"
+  },
+  "header": {
+    "noAccount": "ليس لديك حساب؟",
+    "createAccount": "إنشاء حساب",
+    "createAccountShort": "إنشاء حساب"
+  },
+  "title": "مرحبًا بعودتك",
+  "description": "أدخل بياناتك للوصول إلى مساحة عملك ومهامك.",
+  "social": {
+    "google": "المتابعة مع Google"
+  },
+  "divider": "أو المتابعة بالبريد الإلكتروني",
+  "inputs": {
+    "email": {
+      "label": "البريد الإلكتروني للعمل",
+      "placeholder": "name@company.com"
+    },
+    "password": {
+      "label": "كلمة المرور",
+      "placeholder": "أدخل كلمة المرور"
+    }
+  },
+  "links": {
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "sso": "تسجيل الدخول عبر Enterprise SAML / SSO"
+  },
+  "rememberMe": "أبقني مسجّل الدخول لمدة 30 يومًا",
+  "buttons": {
+    "login": "تسجيل الدخول",
+    "showPassword": "إظهار كلمة المرور",
+    "hidePassword": "إخفاء كلمة المرور"
+  },
+  "validation": {
+    "emailRequired": "يرجى إدخال بريد العمل الإلكتروني",
+    "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "passwordRequired": "يرجى إدخال كلمة المرور"
+  },
+  "footer": {
+    "copyright": "© 2024 TaskFlow Inc. جميع الحقوق محفوظة.",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "status": "الأنظمة تعمل بشكل طبيعي"
+  }
+}

@@ -29,7 +29,7 @@ const ErrorFallback = ({ error }: { error: Error }) => {
         <button
           type="button"
           onClick={() => window.location.reload()}
-          className="mt-6 rounded-full bg-primary-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-700"
+          className="mt-6 cursor-pointer rounded-full bg-primary-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-700"
         >
           Refresh page
         </button>

@@ -1,99 +1,89 @@
-import { Eye, EyeOff, type LucideIcon } from "lucide-react";
-import { useState, type InputHTMLAttributes } from "react";
-import { FONT_STYLES } from "../../assets/fonts/font_style";
+import { useId, useState } from "react";
+import { InputFieldIcon } from "./input_field_icons";
+import { InputFieldLabel } from "./input_field_label";
+import { InputFieldMessage } from "./input_field_message";
+import { InputFieldPasswordToggle } from "./input_field_password_toggle";
+import { buildInputClassName } from "./input_field_styles";
+import type { InputFieldProps } from "./input_field_types";
 
-type Status = "default" | "error" | "success";
-
-type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
-  icon?: LucideIcon;
-  label: string;
-  status?: Status;
-  message?: string;
-};
-
-const statusClasses = {
-  default: "border-secondary-300",
-  error: "border-red-500 focus:ring-red-500/20",
-  success: "border-green-500 focus:ring-green-500/20",
-};
-
-const messageClasses = {
-  default: "text-secondary-500",
-  error: "text-red-500",
-  success: "text-success",
-};
+export type { InputFieldProps } from "./input_field_types";
 
 export const InputField = ({
   label,
   icon: Icon,
+  iconPosition = "start",
+  labelAccessory,
+  labelClassName,
   className = "",
   status = "default",
   message,
+  errorAppearance = "text",
+  fieldSize = "md",
+  showPasswordLabel,
+  hidePasswordLabel,
+  id,
   ...props
 }: InputFieldProps) => {
-  const [showPass, setShowPass] = useState(false);
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
+  const [showPassword, setShowPassword] = useState(false);
 
-  const inputType =
-    props.type === "password" && showPass ? "text" : props.type;
+  const isPassword = props.type === "password";
+  const showStartIcon = Boolean(Icon) && iconPosition === "start";
+  const showEndIcon = Boolean(Icon) && iconPosition === "end" && !isPassword;
+  const messageId = message ? `${inputId}-message` : undefined;
 
   return (
-    <div className="flex flex-col gap-2">
-      <label className={FONT_STYLES.label}>{label}</label>
+    <div
+      className={`flex flex-col ${fieldSize === "sm" ? "gap-1.5" : "gap-2"}`}
+    >
+      <InputFieldLabel
+        htmlFor={inputId}
+        label={label}
+        labelClassName={labelClassName}
+        labelAccessory={labelAccessory}
+      />
 
       <div className="relative">
         <input
           {...props}
-          type={inputType}
-          className={`
-            w-full
-            h-11 md:h-12
-            rounded-xl
-            border-2
-            outline-none
-            shadow-sm
-            transition-all
-            ${Icon ? "ps-10" : "ps-4"}
-            ${props.type === "password" ? "pe-10" : "pe-4"}
-            ${FONT_STYLES.input}
-            ${statusClasses[status]}
-            focus:ring-2
-            focus:ring-primary-500
-            focus:border-transparent
-            hover:border-secondary-500
-            ${className}
-          `}
+          id={inputId}
+          type={isPassword && showPassword ? "text" : props.type}
+          aria-invalid={status === "error" || undefined}
+          aria-describedby={messageId}
+          className={buildInputClassName({
+            fieldSize,
+            status,
+            showStartIcon,
+            showEndAffordance: isPassword || showEndIcon,
+            className,
+          })}
         />
 
-        {Icon && (
-          <span className="absolute start-3 top-1/2 -translate-y-1/2 text-secondary-400">
-            <Icon className="h-4 w-4 md:h-5 md:w-5" />
-          </span>
-        )}
+        {showStartIcon && Icon ? (
+          <InputFieldIcon icon={Icon} position="start" />
+        ) : null}
 
-        {props.type === "password" && (
-          <button
-            type="button"
-            onClick={() => setShowPass((prev) => !prev)}
-            className="absolute end-3 top-1/2 -translate-y-1/2 text-secondary-400 transition-colors hover:text-secondary-600"
-          >
-            {showPass ? (
-              <EyeOff className="h-4 w-4 md:h-5 md:w-5" />
-            ) : (
-              <Eye className="h-4 w-4 md:h-5 md:w-5" />
-            )}
-          </button>
-        )}
+        {showEndIcon && Icon ? (
+          <InputFieldIcon icon={Icon} position="end" />
+        ) : null}
+
+        {isPassword ? (
+          <InputFieldPasswordToggle
+            showPassword={showPassword}
+            showPasswordLabel={showPasswordLabel}
+            hidePasswordLabel={hidePasswordLabel}
+            onToggle={() => setShowPassword((prev) => !prev)}
+          />
+        ) : null}
       </div>
 
-      {message && (
-        <span
-          className={`${FONT_STYLES.caption} ${
-            messageClasses[status]
-          }`}
-        >
-          {message}
-        </span>
-      )}
+      <InputFieldMessage
+        id={messageId}
+        message={message}
+        status={status}
+        errorAppearance={errorAppearance}
+      />
     </div>
   );
 };

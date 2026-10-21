@@ -123,8 +123,32 @@
     #ec4899 100%
   );
 
-  /* Typography */
-  --font-sans: Inter, system-ui, sans-serif;
+  /* Typography — Plus Jakarta Sans (EN), Cairo fallback for Arabic glyphs */
+  --font-sans: "Plus Jakarta Sans", Cairo, system-ui, sans-serif;
+}
+
+html[lang^="ar"] {
+  --font-sans: Cairo, "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [type="button"]:disabled,
+  [type="submit"]:disabled,
+  [type="reset"]:disabled {
+    cursor: not-allowed;
+  }
 }
 
 [data-theme="dark"] {
