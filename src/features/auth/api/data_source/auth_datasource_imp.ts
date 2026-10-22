@@ -15,6 +15,10 @@ import { toProfileEntity } from "../mappers/to_profile_entity";
 import { toUpdateOnboardingStepRequestDto } from "../mappers/to_update_onboarding_step_request_dto";
 import type { JoinWorkspaceByInviteRequest } from "../../domain/entity/join_workspace_by_invite_request";
 import { toJoinWorkspaceByInviteRequestDto } from "../mappers/to_join_workspace_by_invite_request_dto";
+import type { LoginCredentials } from "../../domain/entity/login_credentials";
+import type { LoginResult } from "../../domain/entity/login_result";
+import { toLoginRequestDto } from "../mappers/to_login_request_dto";
+import { toLoginResult } from "../mappers/to_login_result";
 export const SignupDataSourceImp = (
   apiService: AuthApiService,
 ): AuthDataSource => ({
@@ -40,6 +44,26 @@ export const SignupDataSourceImp = (
         data: toCreateUserResult(data),
       };
     }
+  },
+
+  async loginUser(
+    credentials: LoginCredentials,
+  ): Promise<ApiResponse<LoginResult>> {
+    const { data, error } = await apiService.loginUser(
+      toLoginRequestDto(credentials),
+    );
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+
+    return {
+      success: true,
+      data: toLoginResult(data),
+    };
   },
 
   async createWorkSpace(

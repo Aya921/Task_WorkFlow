@@ -11,7 +11,7 @@ export const LoginMobileSignupPrompt = () => {
         {t("header.noAccount")}{" "}
         <Link
           to="/signup/account"
-          className="ms-1 font-semibold text-primary-600 hover:text-primary-700"
+          className="ms-1 font-semibold text-primary-600 underline-offset-2 transition-colors duration-150 ease-out hover:text-primary-700 hover:underline motion-reduce:transition-none"
         >
           {t("header.createAccount")}
         </Link>

@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { LoginBrandMark } from "./login_brand_mark";
 import { LoginBackgroundHeader } from "./login_background_header";
-import { LoginLeftFooter } from "./login_left_footer";
 
 export const LoginBrandPanel = () => {
   const { t } = useTranslation("login");
@@ -24,7 +23,7 @@ export const LoginBrandPanel = () => {
 
       <LoginBackgroundHeader />
 
-      <LoginLeftFooter />
+    
     </aside>
   );
 };

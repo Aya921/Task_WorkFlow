@@ -61,8 +61,8 @@ export const CreateUserPage = () => {
   return (
     <PageTransition>
       <FormProvider {...methods}>
-        <div className="flex w-full flex-1 flex-col gap-6 overflow-x-hidden lg:flex-row lg:gap-8">
-          <div className="flex w-full min-w-0 flex-col gap-4 lg:flex-[2]">
+        <div className="flex w-full flex-1 flex-col gap-6 overflow-x-hidden lg:flex-row lg:gap-10">
+          <div className="flex w-full min-w-0 flex-col gap-5 lg:flex-[2]">
             <AuthSectionHeader
               title={t("title")}
               description={t("description")}
@@ -73,8 +73,8 @@ export const CreateUserPage = () => {
               onClick={handleSubmit(onSubmit)}
               isLoading={isLoading}
               disabled={!isValid}
-              activeClassName="bg-gradient-to-r from-primary-600 via-primary-500 to-violet-500 text-white shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30"
-              disabledClassName="bg-slate-200 text-slate-500 cursor-not-allowed"
+              activeClassName="bg-primary-600 text-white shadow-sm hover:bg-primary-700 hover:shadow-md"
+              disabledClassName="cursor-not-allowed bg-secondary-200 text-secondary-500"
               className="w-full"
             >
               <span className={FONT_STYLES.button}>
@@ -83,7 +83,7 @@ export const CreateUserPage = () => {
             </Button>
 
             <TextLink
-              className="text-primary-800"
+              className={`${FONT_STYLES.caption} font-semibold text-primary-600 underline-offset-2 hover:text-primary-700 hover:underline`}
               text={t("links.alreadyHaveAccount")}
               actionText={t("links.loginHere")}
             />

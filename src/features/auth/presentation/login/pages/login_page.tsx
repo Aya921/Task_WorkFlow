@@ -1,5 +1,5 @@
 import { LoginBrandPanel } from "../components/left_section/login_brand_panel";
-import { LoginFormPanel } from "../components/login_form_panel";
+import { LoginFormPanel } from "../components/right_section/login_form_panel";
 
 export const LoginPage = () => {
   return (

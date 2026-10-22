@@ -1,8 +1,8 @@
 import { Building2, Info, Link } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { FONT_STYLES } from "../../../../../../assets/fonts/font_style";
 import { InputField } from "../../../../../../shared/components/input_field";
 import type { WorkspaceMode } from "../../types/workspace_mode";
-import { FONT_STYLES } from "../../../../../../assets/fonts/font_style";
 
 type WorkSpaceInputFieldProps = {
   workSpaceMode: Exclude<WorkspaceMode, null>;
@@ -28,20 +28,22 @@ export const WorkSpaceInputField = ({
         };
 
   return (
-        <div className="flex w-full flex-col gap-2 rounded-2xl bg-secondary-100 p-4 sm:p-6 md:p-8">
-          <InputField
-            icon={workSpaceModeProperties.icon}
-            placeholder={workSpaceModeProperties.placeholder}
-            label={workSpaceModeProperties.labelName}
-            onChange={(event) => handleInputValue(event.target.value)}
-          />
+    <div className="flex w-full flex-col gap-2 rounded-xl border border-secondary-200 bg-secondary-50/80 p-4 sm:p-5">
+      <InputField
+        icon={workSpaceModeProperties.icon}
+        placeholder={workSpaceModeProperties.placeholder}
+        label={workSpaceModeProperties.labelName}
+        labelClassName={`block ${FONT_STYLES.overline} text-secondary-900`}
+        fieldSize="sm"
+        onChange={(event) => handleInputValue(event.target.value)}
+      />
 
-          <div className="flex items-center gap-2">
-            <Info className="h-4 w-4 shrink-0 text-info" aria-hidden />
-            <p className={FONT_STYLES.bodySm}>
-              {t("workspace.input.hint")}
-            </p>
-          </div>
-        </div>
+      <div className="flex items-center gap-2">
+        <Info className="h-4 w-4 shrink-0 text-secondary-400" aria-hidden />
+        <p className={`${FONT_STYLES.bodySm} text-secondary-500`}>
+          {t("workspace.input.hint")}
+        </p>
+      </div>
+    </div>
   );
 };

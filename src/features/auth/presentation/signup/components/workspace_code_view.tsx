@@ -5,10 +5,8 @@ import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { useUpdateOnboardingStepMutation } from "../../profile/hook/use_update_onboarding_step";
 import { useAuth } from "../../../../../hooks/use_auth";
 
-
 interface WorkspaceCodeViewProps {
   inviteCode: string;
-
 }
 
 export const WorkspaceCodeView = ({
@@ -21,7 +19,6 @@ export const WorkspaceCodeView = ({
     isLoading: isUpdatingOnboardingStep,
     error: updatingOnboardingStepError,
   } = useUpdateOnboardingStepMutation();
- 
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText(inviteCode);
@@ -37,36 +34,32 @@ export const WorkspaceCodeView = ({
         userId: user.id,
         onboardingStep: "github",
       },
-     
     );
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-8 sm:gap-10">
-      <div className="relative">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-accent-400 to-primary-500">
-          <span className="text-4xl">🎉</span>
-        </div>
-        <div className="absolute inset-0 animate-pulse rounded-full bg-accent-400/20"></div>
+    <div className="flex w-full flex-col items-center justify-center gap-7 sm:gap-8">
+      <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-secondary-200 bg-primary-50 text-primary-600 shadow-sm">
+        <Check className="h-8 w-8" aria-hidden />
       </div>
 
-      <div className="text-center">
-        <h2 className={`${FONT_STYLES.h2} mb-2 text-primary-900`}>
+      <div className="max-w-md text-center">
+        <h2 className="mb-2 text-2xl font-bold tracking-tight text-secondary-900 sm:text-3xl">
           Workspace Created Successfully
         </h2>
-        <p className={`${FONT_STYLES.body} text-secondary-600`}>
+        <p className={`${FONT_STYLES.bodySm} text-secondary-500`}>
           Share this invite code with your team members so they can join your
           workspace.
         </p>
       </div>
 
       <div className="w-full max-w-sm">
-        <div className="rounded-lg border-2 border-primary-200 bg-gradient-to-br from-primary-50 to-accent-50 p-6 text-center">
-          <p className={`${FONT_STYLES.bodySm} mb-3 text-secondary-600`}>
+        <div className="rounded-xl border border-secondary-200 bg-white p-5 text-center shadow-sm">
+          <p className={`${FONT_STYLES.caption} mb-2 text-secondary-500`}>
             Workspace Invite Code
           </p>
           <p
-            className={`${FONT_STYLES.h3} font-mono tracking-wider text-primary-900`}
+            className={`${FONT_STYLES.h3} font-mono tracking-wider text-secondary-900`}
           >
             {inviteCode}
           </p>
@@ -74,35 +67,36 @@ export const WorkspaceCodeView = ({
       </div>
 
       <button
+        type="button"
         onClick={handleCopyCode}
-        className={`flex w-full max-w-sm items-center justify-center gap-2 rounded-full border-2 border-primary-200 px-4 py-3 transition-all duration-200 ${
+        className={`flex w-full max-w-sm cursor-pointer items-center justify-center gap-2 rounded-lg border px-4 py-2.5 transition-[background-color,border-color,color] duration-150 ease-out ${
           copied
-            ? "bg-accent-100 text-accent-700 border-accent-300"
-            : "bg-white text-primary-600 hover:bg-primary-50 hover:border-primary-300"
+            ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+            : "border-secondary-200 bg-white text-primary-600 hover:border-primary-300 hover:bg-secondary-50"
         }`}
       >
         {copied ? (
           <>
-            <Check size={18} />
+            <Check size={18} aria-hidden />
             <span className={FONT_STYLES.button}>Copied!</span>
           </>
         ) : (
           <>
-            <Copy size={18} />
+            <Copy size={18} aria-hidden />
             <span className={FONT_STYLES.button}>Copy Code</span>
           </>
         )}
       </button>
 
-      <div className="w-full">
+      <div className="w-full max-w-sm">
         <Button
           onClick={handleContinue}
           disabled={false}
           isLoading={isUpdatingOnboardingStep}
           error={updatingOnboardingStepError}
           className="w-full"
-          activeClassName="bg-gradient-to-r from-primary-600/90 via-primary-500/80 to-rose-100/80 shadow-lg shadow-primary-500/10 hover:shadow-xl hover:shadow-primary-500/20 transition-all text-white cursor-pointer"
-          disabledClassName="bg-primary-200 text-white cursor-not-allowed"
+          activeClassName="bg-primary-600 text-white shadow-sm hover:bg-primary-700 hover:shadow-md"
+          disabledClassName="cursor-not-allowed bg-secondary-200 text-secondary-500"
         >
           <span className={FONT_STYLES.button}>Continue</span>
         </Button>

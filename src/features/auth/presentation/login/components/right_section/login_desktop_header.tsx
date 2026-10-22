@@ -9,7 +9,7 @@ export const LoginDesktopHeader = () => {
       <span>{t("header.noAccount")}</span>
       <Link
         to="/signup/account"
-        className="font-semibold text-primary-600 transition-colors hover:text-primary-700 hover:underline"
+        className="font-semibold text-primary-600 underline-offset-2 transition-colors duration-150 ease-out hover:text-primary-700 hover:underline motion-reduce:transition-none"
       >
         {t("header.createAccount")}
       </Link>

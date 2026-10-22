@@ -13,8 +13,8 @@ export const TextLink = ({
   ...props
 }: TextLinkProps) => {
   return (
-    <div className="flex items-center justify-center gap-1">
-      <p className={`${FONT_STYLES.body} font-medium`}>
+    <div className="flex items-center justify-center gap-1.5">
+      <p className={`${FONT_STYLES.bodySm} text-secondary-500`}>
         {text}
       </p>
 

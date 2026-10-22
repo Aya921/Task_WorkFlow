@@ -34,7 +34,7 @@ export const AuthGoogleButton = ({
   return (
     <button
       type="button"
-      className={`flex w-full cursor-pointer items-center justify-center gap-3 rounded-lg border border-secondary-200 bg-white px-4 py-2.5 ${FONT_STYLES.button} text-secondary-700 shadow-sm transition-all hover:border-secondary-300 hover:bg-secondary-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${className}`}
+      className={`flex w-full cursor-pointer items-center justify-center gap-3 rounded-lg border border-secondary-200 bg-white px-4 py-2.5 ${FONT_STYLES.button} text-secondary-700 shadow-sm transition-[transform,background-color,border-color,box-shadow] duration-150 ease-out hover:border-secondary-300 hover:bg-secondary-50 hover:shadow-sm active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:active:scale-100 ${className}`}
       {...props}
     >
       <GoogleIcon />

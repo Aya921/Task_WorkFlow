@@ -1,5 +1,6 @@
 import { supabase } from "../../../../core/supabase/supabase_client";
 import type { CreateWorkspaceRequestDto } from "../dtos/create_work_space_request_dto";
+import type { LoginRequestDto } from "../dtos/login_request_dto";
 import type { SignupRequestDto } from "../dtos/signup_request_dto";
 import type { UpdateOnboardingStepRequestDto } from "../dtos/update_onboarding_step_request_dto";
 import type { JoinWorkspaceByInviteRequestDto } from "../dtos/join_workspace_by_invite_request_dto";
@@ -16,6 +17,15 @@ export class AuthApiService {
         },
         emailRedirectTo: "http://localhost:5173/signup/verification",
       },
+    });
+
+    return response;
+  }
+
+  async loginUser(dto: LoginRequestDto) {
+    const response = await supabase.auth.signInWithPassword({
+      email: dto.email,
+      password: dto.password,
     });
 
     return response;

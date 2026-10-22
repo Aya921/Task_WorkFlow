@@ -10,9 +10,9 @@ export const AuthRepoImp=(
     createUserStep(signupEntity) {
         return authDataSource.createUserStep(signupEntity);
     },
-
-
-
+    loginUser(credentials) {
+        return authDataSource.loginUser(credentials);
+    },
     createWorkSpace(createWorkSpaceEntity) {
         return authDataSource.createWorkSpace(createWorkSpaceEntity);
     },

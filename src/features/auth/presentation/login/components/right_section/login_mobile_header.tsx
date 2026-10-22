@@ -11,7 +11,7 @@ export const LoginMobileHeader = () => {
       <LoginBrandMark name={t("brand.name")} variant="dark" />
       <Link
         to="/signup/account"
-        className={`${FONT_STYLES.caption} font-semibold text-primary-600 hover:text-primary-700`}
+        className={`${FONT_STYLES.caption} font-semibold text-primary-600 underline-offset-2 transition-colors duration-150 ease-out hover:text-primary-700 hover:underline motion-reduce:transition-none`}
       >
         {t("header.createAccountShort")}
       </Link>

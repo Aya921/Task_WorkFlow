@@ -13,9 +13,15 @@ export const AuthSectionHeader = ({
 }: AuthSectionHeaderProps) => {
   return (
     <div className={`flex w-full max-w-xl flex-col gap-2 ${className}`}>
-      <h1 className={FONT_STYLES.h1}>{title}</h1>
+      <h1 className="text-2xl font-bold tracking-tight text-secondary-900 sm:text-3xl">
+        {title}
+      </h1>
 
-      {description ? <p className={FONT_STYLES.body}>{description}</p> : null}
+      {description ? (
+        <p className={`${FONT_STYLES.bodySm} text-secondary-500`}>
+          {description}
+        </p>
+      ) : null}
     </div>
   );
 };

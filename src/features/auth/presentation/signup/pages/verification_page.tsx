@@ -57,22 +57,19 @@ export const VerificationPage = () => {
 
   return (
     <PageTransition>
-      <div className="flex w-full flex-1 flex-col items-center justify-center overflow-x-hidden py-8 sm:py-10">
-        <div className="flex w-full max-w-xl flex-col items-center gap-6 text-center sm:gap-8">
-          <div className="relative">
-            <div className="absolute -inset-3 rounded-[2rem] bg-primary-100/70 blur-xl" />
-            <IconContainer
-              icon={MailCheck}
-              containerClassName="relative rounded-3xl bg-primary-100 ring-8 ring-white shadow-xl shadow-primary-900/10"
-              iconColor="text-primary-700"
-            />
-          </div>
+      <div className="flex w-full flex-1 flex-col items-center justify-center overflow-x-hidden py-6 sm:py-8">
+        <div className="flex w-full max-w-lg flex-col items-center gap-6 text-center sm:gap-7">
+          <IconContainer
+            icon={MailCheck}
+            containerClassName="rounded-2xl border border-secondary-200 bg-primary-50 shadow-sm"
+            iconColor="text-primary-600"
+          />
 
           <VerificationHeader email={email} />
 
-          <div className="w-full  flex flex-col items-center justify-center   rounded-2xl border  border-primary-200 bg-white/80 px-5 py-5 shadow-lg shadow-primary-900/5 backdrop-blur-sm sm:px-8 sm:py-6">
-            <div className="flex items-center gap-3 text-left">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
+          <div className="flex w-full flex-col items-center justify-center rounded-xl border border-secondary-200 bg-white px-5 py-5 shadow-sm sm:px-6 sm:py-6">
+            <div className="flex w-full items-center gap-3 text-start">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-primary-600">
                 <MailCheck className="h-5 w-5" aria-hidden />
               </div>
               <div className="min-w-0">
@@ -80,7 +77,7 @@ export const VerificationPage = () => {
                   {t("verification.sentTo")}
                 </p>
                 <p
-                  className={`${FONT_STYLES.body} truncate font-semibold text-secondary-800`}
+                  className={`${FONT_STYLES.body} truncate font-semibold text-secondary-900`}
                   title={email}
                 >
                   {email}
@@ -97,7 +94,7 @@ export const VerificationPage = () => {
               href={getEmailInboxUrl(email!)}
               target="_blank"
               rel="noreferrer"
-              className="mt-5 inline-flex items-center gap-2 text-primary-700 transition-colors hover:text-primary-900"
+              className="mt-5 inline-flex items-center gap-2 font-medium text-primary-600 underline-offset-2 transition-colors duration-150 hover:text-primary-700 hover:underline"
             >
               <span className={FONT_STYLES.button}>
                 {t("verification.openEmail")}
@@ -106,7 +103,7 @@ export const VerificationPage = () => {
             </a>
           </div>
 
-          <p className={`${FONT_STYLES.caption} max-w-sm text-secondary-400`}>
+          <p className={`${FONT_STYLES.caption} max-w-sm text-secondary-500`}>
             {t("verification.waiting")}
           </p>
         </div>

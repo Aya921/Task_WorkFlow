@@ -1,4 +1,5 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { motion, useAnimationControls, useReducedMotion } from "framer-motion";
 import { InputFieldIcon } from "./input_field_icons";
 import { InputFieldLabel } from "./input_field_label";
 import { InputFieldMessage } from "./input_field_message";
@@ -7,6 +8,8 @@ import { buildInputClassName } from "./input_field_styles";
 import type { InputFieldProps } from "./input_field_types";
 
 export type { InputFieldProps } from "./input_field_types";
+
+const SHAKE_X = [0, -5, 5, -3, 3, 0];
 
 export const InputField = ({
   label,
@@ -27,15 +30,34 @@ export const InputField = ({
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const [showPassword, setShowPassword] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const controls = useAnimationControls();
+  const previousStatus = useRef(status);
 
   const isPassword = props.type === "password";
   const showStartIcon = Boolean(Icon) && iconPosition === "start";
   const showEndIcon = Boolean(Icon) && iconPosition === "end" && !isPassword;
   const messageId = message ? `${inputId}-message` : undefined;
 
+  useEffect(() => {
+    const becameInvalid =
+      status === "error" && previousStatus.current !== "error";
+    previousStatus.current = status;
+
+    if (!becameInvalid || reduceMotion) {
+      return;
+    }
+
+    void controls.start({
+      x: SHAKE_X,
+      transition: { duration: 0.32, ease: "easeOut" },
+    });
+  }, [status, controls, reduceMotion]);
+
   return (
-    <div
+    <motion.div
       className={`flex flex-col ${fieldSize === "sm" ? "gap-1.5" : "gap-2"}`}
+      animate={controls}
     >
       <InputFieldLabel
         htmlFor={inputId}
@@ -44,7 +66,7 @@ export const InputField = ({
         labelAccessory={labelAccessory}
       />
 
-      <div className="relative">
+      <div className="group/input relative">
         <input
           {...props}
           id={inputId}
@@ -84,6 +106,6 @@ export const InputField = ({
         status={status}
         errorAppearance={errorAppearance}
       />
-    </div>
+    </motion.div>
   );
 };

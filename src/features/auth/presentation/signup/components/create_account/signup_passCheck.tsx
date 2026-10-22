@@ -14,7 +14,9 @@ export const SignupPasswordCheckList = ({
     <div className="flex min-w-0 items-center gap-2">
       <div
         className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
-          isValid ? "border-primary-800 bg-primary-800" : "border-secondary-300 bg-white"
+          isValid
+            ? "border-primary-600 bg-primary-600"
+            : "border-secondary-200 bg-white"
         }`}
       >
         {isValid && (
@@ -23,7 +25,11 @@ export const SignupPasswordCheckList = ({
           </span>
         )}
       </div>
-      <p className={`${FONT_STYLES.caption} truncate sm:whitespace-normal`}>{label}</p>
+      <p
+        className={`${FONT_STYLES.caption} truncate text-secondary-600 sm:whitespace-normal`}
+      >
+        {label}
+      </p>
     </div>
   );
 };

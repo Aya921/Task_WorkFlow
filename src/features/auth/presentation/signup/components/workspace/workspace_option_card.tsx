@@ -22,64 +22,57 @@ export const WorkspaceOptionCard = ({
 }: WorkspaceOptionCardProps) => {
   const styles = {
     primary: {
-      iconColor: "text-primary-800",
-      containerIconColor: "bg-accent-100",
-      selectedCheckIconColor:"bg-accent-100",
-
-      selectedBackgroundColor: "bg-accent-50",
-      hoverSelectedBackgroundColor: "hover:bg-accent-50",
-
-      borderColor: "hover:border-primary-300",
-      groupHoverSelectedBackgroundColor:"group-hover:bg-accent-100",
-        
+      iconColor: "text-primary-600",
+      containerIconColor: "bg-primary-50",
+      selectedCheckIconColor: "bg-primary-50 text-primary-600",
+      selectedBackgroundColor: "border-primary-600 bg-primary-50/60",
+      hoverSelectedBackgroundColor: "hover:border-primary-300 hover:bg-secondary-50",
+      groupHoverSelectedBackgroundColor: "group-hover:bg-primary-50",
     },
     rose: {
-      iconColor: "text-rose-800",
-      containerIconColor: "bg-rose-100",
-       selectedCheckIconColor:"bg-rose-100",
-       
-      selectedBackgroundColor: "bg-rose-50",
-      hoverSelectedBackgroundColor: "hover:bg-rose-50",
-
-      borderColor: "hover:border-rose-300",
-      groupHoverSelectedBackgroundColor:"group-hover:bg-rose-100"
+      iconColor: "text-primary-600",
+      containerIconColor: "bg-primary-50",
+      selectedCheckIconColor: "bg-primary-50 text-primary-600",
+      selectedBackgroundColor: "border-primary-600 bg-primary-50/60",
+      hoverSelectedBackgroundColor: "hover:border-primary-300 hover:bg-secondary-50",
+      groupHoverSelectedBackgroundColor: "group-hover:bg-primary-50",
     },
   };
 
   const currentStyle = styles[variant];
   return (
-   <button
-  type="button"
-  onClick={onClick}
-  className={`
-    group relative flex min-w-0 flex-1 flex-col items-start gap-2
-    w-full rounded-2xl border-2 border-neutral-900/20
-    p-5 transition-all cursor-pointer
-    hover:shadow-md
-    ${currentStyle.borderColor}
+    <button
+      type="button"
+      onClick={onClick}
+      className={`
+    group relative flex min-w-0 w-full flex-1 cursor-pointer flex-col items-start gap-3
+    rounded-xl border border-secondary-200 bg-white
+    p-5 text-start shadow-sm transition-[border-color,background-color,box-shadow] duration-150 ease-out
     ${currentStyle.hoverSelectedBackgroundColor}
     ${selected ? currentStyle.selectedBackgroundColor : ""}
   `}
->
+    >
       <div
-        className={`absolute end-3 flex h-12 w-12 items-center justify-center rounded-2xl sm:h-14 sm:w-14 ${
+        className={`absolute end-3 top-3 flex h-8 w-8 items-center justify-center rounded-lg ${
           selected
             ? currentStyle.selectedCheckIconColor
-            : currentStyle.groupHoverSelectedBackgroundColor
+            : `text-secondary-300 ${currentStyle.groupHoverSelectedBackgroundColor}`
         }`}
       >
-        {selected && <Check />}
+        {selected && <Check className="h-4 w-4" aria-hidden />}
       </div>
 
       <IconContainer
         icon={icon}
-        containerClassName={`rounded-4xl ${currentStyle.containerIconColor}`}
+        containerClassName={`rounded-xl ${currentStyle.containerIconColor}`}
         iconColor={currentStyle.iconColor}
       />
 
-      <div className="flex flex-col gap-2 text-start">
-        <p className={FONT_STYLES.h3}>{title}</p>
-        <p className={`${FONT_STYLES.body} leading-tight`}>{description}</p>
+      <div className="flex flex-col gap-1.5 pe-8 text-start">
+        <p className={`${FONT_STYLES.h4} text-secondary-900`}>{title}</p>
+        <p className={`${FONT_STYLES.bodySm} leading-relaxed text-secondary-500`}>
+          {description}
+        </p>
       </div>
     </button>
   );

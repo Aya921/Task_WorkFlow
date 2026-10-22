@@ -1,9 +1,12 @@
 import { LockKeyhole, Mail, User } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { FONT_STYLES } from "../../../../../../assets/fonts/font_style";
 import { InputField } from "../../../../../../shared/components/input_field";
 import { type SignupFormData } from "../../types/signup_schema";
 import { SignupPasswordCheckList } from "./signup_passCheck";
+
+const labelClassName = `block ${FONT_STYLES.overline} text-secondary-900`;
 
 const strengthSteps = [1, 2, 3, 4];
 
@@ -65,10 +68,12 @@ export const SignupInputs = () => {
   ];
 
   return (
-    <div className="flex w-full flex-col gap-4 py-2 sm:py-4">
+    <div className="flex w-full flex-col gap-4 py-1 sm:py-2">
       <InputField
         label={t("inputs.fullName.label")}
+        labelClassName={labelClassName}
         icon={User}
+        fieldSize="sm"
         placeholder={t("inputs.fullName.placeholder")}
         {...register("fullName")}
         status={errors.fullName ? "error" : "default"}
@@ -77,8 +82,10 @@ export const SignupInputs = () => {
 
       <InputField
         label={t("inputs.email.label")}
+        labelClassName={labelClassName}
         icon={Mail}
         type="email"
+        fieldSize="sm"
         placeholder={t("inputs.email.placeholder")}
         {...register("email")}
         status={errors.email ? "error" : "default"}
@@ -88,7 +95,9 @@ export const SignupInputs = () => {
       <div>
         <InputField
           label={t("inputs.password.label")}
+          labelClassName={labelClassName}
           icon={LockKeyhole}
+          fieldSize="sm"
           placeholder={t("inputs.password.placeholder")}
           type="password"
           {...register("password")}
@@ -96,14 +105,14 @@ export const SignupInputs = () => {
           message={errors.password?.message}
         />
 
-        <div className="mt-3 grid h-2 grid-cols-4 gap-1 sm:gap-2">
+        <div className="mt-3 grid h-1.5 grid-cols-4 gap-1.5 sm:gap-2">
           {strengthSteps.map((step) => (
             <div
               key={step}
-              className={`rounded-full transition-all duration-300 ${
+              className={`rounded-full ${
                 step <= passwordStrength.score
-                  ? "bg-primary-800"
-                  : "bg-primary-100"
+                  ? "bg-primary-600"
+                  : "bg-secondary-200"
               }`}
             />
           ))}

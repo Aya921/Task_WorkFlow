@@ -72,7 +72,7 @@ export const CreateWorkSpacePage = () => {
   // Show form view
   return (
     <PageTransition>
-      <div className="flex w-full flex-1 flex-col items-center justify-between gap-6 sm:gap-8 md:gap-10">
+      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-between gap-6 sm:gap-8">
         <AuthSectionHeader
           className="text-center"
           title={t("workspace.title")}
@@ -100,8 +100,8 @@ export const CreateWorkSpacePage = () => {
           }}
           isLoading={isLoading || isJoiningWorkspace}
           disabled={workspaceMode === null || inputValue.trim() === ""}
-          activeClassName="bg-gradient-to-r from-primary-600 via-primary-500 to-violet-500 text-white shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30"
-          disabledClassName="bg-slate-200 text-slate-500 cursor-not-allowed"
+          activeClassName="bg-primary-600 text-white shadow-sm hover:bg-primary-700 hover:shadow-md"
+          disabledClassName="cursor-not-allowed bg-secondary-200 text-secondary-500"
           className="w-full"
         >
           <span className={FONT_STYLES.button}>
