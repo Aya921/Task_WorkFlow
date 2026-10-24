@@ -6,9 +6,9 @@ export function useProfile(userId: string | undefined) {
     queryKey: ['profile', userId],
     queryFn: async () => {
       
+      
         const response =await getProfileUseCase(userId!)
-        console.log("response from useProfile is", response.data?.onboardingStep);
-       
+      
        if (!response.success) throw new Error(response.message);
        else return response.data
 

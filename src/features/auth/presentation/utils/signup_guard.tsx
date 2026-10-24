@@ -11,8 +11,16 @@ import { ROUTES } from "../../../../routes/route_path";
 export const SignupGuard = ({ children }: { children: React.ReactNode }) => {
   const { step } = useParams<{ step: SignupStepKey }>();
 
-  const { user, profile } = useAuth();
-  console.log("guard is being used", { step, user, profile });
+  const {
+    user,
+    profile,
+    sessionLoading,
+    profileLoading,
+  } = useAuth();
+  
+  if (sessionLoading || (user && profileLoading)) {
+    return null; 
+  }
 
   const pendingData = sessionStorage.getItem("pendingVerification");
   if (step === "verification" && pendingData) {

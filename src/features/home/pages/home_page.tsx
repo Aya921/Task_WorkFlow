@@ -3,6 +3,7 @@ import { FONT_STYLES } from "../../../assets/fonts/font_style";
 import {  useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ROUTES } from "../../../routes/route_path";
 gsap.registerPlugin(useGSAP);
 
 export const HomePage = () => {
@@ -17,7 +18,7 @@ export const HomePage = () => {
  
 
   const handleSignupClick = () => {
-    navigate("/signup/account");
+   void navigate(ROUTES.LOGIN);
   };
 
  

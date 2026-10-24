@@ -1,0 +1,10 @@
+﻿{
+  "profile": {
+    "loadFailed": "We couldn't load your profile.",
+    "loadFailedRetry": "Failed to load your profile. Please try again.",
+    "retrying": "Retrying to load your profile...",
+    "refreshFailed": "Failed to refresh profile data.",
+    "tryAgain": "Try again",
+    "goToLogin": "Go to login"
+  }
+}
