@@ -1,13 +1,11 @@
 import { AtSign } from "lucide-react";
-import { useEffect, useId, useState } from "react";
+import { useId } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { FONT_STYLES } from "../../../../../../assets/fonts/font_style";
 import { useAuth } from "../../../../../../hooks/use_auth";
-import { ROUTES } from "../../../../../../routes/route_path";
 import { InputField } from "../../../../../../shared/components/input_field";
 import { AuthDivider } from "../../../common/auth_divider";
 import { AuthGoogleButton } from "../../../common/auth_google_button";
@@ -29,10 +27,8 @@ export const LoginForm = () => {
   const rememberId = useId();
   const reduceMotion = useReducedMotion();
   const reduced = Boolean(reduceMotion);
-  const navigate = useNavigate();
-  const { user, profile, profileLoading, sessionLoading } = useAuth();
+  const { user, profileLoading, profileError } = useAuth();
   const { loginFn, isLoading } = useLoginMutation();
-  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const {
     register,
@@ -48,41 +44,17 @@ export const LoginForm = () => {
     },
   });
 
-  useEffect(() => {
-    if (!isRedirecting) return;
-    if (sessionLoading || !user || profileLoading) return;
-
-    if (profile?.onboardingCompleted) {
-      void navigate(ROUTES.DASHBOARD, { replace: true });
-      return;
-    }
-
-    void navigate(`/signup/${profile?.onboardingStep ?? "account"}`, {
-      replace: true,
-    });
-  }, [
-    isRedirecting,
-    user,
-    profile,
-    profileLoading,
-    sessionLoading,
-    navigate,
-  ]);
-
   const onSubmit = (data: LoginFormData) => {
-    loginFn(
-      {
-        email: data.email,
-        password: data.password,
-        rememberMe: data.rememberMe,
-      },
-      {
-        onSuccess: () => {
-          setIsRedirecting(true);
-        },
-      },
-    );
+    loginFn({
+      email: data.email,
+      password: data.password,
+      rememberMe: data.rememberMe,
+    });
   };
+
+  // GuestRoute redirects after auth; keep the button busy while profile loads.
+  const isSubmitLoading =
+    isLoading || (!!user && profileLoading && !profileError);
 
   const formVariants: Variants = {
     hidden: reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
@@ -164,7 +136,7 @@ export const LoginForm = () => {
       <LoginEntranceItem>
         <LoginSubmitButton
           label={t("buttons.login")}
-          isLoading={isLoading || isRedirecting}
+          isLoading={isSubmitLoading}
         />
       </LoginEntranceItem>
     </motion.form>

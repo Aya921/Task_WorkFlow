@@ -91,7 +91,6 @@ export const WorkspaceCodeView = ({
       <div className="w-full max-w-sm">
         <Button
           onClick={handleContinue}
-          disabled={false}
           isLoading={isUpdatingOnboardingStep}
           error={updatingOnboardingStepError}
           className="w-full"

@@ -18,15 +18,17 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const hasError = !!error;
+  const isDisabled = Boolean(disabled || isLoading);
 
   return (
     <div className="w-full  flex items-center justify-center">
       <button
         type="button"
-        disabled={disabled}
+        disabled={isDisabled}
+        aria-busy={isLoading}
         className={`
           flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border p-3 transition-[background-color,box-shadow,border-color,color] duration-150 ease-out
-          ${disabled ? disabledClassName : activeClassName}
+          ${isDisabled ? disabledClassName : activeClassName}
           ${hasError ? "border-rose-300 shadow-[0_0_0_4px_rgba(244,63,94,0.08)]" : "border-transparent"}
           ${className}
         `}

@@ -8,6 +8,7 @@ import { ROUTES } from "./route_path";
 import { NotFoundPage } from "../shared/pages/not_found_page";
 import { InitialAuthRedirect } from "../features/auth/presentation/utils/initial_redirect";
 import { ProtectedRoute } from "./protected_route";
+import { GuestRoute } from "./guest_route";
 
 export const AppRoutes = () => {
   return (
@@ -15,8 +16,10 @@ export const AppRoutes = () => {
       {/* Landing page and initial auth check */}
       <Route path="/" element={<InitialAuthRedirect />} />
 
-      {/* Public routes */}
-      <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      {/* Guest-only routes */}
+      <Route element={<GuestRoute />}>
+        <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      </Route>
 
       {/* Signup routes */}
       <Route element={<RegisterLayout />}>

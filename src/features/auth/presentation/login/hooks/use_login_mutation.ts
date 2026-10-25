@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { loginUserUseCase } from "../../../../../di/auth/auth_di";
 import type { LoginCredentials } from "../../../domain/entity/login_credentials";
+import i18n from "../../../../../i18n";
 
 export const useLoginMutation = () => {
   const mutation = useMutation({
@@ -9,7 +10,7 @@ export const useLoginMutation = () => {
 
       if (!response.success) {
         throw new Error(
-          response.message ?? "Failed to login. Please try again later.",
+          response.message ?? i18n.t("common:auth.loginFailed"),
         );
       }
 

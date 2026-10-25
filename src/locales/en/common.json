@@ -2,9 +2,18 @@
   "profile": {
     "loadFailed": "We couldn't load your profile.",
     "loadFailedRetry": "Failed to load your profile. Please try again.",
+    "notFound": "Profile not found.",
     "retrying": "Retrying to load your profile...",
     "refreshFailed": "Failed to refresh profile data.",
     "tryAgain": "Try again",
     "goToLogin": "Go to login"
+  },
+  "auth": {
+    "loginFailed": "Failed to login. Please try again later.",
+    "createUserFailed": "Failed to create user. Please try again later.",
+    "createWorkspaceFailed": "Failed to create workspace. Please try again later.",
+    "joinWorkspaceFailed": "Failed to join workspace. Please try again later.",
+    "invalidInviteCode": "Invalid invite code. Please check the code and try again.",
+    "updateOnboardingFailed": "Failed to update onboarding step. Please try again later."
   }
 }

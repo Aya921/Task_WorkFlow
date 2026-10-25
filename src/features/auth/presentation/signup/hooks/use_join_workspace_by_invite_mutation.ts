@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { joinWorkspaceByInviteUseCase } from "../../../../../di/auth/auth_di";
 import type { JoinWorkspaceByInviteRequest } from "../../../domain/entity/join_workspace_by_invite_request";
+import i18n from "../../../../../i18n";
 
 export const useJoinWorkspaceByInviteMutation = () => {
   const mutation = useMutation({
@@ -9,13 +10,12 @@ export const useJoinWorkspaceByInviteMutation = () => {
 
       if (!response.success) {
         throw new Error(
-          response.message ?? "Failed to join workspace. Please try again later.",
+          response.message ?? i18n.t("common:auth.joinWorkspaceFailed"),
         );
       }
-      if(response.data===false){
-        throw new Error(
-          "Invalid invite code. Please check the code and try again.",
-        );
+
+      if (response.data === false) {
+        throw new Error(i18n.t("common:auth.invalidInviteCode"));
       }
 
       return response.data;

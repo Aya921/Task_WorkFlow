@@ -111,25 +111,20 @@ export const SignupDataSourceImp = (
     };
   },
   async getProfileData(userId: string): Promise<ApiResponse<Profile>> {
-  const { data, error } = await apiService.getProfileData(userId);
+    const { data, error } = await apiService.getProfileData(userId);
 
-  
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
 
- 
-
-  if (error) {
     return {
-      success: false,
-      message: error.message,
+      success: true,
+      data: data ? toProfileEntity(data) : undefined,
     };
-  }
- 
-
-  return {
-    success: true,
-    data: toProfileEntity(data),
-  };
-},
+  },
   async updateOnboardingStep(
     entity: UpdateOnboardingStepRequest,
   ): Promise<ApiResponse<Profile>> {
@@ -146,7 +141,9 @@ export const SignupDataSourceImp = (
 
     return {
       success: true,
-      data: toProfileEntity(data),
+      data: data ? toProfileEntity(data) : undefined,
     };
   },
 });
+
+

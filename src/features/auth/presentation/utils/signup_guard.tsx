@@ -5,7 +5,6 @@ import {
   signupSteps,
   type SignupStepKey,
 } from "../signup/types/signup_progress_bar_types";
-import { ROUTES } from "../../../../routes/route_path";
 
 
 export const SignupGuard = ({ children }: { children: React.ReactNode }) => {
@@ -19,8 +18,12 @@ export const SignupGuard = ({ children }: { children: React.ReactNode }) => {
   } = useAuth();
   
   if (sessionLoading || (user && profileLoading)) {
-    return null; 
+    return null;
   }
+
+  // if (user && profile?.onboardingCompleted) {
+  //   return <Navigate to={ROUTES.DASHBOARD} replace />;
+  // }
 
   const pendingData = sessionStorage.getItem("pendingVerification");
   if (step === "verification" && pendingData) {
@@ -39,10 +42,9 @@ export const SignupGuard = ({ children }: { children: React.ReactNode }) => {
   if (!user) {
     if (step === "account") {
       return <>{children}</>;
-      // return <>{<VerificationPage/>}</>;
     }
 
-    return <Navigate to={`/signup/${ROUTES.CREATE_USER}`} replace />;
+    return <Navigate to="/signup/account" replace />;
   }
 
   const allowedIndex = signupSteps.findIndex(
