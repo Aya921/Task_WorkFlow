@@ -1,7 +1,11 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { ComponentProps } from "react";
 import { FONT_STYLES } from "../../../../assets/fonts/font_style";
+import { Button } from "../../../../shared/components/button";
 
-type AuthGoogleButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type AuthGoogleButtonProps = Omit<
+  ComponentProps<typeof Button>,
+  "activeClassName" | "children"
+> & {
   label: string;
 };
 
@@ -32,13 +36,14 @@ export const AuthGoogleButton = ({
   ...props
 }: AuthGoogleButtonProps) => {
   return (
-    <button
+    <Button
       type="button"
-      className={`flex w-full cursor-pointer items-center justify-center gap-3 rounded-lg border border-secondary-200 bg-white px-4 py-2.5 ${FONT_STYLES.button} text-secondary-700 shadow-sm transition-[transform,background-color,border-color,box-shadow] duration-150 ease-out hover:border-secondary-300 hover:bg-secondary-50 hover:shadow-sm active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:active:scale-100 ${className}`}
+      className={`w-full gap-3 px-4 py-2.5 ${FONT_STYLES.button} active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:active:scale-100 ${className}`}
+      activeClassName="border-secondary-200 bg-white text-secondary-700 shadow-sm hover:border-secondary-300 hover:bg-secondary-50 hover:shadow-sm"
       {...props}
     >
       <GoogleIcon />
       <span>{label}</span>
-    </button>
+    </Button>
   );
 };

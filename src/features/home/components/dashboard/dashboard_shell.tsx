@@ -2,10 +2,11 @@ import { useLayoutEffect, useRef } from "react";
 import { Bell, BriefcaseBusiness, CheckCheck, ChevronDown, Plus, Search, Sparkles, Users, MoreHorizontal, CalendarClock, ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "../../../../shared/components/button";
+import { ActivityItem } from "./activity_item";
+import { QuickActionCard } from "./quick_action_card";
 import { StatCard } from "./stat_card";
 import { TaskRow } from "./task_row";
-import { QuickActionCard } from "./quick_action_card";
-import { ActivityItem } from "./activity_item";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -185,25 +186,40 @@ export const DashboardShell = () => {
             </div>
 
             <div className="flex items-center gap-3" data-animate="header-item">
-              <button className="relative flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-600 transition-colors hover:border-slate-300 hover:bg-white">
+              <Button
+                type="button"
+                wrapperClassName="inline-flex"
+                className="relative h-11 w-11 rounded-2xl p-0"
+                activeClassName="border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-300 hover:bg-white"
+              >
                 <Bell className="h-4 w-4" />
                 <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
                   3
                 </span>
-              </button>
+              </Button>
 
-              <button className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-white">
+              <Button
+                type="button"
+                wrapperClassName="inline-flex"
+                className="gap-2 rounded-2xl px-3 py-2.5 text-sm font-medium"
+                activeClassName="border-slate-200 bg-slate-50 text-slate-700 hover:bg-white"
+              >
                 <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-violet-500 text-xs font-semibold text-white">
                   DT
                 </span>
                 Design Team
                 <ChevronDown className="h-4 w-4 text-slate-500" />
-              </button>
+              </Button>
 
-              <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-primary-600 to-violet-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary-500/20 transition-transform duration-200 hover:-translate-y-0.5">
+              <Button
+                type="button"
+                wrapperClassName="inline-flex"
+                className="gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold shadow-lg shadow-primary-500/20 hover:-translate-y-0.5"
+                activeClassName="bg-gradient-to-r from-primary-600 to-violet-500 text-white"
+              >
                 <Plus className="h-4 w-4" />
                 Quick Create
-              </button>
+              </Button>
             </div>
           </div>
         </header>
@@ -224,9 +240,14 @@ export const DashboardShell = () => {
                   <p className="text-sm font-medium text-slate-500">Overview</p>
                   <h2 className="mt-1 text-xl font-semibold text-slate-900">Recent Tasks</h2>
                 </div>
-                <button className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-50">
+                <Button
+                  type="button"
+                  wrapperClassName="inline-flex"
+                  className="rounded-full px-3 py-1.5 text-xs font-medium"
+                  activeClassName="border-slate-200 bg-transparent text-slate-600 hover:bg-slate-50"
+                >
                   This Week
-                </button>
+                </Button>
               </div>
 
               <div className="overflow-x-auto">
@@ -318,7 +339,14 @@ export const DashboardShell = () => {
             <div data-animate="reveal" className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-[0_22px_55px_-30px_rgba(15,23,42,0.25)]">
               <div className="mb-5 flex items-center justify-between">
                 <h3 className="text-lg font-semibold text-slate-900">Team Activity</h3>
-                <button className="text-xs font-medium text-primary-600">View all</button>
+                <Button
+                  type="button"
+                  wrapperClassName="inline-flex"
+                  className="p-0 text-xs font-medium"
+                  activeClassName="border-transparent bg-transparent text-primary-600"
+                >
+                  View all
+                </Button>
               </div>
 
               <div className="space-y-2">

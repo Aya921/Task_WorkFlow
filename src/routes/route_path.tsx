@@ -1,10 +1,10 @@
 export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
-  CREATE_USER: "/account",
-  VERIFICATION: "/verification",
-  CREATE_WORKSPACE: "/Create-WorkSpace",
-  CONNECT_GITHUB: "/Connect_Github",
-  SUCCESS_REGISTER: "/Success_Register",
+  CREATE_USER: "/signup/account",
+  VERIFICATION: "/signup/verification",
+  CREATE_WORKSPACE: "/signup/Create-WorkSpace",
+  CONNECT_GITHUB: "/signup/Connect_Github",
+  SUCCESS_REGISTER: "/signup/Success_Register",
   DASHBOARD: "/Dashboard",
 } as const;

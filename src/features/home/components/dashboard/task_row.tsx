@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import { MoreHorizontal } from "lucide-react";
+import { Button } from "../../../../shared/components/button";
 
 export type TaskStatus = "Done" | "In Progress" | "Review" | "Blocked";
 export type TaskPriority = "High" | "Medium" | "Low";
@@ -76,9 +77,14 @@ export const TaskRow = ({
       </td>
 
       <td className="px-4 py-4 text-right">
-        <button className="rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700">
+        <Button
+          type="button"
+          wrapperClassName="inline-flex"
+          className="rounded-full p-2"
+          activeClassName="border-transparent bg-transparent text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+        >
           <MoreHorizontal className="h-4 w-4" />
-        </button>
+        </Button>
       </td>
     </tr>
   );

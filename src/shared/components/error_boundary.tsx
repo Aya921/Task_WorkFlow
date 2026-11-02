@@ -1,5 +1,6 @@
 import { Component, useEffect, type ReactNode } from "react";
 import { useToast } from "../../hooks/use_toast";
+import { Button } from "./button";
 
 type ErrorBoundaryProps = {
   children: ReactNode;
@@ -26,13 +27,15 @@ const ErrorFallback = ({ error }: { error: Error }) => {
         <p className="mt-2 text-sm text-secondary-500">
           Please refresh the page and try again.
         </p>
-        <button
+        <Button
           type="button"
           onClick={() => window.location.reload()}
-          className="mt-6 cursor-pointer rounded-full bg-primary-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-700"
+          wrapperClassName="mt-6 inline-flex justify-center"
+          className="rounded-full px-5 py-3 text-sm font-medium"
+          activeClassName="bg-primary-600 text-white hover:bg-primary-700"
         >
           Refresh page
-        </button>
+        </Button>
       </div>
     </main>
   );

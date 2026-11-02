@@ -1,0 +1,198 @@
+{
+  "brand": {
+    "name": "TaskFlow",
+    "tagline": "The minimal, calm workspace for high-velocity teams."
+  },
+  "nav": {
+    "features": "Features",
+    "howItWorks": "How it works",
+    "overview": "Overview",
+    "faq": "FAQ",
+    "login": "Log in",
+    "getStarted": "Get started free"
+  },
+  "hero": {
+    "badgeLead": "Introducing TaskFlow 2.4:",
+    "badgeTrail": "Lightning-fast Kanban workflows →",
+    "titlePlan": "Plan.",
+    "titleTrack": "Track.",
+    "titleAccent": "Ship.",
+    "description": "TaskFlow helps you organize projects, manage tasks on a Kanban board, and stay on top of deadlines, all in one place.",
+    "primaryCta": "Get started free",
+    "secondaryCta": "See how it works",
+    "trustNoCard": "No credit card required",
+    "trustSetup": "Instant setup",
+    "trustFree": "Free forever tier",
+    "boardUrl": "app.taskflow.io/projects/mobile-app-redesign",
+    "activeSprint": "Active Sprint",
+    "projectsPrefix": "Projects /",
+    "projectName": "Mobile App Redesign",
+    "sprintBadge": "Sprint 42",
+    "newTask": "New Task",
+    "dropHere": "Drop task here",
+    "moving": "Moving",
+    "colTodo": "To Do",
+    "colProgress": "In Progress",
+    "colDone": "Done",
+    "priorityLow": "Low",
+    "priorityMedium": "Medium",
+    "priorityHigh": "High",
+    "priorityComplete": "Complete",
+    "taskNav": "Explore micro-interactions for bottom navigation bar",
+    "taskInterview": "User interview synthesis for new checkout flow",
+    "taskContrast": "Audit dark mode contrast for form inputs",
+    "taskFigma": "Export Figma UI token kit & icons",
+    "taskHooks": "Setup automated GitHub deployment hooks",
+    "dateOct29": "Oct 29",
+    "dateTomorrow": "Tomorrow",
+    "dateOverdue": "Oct 24 (Overdue)",
+    "dateFinished22": "Finished Oct 22",
+    "dateFinished21": "Finished Oct 21",
+    "id102": "TASK-102",
+    "id105": "TASK-105",
+    "id88": "TASK-88",
+    "id91": "TASK-91"
+  },
+  "features": {
+    "eyebrow": "Core Capabilities",
+    "title": "Everything you need to execute without the clutter",
+    "items": [
+      {
+        "title": "Kanban Boards",
+        "description": "Drag and drop tasks effortlessly between customizable stages. Keep workflows fluid and transparent for every team member."
+      },
+      {
+        "title": "Task Details",
+        "description": "Rich markdown descriptions, priority tags, assignee management, and precise deadline indicators right where you need them."
+      },
+      {
+        "title": "Dashboard Overview",
+        "description": "See real-time progress across all your active initiatives. Spot bottlenecks, track sprint completion, and celebrate wins."
+      },
+      {
+        "title": "Secure by Default",
+        "description": "Your data is private to you and encrypted in transit and at rest. Strict team permissions ensure complete workspace privacy."
+      }
+    ]
+  },
+  "howItWorks": {
+    "eyebrow": "Simple Workflow",
+    "title": "How teams ship faster with TaskFlow",
+    "miniProject": "Mobile App Redesign",
+    "miniPriority": "High Priority",
+    "miniDate": "Oct 24",
+    "miniTask": "Add payment gateways",
+    "miniAssigned": "Assigned to Sara",
+    "miniDone": "Done",
+    "miniComplete": "100% Complete",
+    "steps": [
+      {
+        "title": "1. Create a project",
+        "description": "Name your workspace, assign team members, and set milestone dates in seconds with zero boilerplate."
+      },
+      {
+        "title": "2. Add and organize tasks",
+        "description": "Draft issues rapidly using keyboard shortcuts, set clear acceptance criteria, and prioritize sprint workloads."
+      },
+      {
+        "title": "3. Track progress to done",
+        "description": "Move cards across your board, track sprint velocities, and deliver projects on schedule with zero guesswork."
+      }
+    ]
+  },
+  "showcase": {
+    "eyebrow": "Command Center",
+    "title": "Stay in control without the administrative drag",
+    "description": "TaskFlow combines high-velocity agile boards with high-level executive clarity. Give engineers and designers focus while leadership stays informed automatically.",
+    "workspaceLabel": "Workspace / Acme Studio",
+    "overviewTitle": "Executive Overview",
+    "thisWeek": "This Week",
+    "newProject": "+ New Project",
+    "benefits": [
+      {
+        "title": "Unified Portfolio View",
+        "description": "Monitor task throughput, sprint completion percentages, and milestone dates across all projects."
+      },
+      {
+        "title": "Zero Overdue Surprises",
+        "description": "Automated visual indicators highlight blocked tasks and overdue items before milestones slip."
+      },
+      {
+        "title": "Built for Focused Teams",
+        "description": "Clean keyboard interactions, instant page transitions, and zero unnecessary config panels."
+      }
+    ],
+    "stats": [
+      {
+        "label": "Total Tasks",
+        "value": "48",
+        "hint": "+6 this week"
+      },
+      {
+        "label": "In Progress",
+        "value": "16",
+        "hint": "4 due today"
+      },
+      {
+        "label": "Completed",
+        "value": "29",
+        "hint": "60.4% rate"
+      },
+      {
+        "label": "Overdue",
+        "value": "3",
+        "hint": "Action needed"
+      }
+    ],
+    "recentTitle": "Recently Updated Tasks",
+    "viewAll": "View all (48) →",
+    "recent": [
+      {
+        "title": "Finalize mobile navigation drawer",
+        "status": "In Progress"
+      },
+      {
+        "title": "Export SVG vector icons & optimize",
+        "status": "Done"
+      },
+      {
+        "title": "Draft email newsletter copy",
+        "status": "To Do"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Answers",
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "Is TaskFlow really free?",
+        "a": "Yes! TaskFlow offers a comprehensive free tier designed for individuals and small teams. It includes unlimited projects, up to 5 collaborators, and all essential Kanban views without expiration or sneaky trial periods."
+      },
+      {
+        "q": "Can I invite teammates to collaborate?",
+        "a": "Absolutely. You can invite teammates with a simple invite link or email invite. Assign roles, collaborate on boards in real time, and assign tasks with instant notifications."
+      },
+      {
+        "q": "Is my project and task data secure?",
+        "a": "Data security is our top priority. All database communication is encrypted using industry-standard TLS 1.3 and stored with AES-256 encryption at rest. We never sell or train public models on your private data."
+      },
+      {
+        "q": "Does TaskFlow work well on mobile?",
+        "a": "Yes, TaskFlow is built responsive-first. You can view, edit, and move cards easily from any mobile browser with smooth touch gestures."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to get organized?",
+    "description": "Join over 10,000+ modern teams who plan, track, and ship high-impact products with TaskFlow.",
+    "button": "Start for free",
+    "note": "Free plan includes all core features • Upgrade anytime"
+  },
+  "footer": {
+    "features": "Features",
+    "faq": "FAQ",
+    "github": "GitHub",
+    "builtWith": "Built with React & Supabase"
+  }
+}

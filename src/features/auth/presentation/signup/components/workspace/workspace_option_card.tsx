@@ -1,6 +1,7 @@
 import { Check, type LucideIcon } from "lucide-react";
-import { IconContainer } from "../../../../../../shared/components/icon_container";
 import { FONT_STYLES } from "../../../../../../assets/fonts/font_style";
+import { Button } from "../../../../../../shared/components/button";
+import { IconContainer } from "../../../../../../shared/components/icon_container";
 
 type WorkspaceOptionCardProps = {
   title: string;
@@ -41,16 +42,17 @@ export const WorkspaceOptionCard = ({
 
   const currentStyle = styles[variant];
   return (
-    <button
+    <Button
       type="button"
       onClick={onClick}
+      wrapperClassName="flex min-w-0 w-full flex-1"
       className={`
-    group relative flex min-w-0 w-full flex-1 cursor-pointer flex-col items-start gap-3
-    rounded-xl border border-secondary-200 bg-white
-    p-5 text-start shadow-sm transition-[border-color,background-color,box-shadow] duration-150 ease-out
+    group relative min-w-0 w-full flex-1 flex-col items-start gap-3
+    rounded-xl p-5 text-start shadow-sm
     ${currentStyle.hoverSelectedBackgroundColor}
     ${selected ? currentStyle.selectedBackgroundColor : ""}
   `}
+      activeClassName="border-secondary-200 bg-white"
     >
       <div
         className={`absolute end-3 top-3 flex h-8 w-8 items-center justify-center rounded-lg ${
@@ -74,6 +76,6 @@ export const WorkspaceOptionCard = ({
           {description}
         </p>
       </div>
-    </button>
+    </Button>
   );
 };

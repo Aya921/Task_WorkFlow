@@ -1,4 +1,5 @@
 import { Eye, EyeOff } from "lucide-react";
+import { Button } from "./button";
 
 type InputFieldPasswordToggleProps = {
   showPassword: boolean;
@@ -14,7 +15,7 @@ export const InputFieldPasswordToggle = ({
   onToggle,
 }: InputFieldPasswordToggleProps) => {
   return (
-    <button
+    <Button
       type="button"
       onClick={onToggle}
       aria-label={
@@ -22,13 +23,15 @@ export const InputFieldPasswordToggle = ({
           ? (hidePasswordLabel ?? "Hide password")
           : (showPasswordLabel ?? "Show password")
       }
-      className="absolute end-3 top-1/2 -translate-y-1/2 cursor-pointer text-secondary-400 transition-colors duration-150 ease-out hover:text-secondary-600 focus:outline-none focus-visible:text-primary-600 motion-reduce:transition-none"
+      wrapperClassName="contents"
+      className="absolute end-3 top-1/2 -translate-y-1/2 p-0 focus:outline-none motion-reduce:transition-none"
+      activeClassName="border-transparent bg-transparent text-secondary-400 hover:text-secondary-600 focus-visible:text-primary-600"
     >
       {showPassword ? (
         <EyeOff className="h-4 w-4 md:h-5 md:w-5" aria-hidden />
       ) : (
         <Eye className="h-4 w-4 md:h-5 md:w-5" aria-hidden />
       )}
-    </button>
+    </Button>
   );
 };

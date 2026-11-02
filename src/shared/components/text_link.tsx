@@ -1,7 +1,11 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { ComponentProps } from "react";
 import { FONT_STYLES } from "../../assets/fonts/font_style";
+import { Button } from "./button";
 
-type TextLinkProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type TextLinkProps = Omit<
+  ComponentProps<typeof Button>,
+  "activeClassName" | "children"
+> & {
   text: string;
   actionText: string;
 };
@@ -14,17 +18,17 @@ export const TextLink = ({
 }: TextLinkProps) => {
   return (
     <div className="flex items-center justify-center gap-1.5">
-      <p className={`${FONT_STYLES.bodySm} text-secondary-500`}>
-        {text}
-      </p>
+      <p className={`${FONT_STYLES.bodySm} text-secondary-500`}>{text}</p>
 
-      <button
+      <Button
         type="button"
-        className={`cursor-pointer ${className}`}
+        wrapperClassName="inline-flex"
+        className={`p-0 ${className}`}
+        activeClassName="border-transparent bg-transparent"
         {...props}
       >
         {actionText}
-      </button>
+      </Button>
     </div>
   );
 };

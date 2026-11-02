@@ -66,14 +66,16 @@ export const WorkspaceCodeView = ({
         </div>
       </div>
 
-      <button
+      <Button
         type="button"
         onClick={handleCopyCode}
-        className={`flex w-full max-w-sm cursor-pointer items-center justify-center gap-2 rounded-lg border px-4 py-2.5 transition-[background-color,border-color,color] duration-150 ease-out ${
+        wrapperClassName="w-full max-w-sm"
+        className="w-full px-4 py-2.5"
+        activeClassName={
           copied
             ? "border-emerald-200 bg-emerald-50 text-emerald-700"
             : "border-secondary-200 bg-white text-primary-600 hover:border-primary-300 hover:bg-secondary-50"
-        }`}
+        }
       >
         {copied ? (
           <>
@@ -86,7 +88,7 @@ export const WorkspaceCodeView = ({
             <span className={FONT_STYLES.button}>Copy Code</span>
           </>
         )}
-      </button>
+      </Button>
 
       <div className="w-full max-w-sm">
         <Button

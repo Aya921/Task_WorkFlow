@@ -7,6 +7,8 @@ import loginEn from "../locales/en/login.json";
 import loginAr from "../locales/ar/login.json";
 import commonEn from "../locales/en/common.json";
 import commonAr from "../locales/ar/common.json";
+import landingEn from "../locales/en/landing.json";
+import landingAr from "../locales/ar/landing.json";
 
 const setDocumentDirection = (language: string) => {
   const isRtl = language.startsWith("ar");
@@ -20,17 +22,19 @@ void i18n.use(initReactI18next).init({
       signup: signupEn,
       login: loginEn,
       common: commonEn,
+      landing: landingEn,
     },
     ar: {
       signup: signupAr,
       login: loginAr,
       common: commonAr,
+      landing: landingAr,
     },
   },
 
   lng: "en",
   fallbackLng: "en",
-  ns: ["signup", "login", "common"],
+  ns: ["signup", "login", "common", "landing"],
   defaultNS: "signup",
 
   interpolation: {

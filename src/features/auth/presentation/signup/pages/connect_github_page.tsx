@@ -71,6 +71,7 @@ export const ConnectGitHubPage = () => {
           onClick={handleContinue}
           isLoading={isUpdatingOnboardingStep}
           error={updatingOnboardingStepError}
+          className="w-full"
           activeClassName="bg-primary-600 text-white shadow-sm hover:bg-primary-700 hover:shadow-md"
           disabledClassName="cursor-not-allowed bg-secondary-200 text-secondary-500"
         >

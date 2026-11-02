@@ -20,6 +20,7 @@ import {
   LOGIN_STAGGER_S,
 } from "./login_motion";
 import { LoginRememberMe } from "./login_remember_me";
+import { Button } from "../../../../../../shared/components/button";
 import { LoginSubmitButton } from "./login_submit_button";
 
 export const LoginForm = () => {
@@ -105,12 +106,14 @@ export const LoginForm = () => {
           label={t("inputs.password.label")}
           labelClassName={`block ${FONT_STYLES.overline} text-secondary-900`}
           labelAccessory={
-            <button
+            <Button
               type="button"
-              className={`cursor-pointer ${FONT_STYLES.caption} font-medium text-primary-600 underline-offset-2 transition-colors duration-150 ease-out hover:text-accent-500 hover:underline motion-reduce:transition-none`}
+              wrapperClassName="inline-flex"
+              className={`p-0 ${FONT_STYLES.caption} font-medium underline-offset-2 motion-reduce:transition-none`}
+              activeClassName="border-transparent bg-transparent text-primary-600 hover:text-accent-500 hover:underline"
             >
               {t("links.forgotPassword")}
-            </button>
+            </Button>
           }
           type="password"
           autoComplete="current-password"
