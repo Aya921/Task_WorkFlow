@@ -19,6 +19,8 @@ import type { LoginCredentials } from "../../domain/entity/login_credentials";
 import type { LoginResult } from "../../domain/entity/login_result";
 import { toLoginRequestDto } from "../mappers/to_login_request_dto";
 import { toLoginResult } from "../mappers/to_login_result";
+import i18n from "../../../../i18n";
+
 export const SignupDataSourceImp = (
   apiService: AuthApiService,
 ): AuthDataSource => ({
@@ -39,10 +41,22 @@ export const SignupDataSourceImp = (
     }
       
     else {
-      return {
-        success: true,
-        data: toCreateUserResult(data),
-      };
+      console.log("data in createUserStep", data);
+      if(data.user?.identities?.length === 0){
+        return {
+          success: false,
+          message: i18n.t("common:auth.emailAlreadyExists"),
+        };
+      }
+
+      else{
+        return {
+          success: true,
+          data: toCreateUserResult(data),
+        };
+      }
+      
+    
     }
   },
 

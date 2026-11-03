@@ -6,6 +6,7 @@ import { PageTransition } from "../layout/page_transition";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../../../../routes/route_path";
 
 const getEmailInboxUrl = (email: string) => {
   const domain = email.split("@")[1]?.toLowerCase();
@@ -44,16 +45,11 @@ export const VerificationPage = () => {
 
   useEffect(() => {
     if (!email) {
-      navigate("/signup/account", { replace: true });
+     void  navigate(ROUTES.CREATE_USER, { replace: true });
     }
   }, [email, navigate]);
 
-  // useCheckEmailVerification(() => {
-
-  //   const nextParm=nextStep();
-
-  //   navigate(`/signup/${nextParm}`);
-  // });
+ 
 
   return (
     <PageTransition>
@@ -67,8 +63,8 @@ export const VerificationPage = () => {
 
           <VerificationHeader email={email} />
 
-          <div className="flex w-full flex-col items-center justify-center rounded-xl border border-secondary-200 bg-white px-5 py-5 shadow-sm sm:px-6 sm:py-6">
-            <div className="flex w-full items-center gap-3 text-start">
+          <div className=" flex w-full flex-col items-center justify-center rounded-xl border border-secondary-200 bg-white px-5 py-5 shadow-sm sm:px-6 sm:py-6">
+            <div className="flex w-full items-center justify-center gap-3 text-start">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary-50 text-primary-600">
                 <MailCheck className="h-5 w-5" aria-hidden />
               </div>

@@ -17,6 +17,7 @@ import { useCreateUserMutation } from "../hooks/use_create_user_mutation";
 import { PageTransition } from "../layout/page_transition";
 
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../../../../routes/route_path";
 
 
 export const CreateUserPage = () => {
@@ -42,18 +43,18 @@ export const CreateUserPage = () => {
   const onSubmit = (data: CreateUserStepEntity) => {
     createUserFn(data, {
       onSuccess(data) {
-        // set session storage then told guard if it verification then go noramal
-        // navigate to verification
-        // remove session storage
+        
         sessionStorage.setItem(
           "pendingVerification",
           JSON.stringify({
             email: data?.email,
           }),
         );
-        console.log(data)
 
-        navigate("/signup/verification");
+        
+       
+
+       void navigate(ROUTES.VERIFICATION);
       },
     });
   };

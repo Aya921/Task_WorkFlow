@@ -5,6 +5,7 @@ import {
   signupSteps,
   type SignupStepKey,
 } from "../signup/types/signup_progress_bar_types";
+import { ROUTES } from "../../../../routes/route_path";
 
 
 export const SignupGuard = ({ children }: { children: React.ReactNode }) => {
@@ -44,7 +45,7 @@ export const SignupGuard = ({ children }: { children: React.ReactNode }) => {
       return <>{children}</>;
     }
 
-    return <Navigate to="/signup/account" replace />;
+    return <Navigate to={ROUTES.CREATE_USER} replace />;
   }
 
   const allowedIndex = signupSteps.findIndex(

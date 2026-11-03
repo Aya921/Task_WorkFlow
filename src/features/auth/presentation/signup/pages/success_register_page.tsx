@@ -6,6 +6,7 @@ import { BackGroundSuccessAnimation } from "../../../../../animations/background
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { Button } from "../../../../../shared/components/button";
 import { PageTransition } from "../layout/page_transition";
+import { ROUTES } from "../../../../../routes/route_path";
 
 export const SuccessRegisterPage = () => {
   const { t } = useTranslation("signup");
@@ -117,7 +118,7 @@ export const SuccessRegisterPage = () => {
             className="flex w-full max-w-md flex-col items-center gap-4"
           >
             <Button
-              onClick={() => navigate("/")}
+              onClick={() => navigate(ROUTES.HOME)}
               activeClassName="bg-primary-600 text-white shadow-sm hover:bg-primary-700 hover:shadow-md"
               disabledClassName="cursor-not-allowed bg-secondary-200 text-secondary-500"
               className="w-full"

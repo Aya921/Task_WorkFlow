@@ -11,9 +11,14 @@ export const GuestRoute = () => {
   const { user, profile, sessionLoading, profileLoading, profileError } =
     useAuth();
 
-  if (sessionLoading || (user && profileLoading)) {
-    return <LazyLoadingAnimation />;
-  }
+    if (sessionLoading || (user && profileLoading)) {
+      return (
+        <div className="flex h-screen w-screen items-center justify-center">
+          <LazyLoadingAnimation />
+        </div>
+      );
+    }
+  
 
   if (!user) {
     return <Outlet />;

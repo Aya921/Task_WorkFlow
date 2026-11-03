@@ -18,10 +18,14 @@ export const ProtectedRoute = () => {
   
 
  
-
   if (sessionLoading || (user && profileLoading)) {
-    return <LazyLoadingAnimation />;
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <LazyLoadingAnimation />
+      </div>
+    );
   }
+
 
   if (!user) {
     return <Navigate to={ROUTES.LOGIN} replace />;

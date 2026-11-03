@@ -20,7 +20,7 @@ export const AppRoutes = () => {
       <Route element={<GuestRoute />}>
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       </Route>
-
+    
       {/* Signup routes */}
       <Route element={<RegisterLayout />}>
         <Route

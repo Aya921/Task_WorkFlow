@@ -14,6 +14,7 @@
     "createWorkspaceFailed": "Failed to create workspace. Please try again later.",
     "joinWorkspaceFailed": "Failed to join workspace. Please try again later.",
     "invalidInviteCode": "Invalid invite code. Please check the code and try again.",
-    "updateOnboardingFailed": "Failed to update onboarding step. Please try again later."
+    "updateOnboardingFailed": "Failed to update onboarding step. Please try again later.",
+    "emailAlreadyExists": "This email already exists"
   }
 }

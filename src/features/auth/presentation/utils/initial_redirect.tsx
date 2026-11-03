@@ -16,7 +16,11 @@ export const InitialAuthRedirect = () => {
   } = useAuth();
 
   if (sessionLoading || (user && profileLoading)) {
-    return <LazyLoadingAnimation />;
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <LazyLoadingAnimation />
+      </div>
+    );
   }
 
   if (!user) {
