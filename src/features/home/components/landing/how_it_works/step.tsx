@@ -1,6 +1,11 @@
+import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import type { ReactNode } from "react";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import {
+  LANDING_CARD_HOVER,
+  LANDING_CARD_HOVER_TRANSITION,
+} from "../landing_card_hover";
 
 type LandingHowStepProps = {
   step: number;
@@ -15,7 +20,11 @@ export const LandingHowStep = ({
   description,
   mini,
 }: LandingHowStepProps) => (
-  <div className="flex flex-col items-center text-center">
+  <motion.div
+    className="flex flex-col items-center text-center"
+    whileHover={LANDING_CARD_HOVER}
+    transition={LANDING_CARD_HOVER_TRANSITION}
+  >
     <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-sky-200 bg-sky-50 text-xl font-extrabold text-sky-700 shadow-sm">
       {step}
     </div>
@@ -26,7 +35,7 @@ export const LandingHowStep = ({
     <p className={`${FONT_STYLES.bodySm} max-w-xs leading-relaxed text-secondary-500`}>
       {description}
     </p>
-  </div>
+  </motion.div>
 );
 
 export const HowMiniCreate = ({ project }: { project: string }) => (

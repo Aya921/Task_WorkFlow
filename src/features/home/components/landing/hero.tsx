@@ -44,7 +44,7 @@ export const LandingHero = () => {
   };
 
   return (
-    <LandingInView className="relative overflow-hidden pt-16 pb-24 sm:pt-20 sm:pb-28">
+    <LandingInView className="relative overflow-hidden pt-16 pb-24 sm:pt-20 sm:pb-28 ">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -137,6 +137,8 @@ export const LandingHero = () => {
 
         <LandingHeroBoard />
       </div>
+    
+    
     </LandingInView>
   );
 };

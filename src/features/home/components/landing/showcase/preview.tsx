@@ -1,5 +1,10 @@
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import {
+  LANDING_CARD_HOVER,
+  LANDING_CARD_HOVER_TRANSITION,
+} from "../landing_card_hover";
 import { ShowcasePreviewRecent } from "./preview_recent";
 import { ShowcasePreviewStats } from "./preview_stats";
 
@@ -7,7 +12,11 @@ export const ShowcasePreview = () => {
   const { t } = useTranslation("landing");
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-secondary-200 bg-white p-4 shadow-[0_1px_3px_rgba(15,23,42,0.05),0_10px_25px_-5px_rgba(15,23,42,0.04)]">
+    <motion.div
+      whileHover={LANDING_CARD_HOVER}
+      transition={LANDING_CARD_HOVER_TRANSITION}
+      className="overflow-hidden rounded-2xl border border-secondary-200 bg-white p-4 shadow-[0_1px_3px_rgba(15,23,42,0.05),0_10px_25px_-5px_rgba(15,23,42,0.04)]"
+    >
       <div className="space-y-5 rounded-xl border border-secondary-200/80 bg-secondary-50 p-5">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-secondary-200 pb-4">
           <div>
@@ -37,6 +46,6 @@ export const ShowcasePreview = () => {
         <ShowcasePreviewStats />
         <ShowcasePreviewRecent />
       </div>
-    </div>
+    </motion.div>
   );
 };

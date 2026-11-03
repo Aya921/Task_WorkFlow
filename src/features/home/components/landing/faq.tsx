@@ -1,6 +1,11 @@
+import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { FONT_STYLES } from "../../../../assets/fonts/font_style";
+import {
+  LANDING_CARD_HOVER,
+  LANDING_CARD_HOVER_TRANSITION,
+} from "./landing_card_hover";
 import { LandingInView } from "./landing_in_view";
 
 export const LandingFaq = () => {
@@ -26,28 +31,33 @@ export const LandingFaq = () => {
 
         <div className="space-y-4">
           {items.map((item, index) => (
-            <details
+            <motion.div
               key={item.q}
-              open={index === 0}
-              className="group rounded-xl border border-secondary-200 bg-white p-5 open:border-primary-300 open:shadow-sm"
+              whileHover={LANDING_CARD_HOVER}
+              transition={LANDING_CARD_HOVER_TRANSITION}
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 select-none">
-                <span className={`${FONT_STYLES.body} font-semibold text-secondary-900`}>
-                  {item.q}
-                </span>
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-secondary-100 text-secondary-500 transition-colors group-open:bg-primary-50 group-open:text-primary-600">
-                  <ChevronDown
-                    className="h-4 w-4 transition-transform group-open:rotate-180"
-                    aria-hidden
-                  />
-                </span>
-              </summary>
-              <div
-                className={`mt-3 border-t border-secondary-100 pt-2 ${FONT_STYLES.bodySm} leading-relaxed text-secondary-500`}
+              <details
+                open={index === 0}
+                className="group rounded-xl border border-secondary-200 bg-white p-5 open:border-primary-300 open:shadow-sm"
               >
-                {item.a}
-              </div>
-            </details>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 select-none">
+                  <span className={`${FONT_STYLES.body} font-semibold text-secondary-900`}>
+                    {item.q}
+                  </span>
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-secondary-100 text-secondary-500 transition-colors group-open:bg-primary-50 group-open:text-primary-600">
+                    <ChevronDown
+                      className="h-4 w-4 transition-transform group-open:rotate-180"
+                      aria-hidden
+                    />
+                  </span>
+                </summary>
+                <div
+                  className={`mt-3 border-t border-secondary-100 pt-2 ${FONT_STYLES.bodySm} leading-relaxed text-secondary-500`}
+                >
+                  {item.a}
+                </div>
+              </details>
+            </motion.div>
           ))}
         </div>
       </div>

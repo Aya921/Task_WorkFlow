@@ -1,5 +1,10 @@
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import {
+  LANDING_CARD_HOVER,
+  LANDING_CARD_HOVER_TRANSITION,
+} from "../landing_card_hover";
 
 const STATUS_TONE = [
   "bg-amber-50 text-amber-700",
@@ -15,7 +20,11 @@ export const ShowcasePreviewRecent = () => {
   }>;
 
   return (
-    <div className="overflow-hidden rounded-lg border border-secondary-200 bg-white">
+    <motion.div
+      whileHover={LANDING_CARD_HOVER}
+      transition={LANDING_CARD_HOVER_TRANSITION}
+      className="overflow-hidden rounded-lg border border-secondary-200 bg-white"
+    >
       <div className="flex items-center justify-between border-b border-secondary-100 bg-secondary-50/50 px-4 py-2.5">
         <span className={`${FONT_STYLES.caption} font-semibold text-secondary-800`}>
           {t("showcase.recentTitle")}
@@ -39,6 +48,6 @@ export const ShowcasePreviewRecent = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };

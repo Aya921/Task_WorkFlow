@@ -1,6 +1,11 @@
+import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import {
+  LANDING_CARD_HOVER,
+  LANDING_CARD_HOVER_TRANSITION,
+} from "../landing_card_hover";
 
 export const ShowcaseBenefits = () => {
   const { t } = useTranslation("landing");
@@ -24,7 +29,12 @@ export const ShowcaseBenefits = () => {
       </p>
       <div className="space-y-4">
         {benefits.map((benefit) => (
-          <div key={benefit.title} className="flex items-start gap-3">
+          <motion.div
+            key={benefit.title}
+            whileHover={LANDING_CARD_HOVER}
+            transition={LANDING_CARD_HOVER_TRANSITION}
+            className="flex items-start gap-3 rounded-xl border border-transparent p-2"
+          >
             <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
               <Check className="h-4 w-4" strokeWidth={2.5} aria-hidden />
             </div>
@@ -36,7 +46,7 @@ export const ShowcaseBenefits = () => {
                 {benefit.description}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

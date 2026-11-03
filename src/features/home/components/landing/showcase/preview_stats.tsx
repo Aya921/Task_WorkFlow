@@ -1,5 +1,10 @@
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import {
+  LANDING_CARD_HOVER,
+  LANDING_CARD_HOVER_TRANSITION,
+} from "../landing_card_hover";
 
 const STAT_HINT = [
   "text-emerald-600",
@@ -19,8 +24,10 @@ export const ShowcasePreviewStats = () => {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
       {stats.map((stat, index) => (
-        <div
+        <motion.div
           key={stat.label}
+          whileHover={LANDING_CARD_HOVER}
+          transition={LANDING_CARD_HOVER_TRANSITION}
           className={`rounded-lg border p-3 ${
             index === 3
               ? "border-rose-200 bg-rose-50/30"
@@ -46,7 +53,7 @@ export const ShowcasePreviewStats = () => {
           >
             {stat.hint}
           </p>
-        </div>
+        </motion.div>
       ))}
     </div>
   );

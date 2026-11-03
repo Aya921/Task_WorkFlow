@@ -1,7 +1,13 @@
 import { CheckSquare, LayoutDashboard, LayoutGrid, Lock } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { FONT_STYLES } from "../../../../assets/fonts/font_style";
+import { motion, type Variants } from "framer-motion";
+import {
+  LANDING_CARD_HOVER,
+  LANDING_CARD_HOVER_TRANSITION,
+} from "./landing_card_hover";
 import { LandingInView } from "./landing_in_view";
+
 
 const FEATURE_META = [
   {
@@ -21,6 +27,41 @@ const FEATURE_META = [
     tone: "border-emerald-100 bg-emerald-50 text-emerald-600",
   },
 ] as const;
+
+const containerVariants:Variants={
+  hidden:{
+    opacity:0,
+    
+  },
+  visible:{
+    opacity:1,
+    transition:{
+      staggerChildren:0.2,
+     
+    },
+   
+  },
+}
+
+const childrenVariants:Variants={
+  hidden:{
+    opacity:0,
+    x:10
+   
+ 
+  },
+  visible:{
+    opacity:1,
+    x:0,
+    transition:{
+      type:"spring",
+     
+     
+    },
+    
+    
+  },
+}
 
 export const LandingFeatures = () => {
   const { t } = useTranslation("landing");
@@ -46,14 +87,25 @@ export const LandingFeatures = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {/* stagger children */}
+
+        <motion.div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4" 
+        variants={containerVariants}
+         initial="hidden" 
+         whileInView="visible"
+         viewport={{once:true}}
+         
+         >
           {items.map((item, index) => {
             const meta = FEATURE_META[index] ?? FEATURE_META[0];
             const Icon = meta.Icon;
             return (
-              <article
+              <motion.article
                 key={item.title}
-                className="group rounded-2xl border border-secondary-200 bg-white p-7 shadow-[0_1px_3px_rgba(15,23,42,0.05),0_10px_25px_-5px_rgba(15,23,42,0.04)] transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-lg"
+                variants={childrenVariants}
+                whileHover={LANDING_CARD_HOVER}
+                transition={LANDING_CARD_HOVER_TRANSITION}
+                className="group cursor-pointer rounded-2xl border border-secondary-200 bg-white p-7 shadow-[0_1px_3px_rgba(15,23,42,0.05),0_10px_25px_-5px_rgba(15,23,42,0.04)] hover:shadow-lg"
               >
                 <div
                   className={`mb-6 flex h-12 w-12 items-center justify-center rounded-xl border transition-colors group-hover:border-primary-600 group-hover:bg-primary-600 group-hover:text-white ${meta.tone}`}
@@ -66,10 +118,10 @@ export const LandingFeatures = () => {
                 <p className={`${FONT_STYLES.bodySm} leading-relaxed text-secondary-500`}>
                   {item.description}
                 </p>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </LandingInView>
   );

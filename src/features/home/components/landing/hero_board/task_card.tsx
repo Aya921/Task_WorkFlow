@@ -1,5 +1,10 @@
+import { motion } from "framer-motion";
 import { AlertTriangle, Calendar, Check } from "lucide-react";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import {
+  LANDING_CARD_HOVER,
+  LANDING_CARD_HOVER_TRANSITION,
+} from "../landing_card_hover";
 
 type PriorityTone = "low" | "medium" | "high" | "complete";
 
@@ -50,7 +55,11 @@ export const LandingHeroTaskCard = ({
         : "border border-secondary-200 shadow-sm transition-colors hover:border-secondary-300";
 
   return (
-    <div className={`rounded-xl bg-white p-3.5 ${shell}`}>
+    <motion.div
+      whileHover={variant === "dragging" ? undefined : LANDING_CARD_HOVER}
+      transition={LANDING_CARD_HOVER_TRANSITION}
+      className={`rounded-xl bg-white p-3.5 ${shell}`}
+    >
       <div className="mb-2 flex items-center justify-between">
         <span
           className={`rounded-md border px-2 py-0.5 text-[11px] font-semibold ${PRIORITY_CLASS[priorityTone]}`}
@@ -112,6 +121,6 @@ export const LandingHeroTaskCard = ({
           {assignee}
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 };
