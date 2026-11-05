@@ -1,0 +1,14 @@
+{
+  "empty": {
+    "sectionLabel": "مساحة العمل",
+    "badgeLabel": "المساحة جاهزة",
+    "title": "مرحبًا بك في TaskFlow، <gradient>{{name}}</gradient>",
+    "subtitle": "هنا مركز عملياتك. أنشئ المشاريع، ادعُ فريقك، وتابع نبض العمل منذ البداية.",
+    "ctaTitlePrefix": "مساحة عملك",
+    "ctaTitleHighlight": "جاهزة",
+    "description": "ابدأ بإنشاء مشروعك الأول لتنظيم المهام، ومتابعة المعالم، ودعوة فريقك.",
+    "createProject": "إنشاء مشروع جديد",
+    "quoteText": "«سر التقدّم هو أن تبدأ.»",
+    "quoteAuthor": "مارك توين"
+  }
+}

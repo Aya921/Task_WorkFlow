@@ -1,0 +1,14 @@
+{
+  "empty": {
+    "sectionLabel": "Workspace",
+    "badgeLabel": "Workspace Ready",
+    "title": "Welcome to TaskFlow, <gradient>{{name}}</gradient>",
+    "subtitle": "Here is your operational command center. Create projects, invite your team, and track your pulse as work begins.",
+    "ctaTitlePrefix": "Your workspace is",
+    "ctaTitleHighlight": "ready",
+    "description": "Get started by creating your first project to organize tasks, track milestones, and invite your team.",
+    "createProject": "Create New Project",
+    "quoteText": "“The secret of getting ahead is getting started.”",
+    "quoteAuthor": "Mark Twain"
+  }
+}
