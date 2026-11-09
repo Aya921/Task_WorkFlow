@@ -10,5 +10,23 @@
     "createProject": "Create New Project",
     "quoteText": "“The secret of getting ahead is getting started.”",
     "quoteAuthor": "Mark Twain"
+  },
+  "loading": "Loading dashboard...",
+  "metrics": {
+    "sectionLabel": "Overview",
+    "title": "Executive Overview",
+    "totalTasks": "Total Tasks",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "overdue": "Overdue"
+  },
+  "projects": {
+    "sectionLabel": "Workspace",
+    "title": "Your Projects",
+    "newProject": "New Project",
+    "progress": "Progress",
+    "archived": "Archived",
+    "tasksCount_one": "{{count}} task",
+    "tasksCount_other": "{{count}} tasks"
   }
 }

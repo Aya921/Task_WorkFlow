@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
-import { FONT_STYLES } from "../../../../assets/fonts/font_style";
-import { Button } from "../../../../shared/components/button";
+import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import { Button } from "../../../../../shared/components/button";
 
 export type EmptyDashboardAction = {
   label: string;
@@ -42,11 +42,7 @@ export const EmptyDashboardCta = ({
           {PrimaryIcon ? <PrimaryIcon className="h-4 w-4" aria-hidden /> : null}
           <span>{primaryAction.label}</span>
         </Button>
-
-       
       </div>
-
-      
     </div>
   );
 };

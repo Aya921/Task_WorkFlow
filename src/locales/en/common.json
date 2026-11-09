@@ -16,5 +16,9 @@
     "invalidInviteCode": "Invalid invite code. Please check the code and try again.",
     "updateOnboardingFailed": "Failed to update onboarding step. Please try again later.",
     "emailAlreadyExists": "This email already exists"
+  },
+  "dashboard": {
+    "loadFailed": "Failed to load dashboard. Please try again later.",
+    "notFound": "Dashboard data not found."
   }
 }

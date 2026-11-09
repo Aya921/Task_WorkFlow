@@ -6,4 +6,5 @@ export type Profile = {
   userEmail: string;
   onboardingStep: SignupStepKey;
   onboardingCompleted: boolean;
+  currentWorkspaceId: string | null;
 };

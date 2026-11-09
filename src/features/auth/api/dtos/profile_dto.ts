@@ -6,6 +6,7 @@ export type ProfileDto = {
   email: string;
   onboarding_step: SignupStepKey;
   onboarding_completed: boolean;
+  current_workspace_id: string | null;
   created_at: string;
   updated_at: string;
 };

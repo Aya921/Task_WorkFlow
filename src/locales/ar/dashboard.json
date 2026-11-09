@@ -10,5 +10,27 @@
     "createProject": "إنشاء مشروع جديد",
     "quoteText": "«سر التقدّم هو أن تبدأ.»",
     "quoteAuthor": "مارك توين"
+  },
+  "loading": "جاري تحميل لوحة التحكم...",
+  "metrics": {
+    "sectionLabel": "نظرة عامة",
+    "title": "الملخص التنفيذي",
+    "totalTasks": "إجمالي المهام",
+    "inProgress": "قيد التنفيذ",
+    "completed": "مكتملة",
+    "overdue": "متأخرة"
+  },
+  "projects": {
+    "sectionLabel": "مساحة العمل",
+    "title": "مشاريعك",
+    "newProject": "مشروع جديد",
+    "progress": "التقدم",
+    "archived": "مؤرشف",
+    "tasksCount_zero": "لا توجد مهام",
+    "tasksCount_one": "مهمة واحدة",
+    "tasksCount_two": "مهمتان",
+    "tasksCount_few": "{{count}} مهام",
+    "tasksCount_many": "{{count}} مهمة",
+    "tasksCount_other": "{{count}} مهمة"
   }
 }
