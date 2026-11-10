@@ -1,5 +1,12 @@
 import type { LucideIcon } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import { useCountUp } from "../../hooks/use_count_up.ts";
+import {
+  DASHBOARD_CARD_HOVER,
+  DASHBOARD_CARD_HOVER_TRANSITION,
+  getDashboardItemVariants,
+} from "../../motion/dashboard_motion";
 
 export type MetricCardTone = "default" | "warning";
 
@@ -17,9 +24,14 @@ export const MetricCard = ({
   tone = "default",
 }: MetricCardProps) => {
   const isWarning = tone === "warning";
+  const reduceMotion = Boolean(useReducedMotion());
+  const displayValue = useCountUp(value);
 
   return (
-    <article
+    <motion.article
+      variants={getDashboardItemVariants(reduceMotion)}
+      whileHover={reduceMotion ? undefined : DASHBOARD_CARD_HOVER}
+      transition={DASHBOARD_CARD_HOVER_TRANSITION}
       className={`rounded-2xl border p-4 sm:p-5 ${
         isWarning
           ? "border-rose-200 bg-rose-50/40"
@@ -34,7 +46,9 @@ export const MetricCard = ({
         >
           {label}
         </p>
-        <span
+        <motion.span
+          whileHover={reduceMotion ? undefined : { scale: 1.08, rotate: 6 }}
+          transition={{ type: "spring", stiffness: 360, damping: 18 }}
           className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${
             isWarning
               ? "bg-rose-100 text-rose-600"
@@ -42,7 +56,7 @@ export const MetricCard = ({
           }`}
         >
           <Icon className="h-4 w-4" aria-hidden />
-        </span>
+        </motion.span>
       </div>
 
       <p
@@ -50,8 +64,8 @@ export const MetricCard = ({
           isWarning ? "text-rose-600" : "text-secondary-900"
         }`}
       >
-        {value}
+        {displayValue}
       </p>
-    </article>
+    </motion.article>
   );
 };

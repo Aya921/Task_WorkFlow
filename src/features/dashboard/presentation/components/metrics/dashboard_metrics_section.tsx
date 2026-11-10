@@ -4,9 +4,14 @@ import {
   ClipboardList,
   LoaderCircle,
 } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import type { DashboardMetrics } from "../../../domain/entity/dashboard_metrics";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import {
+  getDashboardGroupVariants,
+  getDashboardItemVariants,
+} from "../../motion/dashboard_motion";
 import { MetricCard } from "./metric_card";
 
 export type DashboardMetricsSectionProps = {
@@ -17,6 +22,7 @@ export const DashboardMetricsSection = ({
   metrics,
 }: DashboardMetricsSectionProps) => {
   const { t } = useTranslation("dashboard");
+  const reduceMotion = Boolean(useReducedMotion());
 
   const cards = [
     {
@@ -47,17 +53,23 @@ export const DashboardMetricsSection = ({
   ];
 
   return (
-    <section className="space-y-4">
-      <div>
+    <motion.section
+      variants={getDashboardItemVariants(reduceMotion)}
+      className="space-y-4"
+    >
+      <motion.div variants={getDashboardItemVariants(reduceMotion)}>
         <p className={`${FONT_STYLES.overline} text-secondary-400`}>
           {t("metrics.sectionLabel")}
         </p>
         <h2 className={`${FONT_STYLES.h3} text-secondary-900`}>
           {t("metrics.title")}
         </h2>
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <motion.div
+        variants={getDashboardGroupVariants(reduceMotion)}
+        className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4"
+      >
         {cards.map((card) => (
           <MetricCard
             key={card.key}
@@ -67,7 +79,7 @@ export const DashboardMetricsSection = ({
             tone={card.tone}
           />
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };

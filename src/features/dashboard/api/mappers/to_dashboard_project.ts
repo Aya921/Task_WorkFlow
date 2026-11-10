@@ -25,4 +25,5 @@ export const toDashboardProject = (
   completedTasks: dto.completedTasks,
   membersCount: dto.membersCount,
   members: (dto.members ?? []).map(toDashboardProjectMember),
+  lastTaskUpdatedAt: dto.lastTaskUpdatedAt ?? null,
 });

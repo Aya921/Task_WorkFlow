@@ -1,7 +1,5 @@
-import type {
-  DashboardRecentTask,
-  DashboardTaskAssignee,
-} from "../../domain/entity/dashboard_recent_task";
+import type { DashboardMember } from "../../domain/entity/dashboard_members";
+import type { DashboardRecentTask } from "../../domain/entity/dashboard_recent_task";
 import type {
   DashboardRecentTaskDto,
   DashboardTaskAssigneeDto,
@@ -9,7 +7,7 @@ import type {
 
 const toDashboardTaskAssignee = (
   dto: DashboardTaskAssigneeDto,
-): DashboardTaskAssignee => ({
+): DashboardMember => ({
   id: dto.id,
   fullName: dto.fullName,
 });

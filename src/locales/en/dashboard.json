@@ -12,6 +12,37 @@
     "quoteAuthor": "Mark Twain"
   },
   "loading": "Loading dashboard...",
+  "welcome": {
+    "greeting": "Welcome back, {{name}}",
+    "fallbackName": "there",
+    "emoji": "✨",
+    "quotes": [
+      {
+        "text": "The secret of getting ahead is getting started.",
+        "author": "Mark Twain"
+      },
+      {
+        "text": "Small progress each day adds up to big results.",
+        "author": "Satya Nani"
+      },
+      {
+        "text": "Focus on being productive instead of busy.",
+        "author": "Tim Ferriss"
+      },
+      {
+        "text": "Done is better than perfect.",
+        "author": "Sheryl Sandberg"
+      },
+      {
+        "text": "Your future is created by what you do today, not tomorrow.",
+        "author": "Robert Kiyosaki"
+      },
+      {
+        "text": "Great things are done by a series of small things brought together.",
+        "author": "Vincent van Gogh"
+      }
+    ]
+  },
   "metrics": {
     "sectionLabel": "Overview",
     "title": "Executive Overview",
@@ -27,6 +58,45 @@
     "progress": "Progress",
     "archived": "Archived",
     "tasksCount_one": "{{count}} task",
-    "tasksCount_other": "{{count}} tasks"
+    "tasksCount_other": "{{count}} tasks",
+    "updatedAt": "Updated {{time}}",
+    "emptyFilter": "No projects match this filter.",
+    "filters": {
+      "label": "Project status filter",
+      "active": "Active",
+      "all": "All",
+      "archived": "Archived"
+    }
+  },
+  "recentTasks": {
+    "title": "Recently Updated Tasks",
+    "badge": "Active Sprint",
+    "searchPlaceholder": "Filter tasks by name or tag...",
+    "viewAll": "View all ({{count}})",
+    "createTask": "Create new task...",
+    "showing": "Showing {{visible}} of {{total}} tasks",
+    "empty": "No recent tasks match your filter.",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "columns": {
+      "title": "Task Title",
+      "project": "Project",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "assignee": "Assignee"
+    },
+    "status": {
+      "todo": "Todo",
+      "in_progress": "In Progress",
+      "in_review": "In Review",
+      "done": "Done"
+    },
+    "priority": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "urgent": "Urgent"
+    }
   }
 }

@@ -16,16 +16,20 @@ export const ProjectMembersList = ({
 
   const visibleMembers = members.slice(0, maxVisible);
   const remainingCount = members.length - visibleMembers.length;
+  const getTwoCharacters = (name: string) => {
+    return name.slice(0, 2).toUpperCase();
+  };
 
   return (
     <div className="flex flex-wrap items-center gap-1.5">
       {visibleMembers.map((member) => (
-        <span
-          key={member.id}
-          className={`${FONT_STYLES.caption} rounded-full border border-secondary-200 bg-secondary-50 px-2 py-0.5 font-medium text-secondary-700`}
-        >
-          {member.fullName}
-        </span>
+        
+        <div
+        key={member.id}
+         className="size-6 rounded-full border border-primary-200  text-[10px] font-medium text-primary-700 bg-primary-50 flex items-center justify-center">
+          {getTwoCharacters(member.fullName)}
+          
+        </div>
       ))}
       {remainingCount > 0 ? (
         <span className={`${FONT_STYLES.caption} font-medium text-secondary-400`}>

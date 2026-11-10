@@ -10,4 +10,5 @@ export type DashboardProject = {
   completedTasks: number;
   membersCount: number;
   members: DashboardMember[];
+  lastTaskUpdatedAt: string | null;
 };
