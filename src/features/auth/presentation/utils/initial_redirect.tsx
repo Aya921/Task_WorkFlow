@@ -6,6 +6,7 @@ import { LazyLoadingAnimation } from "../../../../animations/lazy_loading_animat
 import { LandingPage } from "../../../home/pages/landing_page";
 
 export const InitialAuthRedirect = () => {
+  console.log("Initial auth redirect");
   const { t } = useTranslation("common");
   const {
     user,

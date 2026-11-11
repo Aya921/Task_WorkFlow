@@ -8,6 +8,7 @@ import { EmptyDashboard } from "../components/empty/empty_dashboard";
 import { DashboardMetricsSection } from "../components/metrics/dashboard_metrics_section";
 import { DashboardProjectsSection } from "../components/projects/dashboard_projects_section";
 import { DashboardRecentTasksSection } from "../components/recent_tasks/dashboard_recent_tasks_section";
+import { DashboardSkeleton } from "../components/skeleton/dashboard_skeleton";
 import { DashboardWelcomeBanner } from "../components/welcome/dashboard_welcome_banner";
 import { useWorkspaceDashboardQuery } from "../hooks/use_workspace_dashboard_query";
 import { getDashboardContainerVariants } from "../motion/dashboard_motion";
@@ -47,19 +48,20 @@ export const DashboardPage = () => {
   if (isLoading) {
     return (
       <main className="relative min-h-screen overflow-hidden bg-background px-6 py-8 lg:px-10">
-        
-        <p className="text-sm text-secondary-500">{t("loading")}</p>
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-8">
+          <DashboardWelcomeBanner userName={profile?.userName} />
+          <DashboardSkeleton />
+        </div>
       </main>
     );
   }
 
-  if (isError || !data || data.projects.length === 0) {
+  if (!workspaceId || isError || !data || data.projects.length === 0) {
     return emptyDashboard;
   }
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-background px-6 py-8 lg:px-10">
-     
       <motion.div
         className="relative mx-auto flex w-full max-w-7xl flex-col gap-8"
         variants={getDashboardContainerVariants(reduceMotion)}
@@ -74,7 +76,6 @@ export const DashboardPage = () => {
           projects={data.projects}
           totalTasks={data.metrics.totalTasks}
         />
-     
       </motion.div>
     </main>
   );
