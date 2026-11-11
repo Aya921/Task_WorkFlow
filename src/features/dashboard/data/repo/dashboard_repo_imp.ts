@@ -7,4 +7,7 @@ export const DashboardRepoImp = (
   getWorkspaceDashboard(workspaceId) {
     return dashboardDataSource.getWorkspaceDashboard(workspaceId);
   },
+  addProject(request) {
+    return dashboardDataSource.addProject(request);
+  },
 });

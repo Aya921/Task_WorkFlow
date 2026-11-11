@@ -19,6 +19,7 @@
   },
   "dashboard": {
     "loadFailed": "Failed to load dashboard. Please try again later.",
-    "notFound": "Dashboard data not found."
+    "notFound": "Dashboard data not found.",
+    "createProjectFailed": "Failed to create project. Please try again later."
   }
 }
