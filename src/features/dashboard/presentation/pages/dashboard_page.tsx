@@ -18,6 +18,7 @@ export const DashboardPage = () => {
   const { profile } = useAuth();
   const reduceMotion = Boolean(useReducedMotion());
   const workspaceId = profile?.currentWorkspaceId ?? undefined;
+  const workspaceRole = profile?.currentWorkspaceRole ?? "member";
   const { data, isLoading, isError } = useWorkspaceDashboardQuery(workspaceId);
 
   const emptyDashboard = (
@@ -70,7 +71,7 @@ export const DashboardPage = () => {
       >
         <DashboardWelcomeBanner userName={profile?.userName} />
         <DashboardMetricsSection metrics={data.metrics} />
-        <DashboardProjectsSection projects={data.projects} />
+        <DashboardProjectsSection projects={data.projects} workspaceRole={workspaceRole} />
         <DashboardRecentTasksSection
           tasks={data.recentTasks}
           projects={data.projects}

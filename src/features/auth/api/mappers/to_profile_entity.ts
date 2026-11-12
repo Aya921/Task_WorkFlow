@@ -8,4 +8,5 @@ export const toProfileEntity = (dto: ProfileDto): Profile => ({
   userId: dto.id,
   onboardingStep: dto.onboarding_step,
   currentWorkspaceId: dto.current_workspace_id ?? null,
+  currentWorkspaceRole: dto.current_workspace_role ?? null,
 });

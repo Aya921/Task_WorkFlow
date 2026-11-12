@@ -11,6 +11,7 @@ import type { CreateWorkspaceResponseDto } from "../dtos/create_work_space_respo
 import { CreateWorkspaceResponseDtoMapper } from "../mappers/to_create_work_space_response";
 import type { Profile } from "../../domain/entity/profile";
 import type { UpdateOnboardingStepRequest } from "../../domain/entity/update_onboarding_step_request";
+import type { ProfileDto } from "../dtos/profile_dto";
 import { toProfileEntity } from "../mappers/to_profile_entity";
 import { toUpdateOnboardingStepRequestDto } from "../mappers/to_update_onboarding_step_request_dto";
 import type { JoinWorkspaceByInviteRequest } from "../../domain/entity/join_workspace_by_invite_request";
@@ -124,8 +125,8 @@ export const SignupDataSourceImp = (
       data,
     };
   },
-  async getProfileData(userId: string): Promise<ApiResponse<Profile>> {
-    const { data, error } = await apiService.getProfileData(userId);
+  async getProfileWithRole(userId: string): Promise<ApiResponse<Profile>> {
+    const { data, error } = await apiService.getProfileWithRole(userId);
 
     if (error) {
       return {
@@ -134,9 +135,12 @@ export const SignupDataSourceImp = (
       };
     }
 
+    const rows = data as ProfileDto[] | null;
+    const row = rows?.[0];
+
     return {
       success: true,
-      data: data ? toProfileEntity(data) : undefined,
+      data: row ? toProfileEntity(row) : undefined,
     };
   },
   async updateOnboardingStep(

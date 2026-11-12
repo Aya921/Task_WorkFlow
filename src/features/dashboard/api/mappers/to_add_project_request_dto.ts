@@ -8,4 +8,5 @@ export const toAddProjectRequestDto = (
   p_name: entity.name,
   p_description: entity.description ?? null,
   p_color: entity.color ?? null,
+  p_member_ids: entity.memberIds ?? [],
 });

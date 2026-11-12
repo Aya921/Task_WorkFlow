@@ -14,6 +14,6 @@ export interface AuthRepo {
   loginUser(credentials: LoginCredentials): Promise<ApiResponse<LoginResult>>;
   createWorkSpace(entity:CreateWorkspaceRequest):Promise<ApiResponse<CreateWorkspaceResponse>>
   joinWorkspaceByInvite(entity: JoinWorkspaceByInviteRequest): Promise<ApiResponse<boolean>>;
-  getProfileData(userId:string):Promise<ApiResponse<Profile>>
+  getProfileWithRole(userId: string): Promise<ApiResponse<Profile>>;
   updateOnboardingStep(entity: UpdateOnboardingStepRequest): Promise<ApiResponse<Profile>>;
 }

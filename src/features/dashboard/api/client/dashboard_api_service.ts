@@ -14,6 +14,7 @@ export class DashboardApiService {
       p_name: dto.p_name,
       p_description: dto.p_description,
       p_color: dto.p_color,
+      p_member_ids: dto.p_member_ids,
     });
   }
 }

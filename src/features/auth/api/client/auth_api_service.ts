@@ -48,12 +48,10 @@ export class AuthApiService {
     return response;
   }
 
-  async getProfileData(userId: string) {
-    const response = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", userId)
-      .maybeSingle();
+  async getProfileWithRole(userId: string) {
+    const response = await supabase.rpc("get_profile_with_role", {
+      p_user_id: userId,
+    });
 
     return response;
   }

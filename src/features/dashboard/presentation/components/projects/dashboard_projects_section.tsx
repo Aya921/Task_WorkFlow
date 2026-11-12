@@ -14,13 +14,16 @@ import {
   ProjectStatusFilter,
   type ProjectStatusFilterValue,
 } from "./project_status_filter";
+import type { WorkspaceRole } from "../../../../auth/domain/entity/workspace_role";
 
 export type DashboardProjectsSectionProps = {
   projects: DashboardProject[];
+  workspaceRole: WorkspaceRole;
 };
 
 export const DashboardProjectsSection = ({
   projects,
+  workspaceRole,
 }: DashboardProjectsSectionProps) => {
   const { t } = useTranslation("dashboard");
   const reduceMotion = Boolean(useReducedMotion());
@@ -53,15 +56,15 @@ export const DashboardProjectsSection = ({
           </h2>
         </div>
 
-        <Button
-          type="button"
-          wrapperClassName="inline-flex"
-          className="rounded-xl px-4 py-2 text-sm font-semibold"
-          activeClassName="bg-primary-600 text-white hover:bg-primary-700"
-        >
-          <Plus className="h-4 w-4" aria-hidden />
-          <span>{t("projects.newProject")}</span>
-        </Button>
+          {workspaceRole === "owner" && <Button
+            type="button"
+            wrapperClassName="inline-flex"
+            className="rounded-xl px-4 py-2 text-sm font-semibold"
+            activeClassName="bg-primary-600 text-white hover:bg-primary-700"
+          >
+            <Plus className="h-4 w-4" aria-hidden />
+            <span>{t("projects.newProject")}</span>
+          </Button>}
       </motion.div>
 
       <motion.div variants={getDashboardItemVariants(reduceMotion)}>
