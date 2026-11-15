@@ -1,0 +1,71 @@
+import { useId } from "react";
+import type { UseFormRegisterReturn } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import { InputFieldLabel } from "../../../../../shared/components/input_field_label";
+import { InputFieldMessage } from "../../../../../shared/components/input_field_message";
+import { DESCRIPTION_MAX_LENGTH } from "../../../types/create_project_schema";
+
+type CreateProjectDescriptionFieldProps = {
+  value: string;
+  errorMessage?: string;
+  registration: UseFormRegisterReturn;
+};
+
+export const CreateProjectDescriptionField = ({
+  value,
+  errorMessage,
+  registration,
+}: CreateProjectDescriptionFieldProps) => {
+  const { t } = useTranslation("dashboard");
+  const generatedId = useId();
+  const inputId = registration.name ? `${registration.name}-${generatedId}` : generatedId;
+  const messageId = errorMessage ? `${inputId}-message` : undefined;
+  const length = value.length;
+
+  return (
+    <div className="flex w-full flex-col gap-1.5">
+      <InputFieldLabel
+        htmlFor={inputId}
+        label={t("createProject.fields.description.label")}
+        labelClassName={`block ${FONT_STYLES.overline} text-secondary-900`}
+        labelAccessory={
+          <span className={`${FONT_STYLES.caption} text-secondary-400`}>
+            {t("createProject.fields.description.counter", {
+              count: length,
+              max: DESCRIPTION_MAX_LENGTH,
+            })}
+          </span>
+        }
+      />
+
+      <textarea
+        {...registration}
+        id={inputId}
+        rows={3}
+        maxLength={DESCRIPTION_MAX_LENGTH}
+        placeholder={t("createProject.fields.description.placeholder")}
+        aria-invalid={Boolean(errorMessage) || undefined}
+        aria-describedby={messageId}
+        className={[
+          "w-full resize-y rounded-lg border border-secondary-200 px-3.5 py-2.5 shadow-sm outline-none",
+          "transition-[border-color,box-shadow] duration-200 ease-out",
+          "focus:border-primary-600 focus:ring-2 focus:ring-accent-400/40",
+          FONT_STYLES.input,
+          errorMessage
+            ? "border-rose-500 focus:border-rose-500 focus:ring-rose-400"
+            : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      />
+
+      <InputFieldMessage
+        id={messageId}
+        message={errorMessage}
+        status={errorMessage ? "error" : "default"}
+        errorAppearance="text"
+      />
+    </div>
+  );
+};
