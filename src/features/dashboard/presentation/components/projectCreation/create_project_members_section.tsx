@@ -6,17 +6,13 @@ import { InputField } from "../../../../../shared/components/input_field";
 import type { WorkspaceMember } from "../../../domain/entity/workspace_member";
 import { CreateProjectMemberChip } from "./create_project_member_chip";
 import { CreateProjectMemberSuggestions } from "./create_project_member_suggestions";
-import type {
-  CreateProjectMember,
-  ProjectMemberRole,
-} from "./create_project_member";
 
 type CreateProjectMembersSectionProps = {
-  members: CreateProjectMember[];
+  members: WorkspaceMember[];
   workspaceMembers: WorkspaceMember[];
   isLoadingWorkspaceMembers: boolean;
+  currentUserId?: string;
   onAdd: (member: WorkspaceMember) => void;
-  onRoleChange: (id: string, role: ProjectMemberRole) => void;
   onRemove: (id: string) => void;
 };
 
@@ -24,15 +20,15 @@ export const CreateProjectMembersSection = ({
   members,
   workspaceMembers,
   isLoadingWorkspaceMembers,
+  currentUserId,
   onAdd,
-  onRoleChange,
   onRemove,
 }: CreateProjectMembersSectionProps) => {
   const { t } = useTranslation("dashboard");
   const [query, setQuery] = useState("");
 
   const suggestions = useMemo(() => {
-    const assignedIds = new Set(members.map((member) => member.id));
+    const assignedIds = new Set(members.map((member) => member.userId));
     const normalizedQuery = query.trim().toLowerCase();
 
     return workspaceMembers.filter((member) => {
@@ -61,7 +57,9 @@ export const CreateProjectMembersSection = ({
         (member) =>
           member.fullName.toLowerCase() === normalizedQuery ||
           member.email?.toLowerCase() === normalizedQuery,
-      ) ?? suggestions[0] ?? null
+      ) ??
+      suggestions[0] ??
+      null
     );
   };
 
@@ -80,28 +78,19 @@ export const CreateProjectMembersSection = ({
   };
 
   return (
-    <div className="flex w-full flex-col gap-4">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="flex flex-wrap items-center gap-2">
-          <h3 className={`${FONT_STYLES.overline} text-secondary-900`}>
-            {t("createProject.members.label")}
-          </h3>
-          <span
-            className={`${FONT_STYLES.caption} rounded-full bg-secondary-100 px-2.5 py-1 font-semibold text-secondary-500`}
-          >
-            {t("createProject.members.assigned", { count: members.length })}
-          </span>
-        </div>
-
-        <button
-          type="button"
-          className={`${FONT_STYLES.caption} font-medium text-secondary-500 transition-colors hover:text-primary-600`}
+    <div className="flex w-full flex-col gap-2.5">
+      <div className="flex flex-wrap items-center gap-2">
+        <h3 className={`${FONT_STYLES.overline} text-secondary-900`}>
+          {t("createProject.members.label")}
+        </h3>
+        <span
+          className={`${FONT_STYLES.caption} rounded-full bg-secondary-100 px-2 py-0.5 font-semibold text-secondary-500`}
         >
-          {t("createProject.members.assignRoles")}
-        </button>
+          {t("createProject.members.assigned", { count: members.length })}
+        </span>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         <InputField
           label={t("createProject.members.searchLabel")}
           labelClassName="sr-only"
@@ -123,9 +112,9 @@ export const CreateProjectMembersSection = ({
             <button
               type="button"
               onClick={handleAdd}
-              className="inline-flex h-full items-center gap-1 rounded-lg bg-secondary-900 px-3 text-xs font-bold text-white sm:px-4"
+              className="inline-flex h-full items-center gap-1 rounded-md bg-secondary-900 px-2.5 text-[11px] font-bold text-white"
             >
-              <Plus size={14} strokeWidth={2.5} />
+              <Plus size={12} strokeWidth={2.5} />
               {t("createProject.members.add")}
             </button>
           }
@@ -140,13 +129,13 @@ export const CreateProjectMembersSection = ({
       </div>
 
       {members.length > 0 ? (
-        <div className="flex flex-wrap gap-2 sm:gap-3">
+        <div className="flex flex-wrap gap-1.5">
           {members.map((member) => (
             <CreateProjectMemberChip
-              key={member.id}
+              key={member.userId}
               member={member}
-              onRoleChange={(role) => onRoleChange(member.id, role)}
-              onRemove={() => onRemove(member.id)}
+              canRemove={member.userId !== currentUserId}
+              onRemove={() => onRemove(member.userId)}
             />
           ))}
         </div>

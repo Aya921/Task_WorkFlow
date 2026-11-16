@@ -24,7 +24,7 @@ export const CreateProjectDescriptionField = ({
   const length = value.length;
 
   return (
-    <div className="flex w-full flex-col gap-1.5">
+    <div className="flex w-full flex-col gap-1">
       <InputFieldLabel
         htmlFor={inputId}
         label={t("createProject.fields.description.label")}
@@ -42,16 +42,16 @@ export const CreateProjectDescriptionField = ({
       <textarea
         {...registration}
         id={inputId}
-        rows={3}
+        rows={2}
         maxLength={DESCRIPTION_MAX_LENGTH}
         placeholder={t("createProject.fields.description.placeholder")}
         aria-invalid={Boolean(errorMessage) || undefined}
         aria-describedby={messageId}
         className={[
-          "w-full resize-y rounded-lg border border-secondary-200 px-3.5 py-2.5 shadow-sm outline-none",
+          "w-full resize-y rounded-md border border-secondary-200 px-3 py-2 shadow-sm outline-none",
           "transition-[border-color,box-shadow] duration-200 ease-out",
           "focus:border-primary-600 focus:ring-2 focus:ring-accent-400/40",
-          FONT_STYLES.input,
+          FONT_STYLES.caption,
           errorMessage
             ? "border-rose-500 focus:border-rose-500 focus:ring-rose-400"
             : "",

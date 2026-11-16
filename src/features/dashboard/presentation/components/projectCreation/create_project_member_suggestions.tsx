@@ -39,27 +39,25 @@ export const CreateProjectMemberSuggestions = ({
   }
 
   return (
-    <ul className="max-h-40 overflow-y-auto rounded-xl border border-secondary-200 bg-white shadow-sm">
+    <ul className="max-h-32 overflow-y-auto rounded-lg border border-secondary-200 bg-white shadow-sm">
       {members.map((member) => (
         <li key={member.userId}>
           <button
             type="button"
             onClick={() => onSelect(member)}
-            className="flex w-full items-center gap-3 px-3 py-2 text-start transition-colors hover:bg-secondary-50"
+            className="flex w-full items-center gap-2 px-2.5 py-1.5 text-start transition-colors hover:bg-secondary-50"
           >
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-[11px] font-semibold text-primary-700">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-100 text-[9px] font-semibold text-primary-700">
               {getInitials(member.fullName)}
             </span>
             <span className="min-w-0 flex-1">
               <span
-                className={`${FONT_STYLES.bodySm} block truncate font-medium text-secondary-900`}
+                className={`${FONT_STYLES.caption} block truncate font-medium text-secondary-900`}
               >
                 {member.fullName}
               </span>
               {member.email ? (
-                <span
-                  className={`${FONT_STYLES.caption} block truncate text-secondary-400`}
-                >
+                <span className="block truncate text-[10px] text-secondary-400">
                   {member.email}
                 </span>
               ) : null}

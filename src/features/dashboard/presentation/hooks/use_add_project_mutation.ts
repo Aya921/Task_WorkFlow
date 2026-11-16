@@ -9,6 +9,7 @@ export const useAddProjectMutation = () => {
   const mutation = useMutation({
     mutationFn: async (request: AddProjectRequest) => {
       const response = await addProjectUseCase(request);
+      console.log("response is ", response);
 
       if (!response.success) {
         throw new Error(

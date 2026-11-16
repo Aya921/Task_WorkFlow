@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
 import { InputField } from "../../../../../shared/components/input_field";
@@ -15,16 +15,13 @@ import { CreateProjectColorSection } from "./create_project_color_section";
 import { CreateProjectDescriptionField } from "./create_project_description_field";
 import { CreateProjectFooter } from "./create_project_footer";
 import { CreateProjectHeader } from "./create_project_header";
-import type {
-  CreateProjectMember,
-  ProjectMemberRole,
-} from "./create_project_member";
 import { CreateProjectMembersSection } from "./create_project_members_section";
 import { CreateProjectPreview } from "./create_project_preview";
 import {
   DEFAULT_PROJECT_COLOR,
   type ProjectColorOption,
 } from "./project_colors";
+import { useAddProjectMutation } from "../../hooks/use_add_project_mutation";
 
 type CreateProjectLayoutProps = {
   onClose: () => void;
@@ -38,29 +35,31 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
     useWorkspaceDashboardQuery(workspaceId);
   const workspaceMembers = dashboard?.members ?? [];
 
-  const [selectedColor, setSelectedColor] =
-    useState<ProjectColorOption>(DEFAULT_PROJECT_COLOR);
-  const [members, setMembers] = useState<CreateProjectMember[]>(() => {
+  const [selectedColor, setSelectedColor] = useState<ProjectColorOption>(
+    DEFAULT_PROJECT_COLOR,
+  );
+  const [members, setMembers] = useState<WorkspaceMember[]>(() => {
     if (!profile) {
       return [];
     }
 
     return [
       {
-        id: profile.userId,
-        name: profile.userName,
+        userId: profile.userId,
+        fullName: profile.userName,
         email: profile.userEmail,
-        role: "projectLead",
-      },
+        role: "owner",
+      } as WorkspaceMember,
     ];
   });
+  const {  addProjectFn, isLoading} = useAddProjectMutation();
 
   const {
     formState: { errors },
     register,
     handleSubmit,
     setValue,
-    watch,
+    control,
   } = useForm<CreateProjectFormData>({
     resolver: zodResolver(dashboardCreateProjectSchema(t)),
     mode: "onSubmit",
@@ -72,8 +71,8 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
     },
   });
 
-  const projectName = watch("projectName");
-  const projectDescription = watch("projectDescription");
+  const projectName = useWatch({ control, name: "projectName" });
+  const projectDescription = useWatch({ control, name: "projectDescription" });
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -86,13 +85,14 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [onClose]);
 
-  const syncMembers = (nextMembers: CreateProjectMember[]) => {
-    setMembers(nextMembers);
+  const syncMembers = (nextMembers: WorkspaceMember[]) => {
+    setMembers(nextMembers); // using in the ui to display the members
     setValue(
+      // will sent in the form to the backend and we remove the current user from the list because
       "projectMembers",
       nextMembers
-        .filter((member) => member.id !== profile?.userId)
-        .map((member) => member.id),
+        .filter((member) => member.userId !== profile?.userId)
+        .map((member) => member.userId),
       { shouldValidate: true },
     );
   };
@@ -103,44 +103,45 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
   };
 
   const handleAddMember = (workspaceMember: WorkspaceMember) => {
-    if (members.some((member) => member.id === workspaceMember.userId)) {
+    // if the member is already in the list, we don't add them again
+    if (members.some((member) => member.userId === workspaceMember.userId)) {
       return;
     }
 
     syncMembers([
       ...members,
       {
-        id: workspaceMember.userId,
-        name: workspaceMember.fullName,
-        email: workspaceMember.email ?? undefined,
-        role: "contributor",
+        userId: workspaceMember.userId,
+        fullName: workspaceMember.fullName,
+        email: workspaceMember.email,
+        role: "member",
       },
     ]);
-  };
-
-  const handleRoleChange = (id: string, role: ProjectMemberRole) => {
-    syncMembers(
-      members.map((member) =>
-        member.id === id ? { ...member, role } : member,
-      ),
-    );
   };
 
   const handleRemoveMember = (id: string) => {
     if (id === profile?.userId) {
       return;
     }
-    syncMembers(members.filter((member) => member.id !== id));
+    syncMembers(members.filter((member) => member.userId !== id));
   };
 
   const onSubmit = (data: CreateProjectFormData) => {
     console.log("data is ", { ...data, members });
+    if(workspaceId) {
+      addProjectFn({
+        workspaceId,
+        name: data.projectName,
+        description: data.projectDescription,
+        color: data.projectColor,
+        memberIds: data.projectMembers,
+      });
+    }
   };
 
   return (
     <div
       className="fixed inset-0 z-40 flex items-end justify-center bg-black/50 p-0 backdrop-blur-sm sm:items-center sm:p-4"
-      role="presentation"
       onClick={onClose}
     >
       <form
@@ -150,12 +151,12 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
         aria-modal="true"
         aria-label={t("createProject.title")}
         onClick={(event) => event.stopPropagation()}
-        className="flex max-h-[100dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl bg-white shadow-xl sm:max-h-[92vh] sm:rounded-2xl"
+        className="flex max-h-[100dvh] w-full max-w-xl flex-col overflow-hidden rounded-t-2xl bg-white shadow-xl sm:max-h-[88vh] sm:rounded-xl"
       >
-        <div className="flex flex-col gap-5 overflow-y-auto p-4 sm:gap-6 sm:p-6 md:p-8">
+        <div className="flex flex-col gap-3 overflow-y-auto p-3 sm:gap-4 sm:p-5">
           <CreateProjectHeader onClose={onClose} />
 
-          <div className="flex w-full flex-col gap-5 sm:gap-6">
+          <div className="flex w-full flex-col gap-3 sm:gap-4">
             <InputField
               label={t("createProject.fields.name.label")}
               labelClassName={`block ${FONT_STYLES.overline} text-secondary-900`}
@@ -187,8 +188,8 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
             members={members}
             workspaceMembers={workspaceMembers}
             isLoadingWorkspaceMembers={isLoadingWorkspaceMembers}
+            currentUserId={profile?.userId}
             onAdd={handleAddMember}
-            onRoleChange={handleRoleChange}
             onRemove={handleRemoveMember}
           />
 
@@ -199,8 +200,8 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
           />
         </div>
 
-        <div className="border-t border-secondary-100 bg-white p-4 sm:px-6 sm:py-5 md:px-8">
-          <CreateProjectFooter onCancel={onClose} />
+        <div className="border-t border-secondary-100 bg-white p-3 sm:px-5 sm:py-3">
+          <CreateProjectFooter onCancel={onClose} isSubmitting={isLoading} />
         </div>
       </form>
     </div>

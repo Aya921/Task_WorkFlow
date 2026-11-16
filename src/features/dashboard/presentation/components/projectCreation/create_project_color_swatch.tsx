@@ -20,12 +20,12 @@ export const CreateProjectColorSwatch = ({
       aria-pressed={isSelected}
       onClick={onSelect}
       style={{ backgroundColor: color }}
-      className={`flex h-8 w-8 items-center justify-center rounded-full sm:h-10 sm:w-10 ${
-        isSelected ? "ring-2 ring-secondary-900 ring-offset-2" : ""
+      className={`flex h-7 w-7 items-center justify-center rounded-full ${
+        isSelected ? "ring-2 ring-secondary-900 ring-offset-1" : ""
       }`}
     >
       {isSelected ? (
-        <Check size={16} strokeWidth={3} className="text-white" />
+        <Check size={12} strokeWidth={3} className="text-white" />
       ) : null}
     </button>
   );

@@ -18,7 +18,7 @@ export const CreateProjectColorSection = ({
   const { t } = useTranslation("dashboard");
 
   return (
-    <div className="flex w-full flex-col gap-4">
+    <div className="flex w-full flex-col gap-2.5">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h3 className={`${FONT_STYLES.overline} text-secondary-900`}>
           {t("createProject.fields.color.label")}
@@ -29,13 +29,13 @@ export const CreateProjectColorSection = ({
             borderColor: `${selectedColor.color}55`,
             color: selectedColor.color,
           }}
-          className={`${FONT_STYLES.caption} rounded-full border px-3 py-1 font-semibold`}
+          className={`${FONT_STYLES.caption} rounded-full border px-2 py-0.5 font-semibold`}
         >
           {t(`createProject.colors.${selectedColor.id}`)}
         </span>
       </div>
 
-      <div className="grid grid-cols-6 gap-3 sm:grid-cols-9 sm:gap-4">
+      <div className="grid grid-cols-9 gap-2">
         {PROJECT_COLORS.map((color) => (
           <CreateProjectColorSwatch
             key={color.id}
