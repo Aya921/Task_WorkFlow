@@ -1,0 +1,36 @@
+{
+  "title": "الإشعارات",
+  "unreadCount_zero": "لا يوجد غير مقروء",
+  "unreadCount_one": "إشعار واحد غير مقروء",
+  "unreadCount_two": "إشعاران غير مقروءين",
+  "unreadCount_few": "{{count}} إشعارات غير مقروءة",
+  "unreadCount_many": "{{count}} إشعارًا غير مقروء",
+  "unreadCount_other": "{{count}} غير مقروء",
+  "filters": {
+    "label": "فلاتر الإشعارات",
+    "all": "الكل",
+    "unread": "غير مقروء"
+  },
+  "groups": {
+    "today": "اليوم",
+    "earlier": "الأسبق"
+  },
+  "actions": {
+    "markAllRead": "تعليم تحديد الكل كمقروء",
+    "accept": "قبول",
+    "decline": "رفض"
+  },
+  "loading": "جاري تحميل الإشعارات...",
+  "empty": {
+    "title": "أنت محدّث بكل شيء",
+    "description": "دعوات المشاريع وتحديثات المهام ستظهر هنا."
+  },
+  "error": {
+    "title": "تعذر تحميل الإشعارات",
+    "description": "حصل خطأ أثناء جلب صندوق الإشعارات.",
+    "retry": "حاول مرة أخرى"
+  },
+  "time": {
+    "justNow": "الآن"
+  }
+}

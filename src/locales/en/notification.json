@@ -1,0 +1,32 @@
+{
+  "title": "Notifications",
+  "unreadCount_one": "{{count}} unread",
+  "unreadCount_other": "{{count}} unread",
+  "filters": {
+    "label": "Notification filters",
+    "all": "All",
+    "unread": "Unread"
+  },
+  "groups": {
+    "today": "Today",
+    "earlier": "Earlier"
+  },
+  "actions": {
+    "markAllRead": "Mark all as read",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "loading": "Loading notifications...",
+  "empty": {
+    "title": "You're all caught up",
+    "description": "New project invites and task updates will show up here."
+  },
+  "error": {
+    "title": "Couldn't load notifications",
+    "description": "Something went wrong while fetching your inbox.",
+    "retry": "Try again"
+  },
+  "time": {
+    "justNow": "Just now"
+  }
+}
