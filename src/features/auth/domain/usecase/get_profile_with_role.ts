@@ -1,6 +1,6 @@
 import type { AuthRepo } from "../repo/signup_repo";
 
-export const GetProfileDataUseCase =
+export const GetProfileWithRole =
   (authRepository: AuthRepo) => async (userId: string) => {
-    return authRepository.getProfileData(userId);
+    return authRepository.getProfileWithRole(userId);
   };

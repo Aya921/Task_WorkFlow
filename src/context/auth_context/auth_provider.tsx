@@ -20,12 +20,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, nextSession) => {
       if (!mount) return;
-
-      setSession(nextSession);
+    
+      setSession((prev) =>
+        prev?.access_token === nextSession?.access_token ? prev : nextSession,
+      );
+      setUser((prev) =>
+        prev?.id === nextSession?.user?.id ? prev : (nextSession?.user ?? null),
+      );
       setSessionLoading(false);
-      setUser(nextSession?.user ?? null);
     });
-
     return () => {
       mount = false;
       subscription.unsubscribe();
@@ -89,6 +92,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       void supabase.removeChannel(channel);
     };
   }, [user?.id, updataProfileData]);
+
+  
 
   const values = useMemo(
     () => ({

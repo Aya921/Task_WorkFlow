@@ -3,9 +3,10 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../../../../hooks/use_auth";
 import { ROUTES } from "../../../../routes/route_path";
 import { LazyLoadingAnimation } from "../../../../animations/lazy_loading_animation";
-import { HomePage } from "../../../home/pages/home_page";
+import { LandingPage } from "../../../home/pages/landing_page";
 
 export const InitialAuthRedirect = () => {
+  console.log("Initial auth redirect");
   const { t } = useTranslation("common");
   const {
     user,
@@ -24,7 +25,7 @@ export const InitialAuthRedirect = () => {
   }
 
   if (!user) {
-    return <HomePage />;
+    return <LandingPage  />;
   }
 
   if (profileError || !profile) {

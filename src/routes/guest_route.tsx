@@ -8,6 +8,7 @@ import { LazyLoadingAnimation } from "../animations/lazy_loading_animation";
  * Authenticated users are sent to Dashboard or back into onboarding.
  */
 export const GuestRoute = () => {
+  console.log("Guest route");
   const { user, profile, sessionLoading, profileLoading, profileError } =
     useAuth();
 
@@ -30,6 +31,7 @@ export const GuestRoute = () => {
   }
 
   if (profile.onboardingCompleted) {
+    console.log("Onboarding completed, redirecting to dashboard");
     return <Navigate to={ROUTES.DASHBOARD} replace />;
   }
 

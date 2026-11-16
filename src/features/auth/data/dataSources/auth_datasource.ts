@@ -23,6 +23,6 @@ export interface AuthDataSource {
     entity: JoinWorkspaceByInviteRequest,
   ): Promise<ApiResponse<boolean>>;
 
-  getProfileData(userId:string):Promise<ApiResponse<Profile>>
+  getProfileWithRole(userId: string): Promise<ApiResponse<Profile>>;
   updateOnboardingStep(entity: UpdateOnboardingStepRequest): Promise<ApiResponse<Profile>>;
 }

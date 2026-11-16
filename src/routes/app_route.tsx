@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { RegisterLayout } from "../features/auth/presentation/signup/layout/register_layout";
 import { SignupRouter } from "../features/auth/presentation/utils/signup_router";
 import { LoginPage } from "../features/auth/presentation/login/pages/login_page";
-import { DashboardPage } from "../features/home/pages/dashboard_page";
+import { DashboardPage } from "../features/dashboard/presentation/pages/dashboard_page";
 import { ROUTES } from "./route_path";
 import { NotFoundPage } from "../shared/pages/not_found_page";
 import { InitialAuthRedirect } from "../features/auth/presentation/utils/initial_redirect";

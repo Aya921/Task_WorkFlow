@@ -19,8 +19,8 @@ export const AuthRepoImp=(
     joinWorkspaceByInvite(joinWorkspaceByInviteEntity) {
         return authDataSource.joinWorkspaceByInvite(joinWorkspaceByInviteEntity);
     },
-    getProfileData (userId: string): Promise<ApiResponse<Profile>> {
-       return authDataSource.getProfileData(userId)
+    getProfileWithRole(userId: string): Promise<ApiResponse<Profile>> {
+      return authDataSource.getProfileWithRole(userId);
     },
     updateOnboardingStep(entity: UpdateOnboardingStepRequest): Promise<ApiResponse<Profile>> {
         return authDataSource.updateOnboardingStep(entity);

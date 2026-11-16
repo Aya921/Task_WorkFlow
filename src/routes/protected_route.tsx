@@ -6,7 +6,8 @@ import { ROUTES } from "./route_path";
 import { LazyLoadingAnimation } from "../animations/lazy_loading_animation";
 
 export const ProtectedRoute = () => {
-  
+
+  console.log("Protected route");
   const {
     user,
     profile,
@@ -21,7 +22,7 @@ export const ProtectedRoute = () => {
   if (sessionLoading || (user && profileLoading)) {
     return (
       <div className="flex h-screen w-screen items-center justify-center">
-        <LazyLoadingAnimation />
+       <LazyLoadingAnimation />
       </div>
     );
   }
@@ -46,6 +47,7 @@ export const ProtectedRoute = () => {
     );
   }
  
+  console.log("came here to go to dashboard");
 
   return <Outlet />;
 };

@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from "react-i18next";
-import { FONT_STYLES } from "../../../../assets/fonts/font_style";
-import { useAuth } from "../../../../hooks/use_auth";
+import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
+import { useAuth } from "../../../../../hooks/use_auth";
 
 export type EmptyDashboardHeaderProps = {
   sectionLabel: string;
