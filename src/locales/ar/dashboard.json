@@ -102,5 +102,84 @@
       "high": "عالية",
       "urgent": "عاجلة"
     }
+  },
+  "createProject": {
+    "title": "إنشاء مشروع جديد",
+    "subtitle": "اجمع أفكارك وابدأ في بناء شيء رائع.",
+    "close": "إغلاق نافذة إنشاء المشروع",
+    "fields": {
+      "name": {
+        "label": "اسم المشروع *",
+        "placeholder": "مثال: إعادة تصميم الموقع",
+        "hint": "الاسم المميز يسهّل على الفريق العثور على المهام بسرعة."
+      },
+      "description": {
+        "label": "الوصف (اختياري)",
+        "placeholder": "عن ماذا يتحدث هذا المشروع؟",
+        "counter": "{{count}} / {{max}}"
+      },
+      "color": {
+        "label": "اختر لون المشروع"
+      }
+    },
+    "colors": {
+      "red": "أحمر",
+      "orange": "برتقالي",
+      "burntOrange": "برتقالي داكن",
+      "amber": "كهرماني",
+      "gold": "ذهبي",
+      "lime": "ليموني",
+      "green": "أخضر",
+      "mint": "نعناعي",
+      "teal": "تركواز",
+      "sky": "سماوي",
+      "skyBlue": "أزرق سماوي",
+      "royal": "أزرق ملكي",
+      "indigo": "نيلي",
+      "purple": "بنفسجي",
+      "pink": "وردي",
+      "rose": "وردي غامق",
+      "brown": "بني",
+      "slate": "رمادي داكن"
+    },
+    "members": {
+      "label": "أعضاء المشروع",
+      "searchLabel": "البحث عن أعضاء المشروع",
+      "searchPlaceholder": "ابحث بالاسم أو البريد الإلكتروني...",
+      "add": "إضافة",
+      "assignRoles": "تعيين الأدوار والصلاحيات",
+      "assigned_zero": "لا أحد مُعيَّن",
+      "assigned_one": "شخص واحد مُعيَّن",
+      "assigned_two": "شخصان مُعيَّنان",
+      "assigned_few": "{{count}} أشخاص مُعيَّنين",
+      "assigned_many": "{{count}} شخصًا مُعيَّنًا",
+      "assigned_other": "{{count}} مُعيَّن",
+      "loading": "جاري تحميل أعضاء مساحة العمل...",
+      "noResults": "لا يوجد أعضاء مطابقون لبحثك في مساحة العمل.",
+      "roleLabel": "دور {{name}}",
+      "remove": "إزالة {{name}}",
+      "roles": {
+        "projectLead": "قائد المشروع",
+        "admin": "مشرف",
+        "editor": "محرر",
+        "contributor": "مساهم",
+        "viewer": "مشاهد"
+      }
+    },
+    "preview": {
+      "untitled": "مشروع بدون عنوان",
+      "newBadge": "جديد",
+      "meta": "٠ مهام • الآن",
+      "button": "معاينة"
+    },
+    "actions": {
+      "cancel": "إلغاء",
+      "create": "إنشاء المشروع"
+    },
+    "validation": {
+      "nameRequired": "اسم المشروع مطلوب",
+      "descriptionMax": "الوصف يجب ألا يزيد عن ٢٤٠ حرفًا",
+      "colorRequired": "لون المشروع مطلوب"
+    }
   }
 }

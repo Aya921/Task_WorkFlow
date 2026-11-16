@@ -19,11 +19,13 @@ import type { WorkspaceRole } from "../../../../auth/domain/entity/workspace_rol
 export type DashboardProjectsSectionProps = {
   projects: DashboardProject[];
   workspaceRole: WorkspaceRole;
+  onProjectClick: () => void;
 };
 
 export const DashboardProjectsSection = ({
   projects,
   workspaceRole,
+  onProjectClick,
 }: DashboardProjectsSectionProps) => {
   const { t } = useTranslation("dashboard");
   const reduceMotion = Boolean(useReducedMotion());
@@ -61,6 +63,7 @@ export const DashboardProjectsSection = ({
             wrapperClassName="inline-flex"
             className="rounded-xl px-4 py-2 text-sm font-semibold"
             activeClassName="bg-primary-600 text-white hover:bg-primary-700"
+            onClick={onProjectClick}
           >
             <Plus className="h-4 w-4" aria-hidden />
             <span>{t("projects.newProject")}</span>

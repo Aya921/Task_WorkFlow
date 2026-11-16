@@ -98,5 +98,80 @@
       "high": "High",
       "urgent": "Urgent"
     }
+  },
+  "createProject": {
+    "title": "Create New Project",
+    "subtitle": "Bring your ideas together and start building something great.",
+    "close": "Close create project dialog",
+    "fields": {
+      "name": {
+        "label": "Project Name *",
+        "placeholder": "e.g. Website Redesign",
+        "hint": "A distinct, memorable name helps teammates locate tasks quickly."
+      },
+      "description": {
+        "label": "Description (optional)",
+        "placeholder": "What is this project about?",
+        "counter": "{{count}} / {{max}}"
+      },
+      "color": {
+        "label": "Choose Project Color"
+      }
+    },
+    "colors": {
+      "red": "Red",
+      "orange": "Orange",
+      "burntOrange": "Burnt Orange",
+      "amber": "Amber",
+      "gold": "Gold",
+      "lime": "Lime",
+      "green": "Green",
+      "mint": "Mint",
+      "teal": "Teal",
+      "sky": "Sky",
+      "skyBlue": "Sky Blue",
+      "royal": "Royal",
+      "indigo": "Indigo",
+      "purple": "Purple",
+      "pink": "Pink",
+      "rose": "Rose",
+      "brown": "Brown",
+      "slate": "Slate"
+    },
+    "members": {
+      "label": "Project Members",
+      "searchLabel": "Search project members",
+      "searchPlaceholder": "Search by name or email address...",
+      "add": "Add",
+      "assignRoles": "Assign roles & permissions",
+      "assigned_one": "{{count}} assigned",
+      "assigned_other": "{{count}} assigned",
+      "loading": "Loading workspace members...",
+      "noResults": "No workspace members match your search.",
+      "roleLabel": "Role for {{name}}",
+      "remove": "Remove {{name}}",
+      "roles": {
+        "projectLead": "Project Lead",
+        "admin": "Admin",
+        "editor": "Editor",
+        "contributor": "Contributor",
+        "viewer": "Viewer"
+      }
+    },
+    "preview": {
+      "untitled": "Untitled project",
+      "newBadge": "New",
+      "meta": "0 tasks • Just now",
+      "button": "Preview"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "create": "Create Project"
+    },
+    "validation": {
+      "nameRequired": "Project name is required",
+      "descriptionMax": "Description must be at most 240 characters",
+      "colorRequired": "Project color is required"
+    }
   }
 }

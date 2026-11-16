@@ -16,6 +16,7 @@ export const InputField = ({
   icon: Icon,
   iconPosition = "start",
   labelAccessory,
+  inputAccessory,
   labelClassName,
   className = "",
   status = "default",
@@ -66,37 +67,49 @@ export const InputField = ({
         labelAccessory={labelAccessory}
       />
 
-      <div className="group/input relative">
-        <input
-          {...props}
-          id={inputId}
-          type={isPassword && showPassword ? "text" : props.type}
-          aria-invalid={status === "error" || undefined}
-          aria-describedby={messageId}
-          className={buildInputClassName({
-            fieldSize,
-            status,
-            showStartIcon,
-            showEndAffordance: isPassword || showEndIcon,
-            className,
-          })}
-        />
-
-        {showStartIcon && Icon ? (
-          <InputFieldIcon icon={Icon} position="start" />
-        ) : null}
-
-        {showEndIcon && Icon ? (
-          <InputFieldIcon icon={Icon} position="end" />
-        ) : null}
-
-        {isPassword ? (
-          <InputFieldPasswordToggle
-            showPassword={showPassword}
-            showPasswordLabel={showPasswordLabel}
-            hidePasswordLabel={hidePasswordLabel}
-            onToggle={() => setShowPassword((prev) => !prev)}
+      <div
+        className={
+          inputAccessory
+            ? "flex items-stretch gap-3"
+            : undefined
+        }
+      >
+        <div className="group/input relative min-w-0 flex-1">
+          <input
+            {...props}
+            id={inputId}
+            type={isPassword && showPassword ? "text" : props.type}
+            aria-invalid={status === "error" || undefined}
+            aria-describedby={messageId}
+            className={buildInputClassName({
+              fieldSize,
+              status,
+              showStartIcon,
+              showEndAffordance: isPassword || showEndIcon,
+              className,
+            })}
           />
+
+          {showStartIcon && Icon ? (
+            <InputFieldIcon icon={Icon} position="start" />
+          ) : null}
+
+          {showEndIcon && Icon ? (
+            <InputFieldIcon icon={Icon} position="end" />
+          ) : null}
+
+          {isPassword ? (
+            <InputFieldPasswordToggle
+              showPassword={showPassword}
+              showPasswordLabel={showPasswordLabel}
+              hidePasswordLabel={hidePasswordLabel}
+              onToggle={() => setShowPassword((prev) => !prev)}
+            />
+          ) : null}
+        </div>
+
+        {inputAccessory ? (
+          <div className="flex shrink-0 items-stretch">{inputAccessory}</div>
         ) : null}
       </div>
 

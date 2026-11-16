@@ -14,6 +14,7 @@ export type InputFieldProps = Omit<
   iconPosition?: InputIconPosition;
   label: string;
   labelAccessory?: ReactNode;
+  inputAccessory?: ReactNode;
   labelClassName?: string;
   status?: InputStatus;
   message?: string;

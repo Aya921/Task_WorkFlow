@@ -12,6 +12,8 @@ import { DashboardSkeleton } from "../components/skeleton/dashboard_skeleton";
 import { DashboardWelcomeBanner } from "../components/welcome/dashboard_welcome_banner";
 import { useWorkspaceDashboardQuery } from "../hooks/use_workspace_dashboard_query";
 import { getDashboardContainerVariants } from "../motion/dashboard_motion";
+import { CreateProjectLayout } from "../components/projectCreation/create_project_layout";
+import { useState } from "react";
 
 export const DashboardPage = () => {
   const { t } = useTranslation("dashboard");
@@ -20,6 +22,15 @@ export const DashboardPage = () => {
   const workspaceId = profile?.currentWorkspaceId ?? undefined;
   const workspaceRole = profile?.currentWorkspaceRole ?? "member";
   const { data, isLoading, isError } = useWorkspaceDashboardQuery(workspaceId);
+  const [isCreateProjectPopupOpen, setIsCreateProjectPopupOpen] =
+    useState(false);
+
+  const openCreateProject = () => setIsCreateProjectPopupOpen(true);
+  const closeCreateProject = () => setIsCreateProjectPopupOpen(false);
+
+  const createProjectModal = isCreateProjectPopupOpen ? (
+    <CreateProjectLayout onClose={closeCreateProject} />
+  ) : null;
 
   const emptyDashboard = (
     <EmptyDashboard
@@ -41,6 +52,7 @@ export const DashboardPage = () => {
         primaryAction: {
           label: t("empty.createProject"),
           icon: Plus,
+          onClick: openCreateProject,
         },
       }}
     />
@@ -58,7 +70,12 @@ export const DashboardPage = () => {
   }
 
   if (!workspaceId || isError || !data || data.projects.length === 0) {
-    return emptyDashboard;
+    return (
+      <>
+        {emptyDashboard}
+        {createProjectModal}
+      </>
+    );
   }
 
   return (
@@ -71,13 +88,18 @@ export const DashboardPage = () => {
       >
         <DashboardWelcomeBanner userName={profile?.userName} />
         <DashboardMetricsSection metrics={data.metrics} />
-        <DashboardProjectsSection projects={data.projects} workspaceRole={workspaceRole} />
+        <DashboardProjectsSection
+          projects={data.projects}
+          workspaceRole={workspaceRole}
+          onProjectClick={openCreateProject}
+        />
         <DashboardRecentTasksSection
           tasks={data.recentTasks}
           projects={data.projects}
           totalTasks={data.metrics.totalTasks}
         />
       </motion.div>
+      {createProjectModal}
     </main>
   );
 };
