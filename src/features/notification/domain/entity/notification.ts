@@ -1,7 +1,7 @@
 import type { NotificationData } from "./notification_data";
 import type { NotificationType } from "./notification_type";
 
-export type Notification = {
+export type NotificationEntity = {
   id: string;
   type: NotificationType;
   title: string;

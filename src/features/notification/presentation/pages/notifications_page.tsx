@@ -1,9 +1,11 @@
+import { AcceptInvitationModal } from "../components/acceptInvitation/accept_invitation_modal";
 import { NotificationsEmpty } from "../components/notifications_empty";
 import { NotificationsError } from "../components/notifications_error";
 import { NotificationsFilters } from "../components/notifications_filters";
 import { NotificationsHeader } from "../components/notifications_header";
 import { NotificationsList } from "../components/notifications_list";
 import { NotificationsLoading } from "../components/notifications_loading";
+import { useNotificationContext } from "../hooks/use_notification_context";
 import { useNotificationsView } from "../hooks/use_notifications_view";
 
 export const NotificationsPage = () => {
@@ -17,31 +19,27 @@ export const NotificationsPage = () => {
     isError,
     errorMessage,
     refetch,
-    markAsRead,
     markAllAsRead,
-    acceptInvitation,
-    declineInvitation,
   } = useNotificationsView();
+  const { isAcceptModalOpen } = useNotificationContext();
 
-
-  const hasNotificationsFn=()=>{
-    if(isLoading){
-      return <NotificationsLoading />
+  const renderContent = () => {
+    if (isLoading) {
+      return <NotificationsLoading />;
     }
-    if(isError){
-      return <NotificationsError message={errorMessage} onRetry={() => void refetch()} />
+    if (isError) {
+      return (
+        <NotificationsError
+          message={errorMessage}
+          onRetry={() => void refetch()}
+        />
+      );
     }
-    if(!hasNotifications){
-      return <NotificationsEmpty />
+    if (!hasNotifications) {
+      return <NotificationsEmpty />;
     }
-    return  <NotificationsList
-    groups={groups}
-    onMarkAsRead={markAsRead}
-    onAcceptInvitation={acceptInvitation}
-    onDeclineInvitation={declineInvitation}
-  />
-  }
-
+    return <NotificationsList groups={groups} />;
+  };
 
   return (
     <main className="min-h-screen bg-background px-4 py-6 sm:px-6 lg:px-10">
@@ -53,8 +51,10 @@ export const NotificationsPage = () => {
 
         <NotificationsFilters value={filter} onChange={setFilter} />
 
-        {hasNotificationsFn()}
+        {renderContent()}
       </div>
+
+      {isAcceptModalOpen ? <AcceptInvitationModal /> : null}
     </main>
   );
 };

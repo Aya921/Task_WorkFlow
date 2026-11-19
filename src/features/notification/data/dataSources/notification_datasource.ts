@@ -1,8 +1,13 @@
 import type { ApiResponse } from "../../../../core/api/api_type";
-import type { Notification } from "../../domain/entity/notification";
+import type { NotificationEntity } from "../../domain/entity/notification";
 
 export interface NotificationDataSource {
-  getNotifications(): Promise<ApiResponse<Notification[]>>;
-  markAsRead(notificationId: string): Promise<ApiResponse<Notification>>;
-  markAllAsRead(): Promise<ApiResponse<Notification[]>>;
+  getNotifications(): Promise<ApiResponse<NotificationEntity[]>>;
+  markAsRead(notificationId: string): Promise<ApiResponse<NotificationEntity>>;
+  markAllAsRead(): Promise<ApiResponse<NotificationEntity[]>>;
+  acceptInvitation(
+    invitationId: string,
+    jobTitle: string,
+  ): Promise<ApiResponse<void>>;
+  declineInvitation(invitationId: string): Promise<ApiResponse<void>>;
 }

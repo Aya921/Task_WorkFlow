@@ -1,10 +1,10 @@
-import type { Notification } from "../../domain/entity/notification";
+import type { NotificationEntity } from "../../domain/entity/notification";
 
 export type NotificationGroupKey = "today" | "earlier";
 
 export type NotificationGroup = {
   key: NotificationGroupKey;
-  items: Notification[];
+  items: NotificationEntity[];
 };
 
 const isSameDay = (left: Date, right: Date) =>
@@ -12,9 +12,9 @@ const isSameDay = (left: Date, right: Date) =>
   left.getMonth() === right.getMonth() &&
   left.getDate() === right.getDate();
 
-export const groupNotifications = (notifications: Notification[],): NotificationGroup[] => {
-  const today: Notification[] = [];
-  const earlier: Notification[] = [];
+export const groupNotifications = (notifications: NotificationEntity[],): NotificationGroup[] => {
+  const today: NotificationEntity[] = [];
+  const earlier: NotificationEntity[] = [];
   const now = new Date();
 
   for (const notification of notifications) {

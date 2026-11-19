@@ -4,7 +4,7 @@ import {
   markNotificationAsReadUseCase,
 } from "../../../../di/notification/notification_di";
 import i18n from "../../../../i18n";
-import type { Notification } from "../../domain/entity/notification";
+import type { NotificationEntity } from "../../domain/entity/notification";
 import { NOTIFICATIONS_QUERY_KEY } from "../query/notification_query";
 
 export const useMarkNotificationReadMutation = () => {
@@ -23,7 +23,7 @@ export const useMarkNotificationReadMutation = () => {
       return response.data;
     },
     onSuccess: (updated) => {
-      queryClient.setQueryData<Notification[]>(
+      queryClient.setQueryData<NotificationEntity[]>(
         NOTIFICATIONS_QUERY_KEY,
         (current) =>
           current?.map((item) => (item.id === updated.id ? updated : item)) ??
@@ -45,7 +45,7 @@ export const useMarkNotificationReadMutation = () => {
       return response.data ?? [];
     },
     onSuccess: () => {
-      queryClient.setQueryData<Notification[]>(
+      queryClient.setQueryData<NotificationEntity[]>(
         NOTIFICATIONS_QUERY_KEY,
         (current) => {
           if (!current) {

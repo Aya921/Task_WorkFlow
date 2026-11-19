@@ -9,6 +9,7 @@ export class DashboardApiService {
   }
 
   async addProject(dto: AddProjectRequestDto) {
+    console.log("dto is the following", dto);
     return await supabase.rpc("create_project", {
       p_workspace_id: dto.p_workspace_id,
       p_name: dto.p_name,

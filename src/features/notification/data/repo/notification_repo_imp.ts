@@ -13,4 +13,10 @@ export const NotificationRepoImp = (
   markAllAsRead() {
     return dataSource.markAllAsRead();
   },
+  acceptInvitation(invitationId, jobTitle) {
+    return dataSource.acceptInvitation(invitationId, jobTitle);
+  },
+  declineInvitation(invitationId) {
+    return dataSource.declineInvitation(invitationId);
+  },
 });

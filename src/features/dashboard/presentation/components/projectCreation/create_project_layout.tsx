@@ -127,14 +127,14 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
   };
 
   const onSubmit = (data: CreateProjectFormData) => {
-    console.log("data is ", { ...data, members });
+   
     if(workspaceId) {
       addProjectFn({
         workspaceId,
         name: data.projectName,
         description: data.projectDescription,
         color: data.projectColor,
-        memberIds: data.projectMembers,
+        memberIds:["b8b226b2-16a2-4f84-a8c8-65f613bdc551"], // TODO: remove this after testing
       });
     }
   };

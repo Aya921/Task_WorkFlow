@@ -7,8 +7,7 @@ import { useNotificationsQuery } from "./use_notifications_query";
 export const useNotificationsView = () => {
   const { data: notifications = [], isLoading, isError, error, refetch } =
     useNotificationsQuery();
-  const { markAsRead, markAllAsRead, isMarkingAsRead } =
-    useMarkNotificationReadMutation();
+  const { markAllAsRead, isMarkingAsRead } = useMarkNotificationReadMutation();
   const [filter, setFilter] = useState<NotificationFilter>("all");
 
   const unreadCount = useMemo(
@@ -28,15 +27,7 @@ export const useNotificationsView = () => {
     [visibleNotifications],
   );
 
-  const acceptInvitation = (id: string) => {
-    // TODO: wire accept invitation use case
-    markAsRead(id);
-  };
-
-  const declineInvitation = (id: string) => {
-    // TODO: wire decline invitation use case
-    markAsRead(id);
-  };
+  
 
   return {
     filter,
@@ -49,9 +40,6 @@ export const useNotificationsView = () => {
     errorMessage: error instanceof Error ? error.message : null,
     refetch,
     isMarkingAsRead,
-    markAsRead,
     markAllAsRead,
-    acceptInvitation,
-    declineInvitation,
   };
 };

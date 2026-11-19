@@ -28,5 +28,32 @@
   },
   "time": {
     "justNow": "Just now"
+  },
+  "acceptInvitation": {
+    "title": "Accept Project Invitation",
+    "subtitlePrefix": "Invited by",
+    "subtitleSuffix": "to collaborate",
+    "close": "Close",
+    "invitedRole": "Invited role",
+    "fields": {
+      "jobTitle": {
+        "label": "Your Role / Job Title in Project *",
+        "placeholder": "Senior Frontend Engineer",
+        "hint": "This will be displayed alongside your assignments and contributions in this project."
+      }
+    },
+    "validation": {
+      "jobTitleRequired": "Please enter your job title."
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "confirm": "Accept & Join"
+    },
+    "fallbacks": {
+      "inviter": "a teammate",
+      "project": "this project",
+      "workspace": "Workspace",
+      "role": "Member"
+    }
   }
 }

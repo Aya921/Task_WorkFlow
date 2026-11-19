@@ -24,4 +24,17 @@ export class NotificationApiService {
       .eq("is_read", false)
       .select("id, type, title, message, data, is_read, read_at, created_at");
   }
+
+  async acceptInvitation(invitationId: string, jobTitle: string) {
+    return await supabase.rpc("accept_project_invitation", {
+      p_invitation_id: invitationId,
+      p_job_title: jobTitle,
+    });
+  }
+
+  async declineInvitation(invitationId: string) {
+    return await supabase.rpc("decline_project_invitation", {
+      p_invitation_id: invitationId,
+    });
+  }
 }

@@ -1,6 +1,9 @@
-import type { Notification } from "../../domain/entity/notification";
+import type { NotificationEntity } from "../../domain/entity/notification";
 import type { NotificationData } from "../../domain/entity/notification_data";
 import type { NotificationDto } from "../dtos/notification_dto";
+
+const readOptionalString = (value: unknown) =>
+  typeof value === "string" ? value : undefined;
 
 const toNotificationData = (
   data: Record<string, unknown> | null,
@@ -10,17 +13,18 @@ const toNotificationData = (
   }
 
   return {
-    invitationId:
-      typeof data.invitation_id === "string" ? data.invitation_id : undefined,
-    projectId: typeof data.project_id === "string" ? data.project_id : undefined,
-    workspaceId:
-      typeof data.workspace_id === "string" ? data.workspace_id : undefined,
-    inviterId: typeof data.inviter_id === "string" ? data.inviter_id : undefined,
-    taskId: typeof data.task_id === "string" ? data.task_id : undefined,
+    invitationId: readOptionalString(data.invitation_id),
+    projectId: readOptionalString(data.project_id),
+    workspaceId: readOptionalString(data.workspace_id),
+    inviterId: readOptionalString(data.inviter_id),
+    taskId: readOptionalString(data.task_id),
+    inviterName: readOptionalString(data.inviter_name),
+    projectName: readOptionalString(data.project_name),
+    workspaceName: readOptionalString(data.workspace_name),
   };
 };
 
-export const toNotification = (dto: NotificationDto): Notification => ({
+export const toNotification = (dto: NotificationDto): NotificationEntity => ({
   id: dto.id,
   type: dto.type,
   title: dto.title,

@@ -9,6 +9,8 @@ import { NotFoundPage } from "../shared/pages/not_found_page";
 import { InitialAuthRedirect } from "../features/auth/presentation/utils/initial_redirect";
 import { ProtectedRoute } from "./protected_route";
 import { GuestRoute } from "./guest_route";
+import { NotificationsPage } from "../features/notification/presentation/pages/notifications_page";
+import { NotificationProvider } from "../features/notification/presentation/context/notificaton_provider";
 
 export const AppRoutes = () => {
   return (
@@ -34,6 +36,12 @@ export const AppRoutes = () => {
         <Route
           path={ROUTES.DASHBOARD}
           element={<DashboardPage />}
+        />
+        <Route
+          path={ROUTES.NOTIFICATIONS}
+          element={<NotificationProvider>
+            <NotificationsPage />
+          </NotificationProvider>}
         />
       </Route>
 

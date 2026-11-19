@@ -32,5 +32,32 @@
   },
   "time": {
     "justNow": "الآن"
+  },
+  "acceptInvitation": {
+    "title": "قبول دعوة المشروع",
+    "subtitlePrefix": "دعوة من",
+    "subtitleSuffix": "للتعاون",
+    "close": "إغلاق",
+    "invitedRole": "الدور المدعو",
+    "fields": {
+      "jobTitle": {
+        "label": "دورك / المسمى الوظيفي في المشروع *",
+        "placeholder": "مهندس واجهات أمامية أول",
+        "hint": "سيظهر هذا بجانب مهامك ومساهماتك في هذا المشروع."
+      }
+    },
+    "validation": {
+      "jobTitleRequired": "يرجى إدخال المسمى الوظيفي."
+    },
+    "actions": {
+      "cancel": "إلغاء",
+      "confirm": "قبول والانضمام"
+    },
+    "fallbacks": {
+      "inviter": "أحد أعضاء الفريق",
+      "project": "هذا المشروع",
+      "workspace": "مساحة العمل",
+      "role": "عضو"
+    }
   }
 }
