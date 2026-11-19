@@ -16,6 +16,7 @@ export class DashboardApiService {
       p_description: dto.p_description,
       p_color: dto.p_color,
       p_member_ids: dto.p_member_ids,
+      p_invitation_expires_in_hours: dto.p_invitation_expires_in_hours ?? null,
     });
   }
 }

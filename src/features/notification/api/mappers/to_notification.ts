@@ -21,6 +21,7 @@ const toNotificationData = (
     inviterName: readOptionalString(data.inviter_name),
     projectName: readOptionalString(data.project_name),
     workspaceName: readOptionalString(data.workspace_name),
+    expiresAt: readOptionalString(data.expires_at),
   };
 };
 

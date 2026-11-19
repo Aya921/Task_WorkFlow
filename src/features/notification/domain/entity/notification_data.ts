@@ -7,5 +7,7 @@ export type NotificationData = {
   inviterName?: string;
   projectName?: string;
   workspaceName?: string;
+  /** ISO timestamp after which the invitation can no longer be accepted. */
+  expiresAt?: string;
   [key: string]: unknown;
 };

@@ -3,22 +3,33 @@ import { FONT_STYLES } from "../../../../assets/fonts/font_style";
 import type { NotificationEntity } from "../../domain/entity/notification";
 import { formatRelativeTime } from "../../../dashboard/presentation/utils/format_relative_time";
 import { NotificationIcon } from "./notification_icon";
-import { NotificationInvitationActions } from "./notification_invitation_actions";
-import { useDeclineInvitationMutation } from "../hooks/use_decline_invitation_mutation";
+import { NotificationAction } from "./acceptInvitation/notification_action";
 import { useNotificationContext } from "../hooks/use_notification_context";
-
+import { useState } from "react";
 type NotificationItemProps = {
   notification: NotificationEntity;
 };
 
 export const NotificationItem = ({ notification }: NotificationItemProps) => {
   const { t, i18n } = useTranslation("notification");
-  const { openAcceptModal, markAsRead } = useNotificationContext();
-  const { declineInvitation, isDeclining, declineError } =
-    useDeclineInvitationMutation();
+  const {  markAsRead } = useNotificationContext();
+  
+
   const relativeTime =
     formatRelativeTime(notification.createdAt, i18n.language) ??
     t("time.justNow");
+
+    const [timeNow]=useState(()=>Date.now());
+
+   
+
+  const isPendingInvitation =
+    notification.type === "project_invitation" && !notification.isRead;
+  const expiresAt = notification.data.expiresAt;
+  const isExpired =
+    isPendingInvitation &&
+    Boolean(expiresAt) &&
+    new Date(expiresAt as string).getTime() <= timeNow;
 
   const handleClick = () => {
     // Invitations are marked as read by the accept/decline RPCs, so the
@@ -30,6 +41,7 @@ export const NotificationItem = ({ notification }: NotificationItemProps) => {
       markAsRead(notification.id);
     }
   };
+  
 
   return (
     <article
@@ -58,6 +70,13 @@ export const NotificationItem = ({ notification }: NotificationItemProps) => {
                 {!notification.isRead ? (
                   <span className="size-1.5 rounded-full bg-primary-600" />
                 ) : null}
+                {isExpired ? (
+                  <span
+                    className={`${FONT_STYLES.caption} rounded-full bg-red-50 px-2 py-0.5 font-semibold text-red-600`}
+                  >
+                    {t("status.expired")}
+                  </span>
+                ) : null}
               </div>
               <p className={`${FONT_STYLES.caption} mt-0.5 text-secondary-500`}>
                 {notification.message}
@@ -74,20 +93,9 @@ export const NotificationItem = ({ notification }: NotificationItemProps) => {
         </div>
       </button>
 
-      {notification.type === "project_invitation" && !notification.isRead ? (
-        <div className="ms-10 sm:ms-11">
-          <NotificationInvitationActions
-            onAccept={() => openAcceptModal(notification)}
-            onDecline={() => {
-              const invitationId = notification.data.invitationId;
-              if (invitationId) {
-                declineInvitation(invitationId);
-              }
-            }}
-            isDeclining={isDeclining}
-            errorMessage={declineError}
-          />
-        </div>
+      {isPendingInvitation && !isExpired ? (
+        <NotificationAction notification={notification} />
+        
       ) : null}
     </article>
   );

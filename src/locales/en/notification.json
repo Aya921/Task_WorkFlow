@@ -16,6 +16,9 @@
     "accept": "Accept",
     "decline": "Decline"
   },
+  "status": {
+    "expired": "Expired"
+  },
   "loading": "Loading notifications...",
   "empty": {
     "title": "You're all caught up",

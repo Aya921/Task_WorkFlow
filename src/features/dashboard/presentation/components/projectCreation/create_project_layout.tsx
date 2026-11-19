@@ -15,6 +15,11 @@ import { CreateProjectColorSection } from "./create_project_color_section";
 import { CreateProjectDescriptionField } from "./create_project_description_field";
 import { CreateProjectFooter } from "./create_project_footer";
 import { CreateProjectHeader } from "./create_project_header";
+import { CreateProjectInvitationExpiryField } from "./create_project_invitation_expiry_field";
+import {
+  DEFAULT_INVITATION_EXPIRY,
+  getInvitationExpiryHours,
+} from "./invitation_expiry_options";
 import { CreateProjectMembersSection } from "./create_project_members_section";
 import { CreateProjectPreview } from "./create_project_preview";
 import {
@@ -68,6 +73,7 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
       projectDescription: "",
       projectColor: DEFAULT_PROJECT_COLOR.color,
       projectMembers: [],
+      invitationExpiry: DEFAULT_INVITATION_EXPIRY,
     },
   });
 
@@ -134,7 +140,8 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
         name: data.projectName,
         description: data.projectDescription,
         color: data.projectColor,
-        memberIds:["b8b226b2-16a2-4f84-a8c8-65f613bdc551"], // TODO: remove this after testing
+        memberIds:data.projectMembers, // TODO: remove this after testing
+        invitationExpiresInHours: getInvitationExpiryHours(data.invitationExpiry),
       });
     }
   };
@@ -191,6 +198,11 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
             currentUserId={profile?.userId}
             onAdd={handleAddMember}
             onRemove={handleRemoveMember}
+          />
+
+          <CreateProjectInvitationExpiryField
+            registration={register("invitationExpiry")}
+            errorMessage={errors.invitationExpiry?.message}
           />
 
           <CreateProjectPreview

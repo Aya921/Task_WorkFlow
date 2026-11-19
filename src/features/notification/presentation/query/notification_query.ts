@@ -9,6 +9,7 @@ export const notificationsQueryOptions = () =>
     queryKey: NOTIFICATIONS_QUERY_KEY,
     queryFn: async () => {
       const response = await getNotificationsUseCase();
+    
 
       if (!response.success) {
         throw new Error(
