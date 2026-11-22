@@ -99,4 +99,17 @@ export const NotificationDataSourceImp = (
 
     return { success: true };
   },
+
+  async deleteNotification(notificationId: string): Promise<ApiResponse<void>> {
+    const { error } = await apiService.deleteNotification(notificationId);
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+
+    return { success: true };
+  },
 });

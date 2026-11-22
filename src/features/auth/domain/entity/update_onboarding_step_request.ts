@@ -4,4 +4,6 @@ export type UpdateOnboardingStepRequest = {
   userId: string;
   onboardingStep: SignupStepKey;
   onboardingCompleted?: boolean;
+  /** Set when leaving the workspace step so the profile points at the new workspace. */
+  currentWorkspaceId?: string | null;
 };

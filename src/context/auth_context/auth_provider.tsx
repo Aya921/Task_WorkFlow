@@ -16,9 +16,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     let mount = true;
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+    const { data: { subscription }} = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      
       if (!mount) return;
     
       setSession((prev) =>
@@ -34,6 +33,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       subscription.unsubscribe();
     };
   }, []);
+  const removeSession=   useCallback(async()=> {
+    await supabase.auth.signOut();
+
+
+  },[])
 
   const {
     data: profile,
@@ -41,6 +45,21 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     error: profileError,
     isFetching: profileFetching,
   } = useProfile(user?.id);
+
+
+  useEffect(() => {
+    if (!user) return;
+    if (profileLoading || profileFetching) return;
+  
+    const isProfileMissing =
+      profileError?.message === i18n.t("common:profile.notFound");
+  
+    if (isProfileMissing) {
+      void removeSession();
+    }
+  }, [user, profileLoading, profileFetching, profileError, removeSession]);
+
+ 
 
   const updataProfileData = useCallback(
     (userId?: string) => {
@@ -105,6 +124,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       profileError,
       getProfile: updataProfileData,
       profileFetching,
+      removeSession
     }),
     [
       user,
@@ -115,6 +135,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       profileLoading,
       updataProfileData,
       profileFetching,
+      removeSession
     ],
   );
 

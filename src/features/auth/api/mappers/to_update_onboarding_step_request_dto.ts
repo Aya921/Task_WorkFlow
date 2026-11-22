@@ -7,4 +7,5 @@ export const toUpdateOnboardingStepRequestDto = (
   id: entity.userId,
   onboarding_step: entity.onboardingStep,
   onboarding_completed: entity.onboardingCompleted,
+  current_workspace_id: entity.currentWorkspaceId,
 });

@@ -19,4 +19,10 @@ export class DashboardApiService {
       p_invitation_expires_in_hours: dto.p_invitation_expires_in_hours ?? null,
     });
   }
+
+  async deleteProject(projectId: string) {
+    return await supabase.rpc("delete_project", {
+      p_project_id: projectId,
+    });
+  }
 }

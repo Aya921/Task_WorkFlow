@@ -10,4 +10,5 @@ export interface NotificationDataSource {
     jobTitle: string,
   ): Promise<ApiResponse<void>>;
   declineInvitation(invitationId: string): Promise<ApiResponse<void>>;
+  deleteNotification(notificationId: string): Promise<ApiResponse<void>>;
 }

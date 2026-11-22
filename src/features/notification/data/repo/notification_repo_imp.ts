@@ -19,4 +19,7 @@ export const NotificationRepoImp = (
   declineInvitation(invitationId) {
     return dataSource.declineInvitation(invitationId);
   },
+  deleteNotification(notificationId) {
+    return dataSource.deleteNotification(notificationId);
+  },
 });

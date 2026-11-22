@@ -22,6 +22,8 @@ export class NotificationApiService {
       .from("notifications")
       .update({ is_read: true })
       .eq("is_read", false)
+      // Invitations are marked as read only when accepted or declined.
+      .neq("type", "project_invitation")
       .select("id, type, title, message, data, is_read, read_at, created_at");
   }
 
@@ -29,6 +31,12 @@ export class NotificationApiService {
     return await supabase.rpc("accept_project_invitation", {
       p_invitation_id: invitationId,
       p_job_title: jobTitle,
+    });
+  }
+
+  async deleteNotification(notificationId: string) {
+    return await supabase.rpc("delete_notification", {
+      p_notification_id: notificationId,
     });
   }
 

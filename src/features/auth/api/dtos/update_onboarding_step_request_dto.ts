@@ -4,4 +4,5 @@ export type UpdateOnboardingStepRequestDto = {
   id: string;
   onboarding_step: SignupStepKey;
   onboarding_completed?: boolean;
+  current_workspace_id?: string | null;
 };

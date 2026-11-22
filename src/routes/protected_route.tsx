@@ -28,13 +28,13 @@ export const ProtectedRoute = () => {
   }
 
 
-  if (!user) {
+  if (!user|| profileError || !profile) {
     return <Navigate to={ROUTES.LOGIN} replace />;
   }
-   // Stay on the page; queryClient already toasts profile failures.
-   if (profileError || !profile) {
-    return <Outlet />;
-  }
+  //  // Stay on the page; queryClient already toasts profile failures.
+  //  if (profileError || !profile) {
+  //   return <Outlet />;
+  // }
 
   // in the error of profile i already handle it and show a toast so he do not need to go to any place
   

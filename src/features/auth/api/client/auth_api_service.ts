@@ -56,28 +56,28 @@ export class AuthApiService {
     return response;
   }
 
-    async updateOnboardingStep(dto: UpdateOnboardingStepRequestDto) {
-      const updateData: {
-        onboarding_step: string;
-        onboarding_completed?: boolean;
-      } = {
-        onboarding_step: dto.onboarding_step,
-      };
+  async updateOnboardingStep(dto: UpdateOnboardingStepRequestDto) {
+    const updateData: {
+      onboarding_step: string;
+      onboarding_completed?: boolean;
+      current_workspace_id?: string | null;
+    } = {
+      onboarding_step: dto.onboarding_step,
+    };
 
-      if (dto.onboarding_completed !== undefined) {
-        updateData.onboarding_completed = dto.onboarding_completed;
-      }
-     
-
-      const response = await supabase
-        .from("profiles")
-        .update(updateData)
-        .eq("id", dto.id)
-        .select("*")
-        .maybeSingle();
-        console.log("the response from onboarding step fn is : ",response)
-
-
-      return response;
+    if (dto.onboarding_completed !== undefined) {
+      updateData.onboarding_completed = dto.onboarding_completed;
     }
+
+    if (dto.current_workspace_id !== undefined) {
+      updateData.current_workspace_id = dto.current_workspace_id;
+    }
+
+    return await supabase
+      .from("profiles")
+      .update(updateData)
+      .eq("id", dto.id)
+      .select("*")
+      .maybeSingle();
+  }
   }

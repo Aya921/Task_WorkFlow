@@ -14,7 +14,15 @@
   "actions": {
     "markAllRead": "Mark all as read",
     "accept": "Accept",
-    "decline": "Decline"
+    "decline": "Decline",
+    "delete": "Delete notification"
+  },
+  "deleteInvitation": {
+    "title": "Delete this invitation?",
+    "description": "Deleting this notification will decline your invitation to join {{project}}. This can't be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete & decline",
+    "fallbackProject": "this project"
   },
   "status": {
     "expired": "Expired"

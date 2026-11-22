@@ -3,6 +3,7 @@ import { NotificationDataSourceImp } from "../../features/notification/api/data_
 import { NotificationRepoImp } from "../../features/notification/data/repo/notification_repo_imp";
 import { AcceptProjectInvitation } from "../../features/notification/domain/usecase/accept_project_invitation";
 import { DeclineProjectInvitation } from "../../features/notification/domain/usecase/decline_project_invitation";
+import { DeleteNotification } from "../../features/notification/domain/usecase/delete_notification";
 import { GetNotifications } from "../../features/notification/domain/usecase/get_notifications";
 import { MarkAllNotificationsAsRead } from "../../features/notification/domain/usecase/mark_all_notifications_as_read";
 import { MarkNotificationAsRead } from "../../features/notification/domain/usecase/mark_notification_as_read";
@@ -20,3 +21,4 @@ export const acceptProjectInvitationUseCase =
   AcceptProjectInvitation(notificationRepo);
 export const declineProjectInvitationUseCase =
   DeclineProjectInvitation(notificationRepo);
+export const deleteNotificationUseCase = DeleteNotification(notificationRepo);

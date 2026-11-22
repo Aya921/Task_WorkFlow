@@ -18,7 +18,15 @@
   "actions": {
     "markAllRead": "تعليم تحديد الكل كمقروء",
     "accept": "قبول",
-    "decline": "رفض"
+    "decline": "رفض",
+    "delete": "حذف الإشعار"
+  },
+  "deleteInvitation": {
+    "title": "حذف هذه الدعوة؟",
+    "description": "حذف هذا الإشعار سيؤدي إلى رفض دعوتك للانضمام إلى {{project}}. لا يمكن التراجع عن ذلك.",
+    "cancel": "إلغاء",
+    "confirm": "حذف ورفض",
+    "fallbackProject": "هذا المشروع"
   },
   "status": {
     "expired": "منتهية"

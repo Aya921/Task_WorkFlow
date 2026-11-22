@@ -44,19 +44,14 @@ export const useMarkNotificationReadMutation = () => {
 
       return response.data ?? [];
     },
-    onSuccess: () => {
+    onSuccess: (updatedItems) => {
+      // Only the rows the server actually updated (project invitations are skipped).
+      const updatedById = new Map(updatedItems.map((item) => [item.id, item]));
+
       queryClient.setQueryData<NotificationEntity[]>(
         NOTIFICATIONS_QUERY_KEY,
-        (current) => {
-          if (!current) {
-            return [];
-          }
-
-          const now = new Date().toISOString();
-          return current.map((item) =>
-            item.isRead ? item : { ...item, isRead: true, readAt: now },
-          );
-        },
+        (current) =>
+          current?.map((item) => updatedById.get(item.id) ?? item) ?? [],
       );
     },
   });
