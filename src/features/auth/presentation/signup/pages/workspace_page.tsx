@@ -49,7 +49,8 @@ export const CreateWorkSpacePage = () => {
     }
 
     createWorkSpaceFn(entity, {
-      onSuccess: () => {
+      onSuccess: (data) => {
+        console.log("data is the following", data)
         setIsWorkSpaceCreatedSuccess(true);
       },
     });
@@ -57,6 +58,7 @@ export const CreateWorkSpacePage = () => {
 
   // Show success view if workspace was created
   if (isWorkSpaceCreatedSuccess) {
+    console.log("came here to show the code view")
     return (
       <motion.div
         className="flex w-full flex-1 flex-col items-center justify-between gap-6 sm:gap-8 md:gap-10"
@@ -64,7 +66,10 @@ export const CreateWorkSpacePage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: "easeOut" }}
       >
-        <WorkspaceCodeView inviteCode={data?.inviteCode ?? ""} />
+        <WorkspaceCodeView
+          inviteCode={data?.inviteCode ?? ""}
+          workspaceId={data?.workSpace_id ?? ""}
+        />
       </motion.div>
     );
   }

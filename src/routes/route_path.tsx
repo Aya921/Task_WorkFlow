@@ -7,4 +7,5 @@ export const ROUTES = {
   CONNECT_GITHUB: "/signup/Connect_Github",
   SUCCESS_REGISTER: "/signup/Success_Register",
   DASHBOARD: "/Dashboard",
+  NOTIFICATIONS: "/Notifications",
 } as const;

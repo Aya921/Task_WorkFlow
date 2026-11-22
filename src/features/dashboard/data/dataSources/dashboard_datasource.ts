@@ -10,4 +10,5 @@ export interface DashboardDataSource {
   addProject(
     request: AddProjectRequest,
   ): Promise<ApiResponse<AddProjectResult>>;
+  deleteProject(projectId: string): Promise<ApiResponse<void>>;
 }

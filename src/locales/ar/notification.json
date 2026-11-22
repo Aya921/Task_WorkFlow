@@ -1,0 +1,74 @@
+{
+  "title": "الإشعارات",
+  "unreadCount_zero": "لا يوجد غير مقروء",
+  "unreadCount_one": "إشعار واحد غير مقروء",
+  "unreadCount_two": "إشعاران غير مقروءين",
+  "unreadCount_few": "{{count}} إشعارات غير مقروءة",
+  "unreadCount_many": "{{count}} إشعارًا غير مقروء",
+  "unreadCount_other": "{{count}} غير مقروء",
+  "filters": {
+    "label": "فلاتر الإشعارات",
+    "all": "الكل",
+    "unread": "غير مقروء"
+  },
+  "groups": {
+    "today": "اليوم",
+    "earlier": "الأسبق"
+  },
+  "actions": {
+    "markAllRead": "تعليم تحديد الكل كمقروء",
+    "accept": "قبول",
+    "decline": "رفض",
+    "delete": "حذف الإشعار"
+  },
+  "deleteInvitation": {
+    "title": "حذف هذه الدعوة؟",
+    "description": "حذف هذا الإشعار سيؤدي إلى رفض دعوتك للانضمام إلى {{project}}. لا يمكن التراجع عن ذلك.",
+    "cancel": "إلغاء",
+    "confirm": "حذف ورفض",
+    "fallbackProject": "هذا المشروع"
+  },
+  "status": {
+    "expired": "منتهية"
+  },
+  "loading": "جاري تحميل الإشعارات...",
+  "empty": {
+    "title": "أنت محدّث بكل شيء",
+    "description": "دعوات المشاريع وتحديثات المهام ستظهر هنا."
+  },
+  "error": {
+    "title": "تعذر تحميل الإشعارات",
+    "description": "حصل خطأ أثناء جلب صندوق الإشعارات.",
+    "retry": "حاول مرة أخرى"
+  },
+  "time": {
+    "justNow": "الآن"
+  },
+  "acceptInvitation": {
+    "title": "قبول دعوة المشروع",
+    "subtitlePrefix": "دعوة من",
+    "subtitleSuffix": "للتعاون",
+    "close": "إغلاق",
+    "invitedRole": "الدور المدعو",
+    "fields": {
+      "jobTitle": {
+        "label": "دورك / المسمى الوظيفي في المشروع *",
+        "placeholder": "مهندس واجهات أمامية أول",
+        "hint": "سيظهر هذا بجانب مهامك ومساهماتك في هذا المشروع."
+      }
+    },
+    "validation": {
+      "jobTitleRequired": "يرجى إدخال المسمى الوظيفي."
+    },
+    "actions": {
+      "cancel": "إلغاء",
+      "confirm": "قبول والانضمام"
+    },
+    "fallbacks": {
+      "inviter": "أحد أعضاء الفريق",
+      "project": "هذا المشروع",
+      "workspace": "مساحة العمل",
+      "role": "عضو"
+    }
+  }
+}

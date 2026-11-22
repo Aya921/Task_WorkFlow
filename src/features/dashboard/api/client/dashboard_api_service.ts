@@ -9,12 +9,20 @@ export class DashboardApiService {
   }
 
   async addProject(dto: AddProjectRequestDto) {
+    console.log("dto is the following", dto);
     return await supabase.rpc("create_project", {
       p_workspace_id: dto.p_workspace_id,
       p_name: dto.p_name,
       p_description: dto.p_description,
       p_color: dto.p_color,
       p_member_ids: dto.p_member_ids,
+      p_invitation_expires_in_hours: dto.p_invitation_expires_in_hours ?? null,
+    });
+  }
+
+  async deleteProject(projectId: string) {
+    return await supabase.rpc("delete_project", {
+      p_project_id: projectId,
     });
   }
 }

@@ -7,10 +7,12 @@ import { useAuth } from "../../../../../hooks/use_auth";
 
 interface WorkspaceCodeViewProps {
   inviteCode: string;
+  workspaceId: string;
 }
 
 export const WorkspaceCodeView = ({
   inviteCode,
+  workspaceId,
 }: WorkspaceCodeViewProps) => {
   const [copied, setCopied] = useState(false);
   const { user } = useAuth();
@@ -21,20 +23,21 @@ export const WorkspaceCodeView = ({
   } = useUpdateOnboardingStepMutation();
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText(inviteCode);
+    void navigator.clipboard.writeText(inviteCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleContinue = () => {
-    if (!user?.id) return;
+    if (!user?.id || !workspaceId) return;
 
-    updateOnboardingStepFn(
-      {
-        userId: user.id,
-        onboardingStep: "github",
-      },
-    );
+    // Advance onboarding and attach the workspace only now, so create_workspace
+    // does not refresh the profile and unmount this screen.
+    updateOnboardingStepFn({
+      userId: user.id,
+      onboardingStep: "github",
+      currentWorkspaceId: workspaceId,
+    });
   };
 
   return (

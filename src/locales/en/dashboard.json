@@ -158,6 +158,15 @@
         "viewer": "Viewer"
       }
     },
+    "invitationExpiry": {
+      "label": "Invitation expires in",
+      "hint": "Invited members must accept before this time.",
+      "options": {
+        "24h": "24 hours",
+        "7d": "7 days",
+        "30d": "30 days"
+      }
+    },
     "preview": {
       "untitled": "Untitled project",
       "newBadge": "New",

@@ -16,6 +16,7 @@ export const SignupGuard = ({ children }: { children: React.ReactNode }) => {
     profile,
     sessionLoading,
     profileLoading,
+    profileError,
   } = useAuth();
   
   if (sessionLoading || (user && profileLoading)) {
@@ -40,7 +41,7 @@ export const SignupGuard = ({ children }: { children: React.ReactNode }) => {
   }
 
   // Allow unauthenticated users only on the first step
-  if (!user) {
+  if (!user|| profileError || !profile) {
     if (step === "account") {
       return <>{children}</>;
     }

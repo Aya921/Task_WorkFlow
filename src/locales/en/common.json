@@ -21,5 +21,12 @@
     "loadFailed": "Failed to load dashboard. Please try again later.",
     "notFound": "Dashboard data not found.",
     "createProjectFailed": "Failed to create project. Please try again later."
+  },
+  "notification": {
+    "loadFailed": "Failed to load notifications. Please try again later.",
+    "updateFailed": "Failed to update the notification. Please try again later.",
+    "acceptInvitationFailed": "Failed to accept the invitation. Please try again later.",
+    "declineInvitationFailed": "Failed to decline the invitation. Please try again later.",
+    "deleteFailed": "Failed to delete the notification. Please try again later."
   }
 }

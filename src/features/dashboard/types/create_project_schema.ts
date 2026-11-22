@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { INVITATION_EXPIRY_VALUES } from "../presentation/components/projectCreation/invitation_expiry_options";
 
 export const DESCRIPTION_MAX_LENGTH = 240;
 
@@ -15,6 +16,7 @@ export const dashboardCreateProjectSchema = (t: (key: string) => string) =>
       .string()
       .min(1, { message: t("createProject.validation.colorRequired") }),
     projectMembers: z.array(z.string()),
+    invitationExpiry: z.enum(INVITATION_EXPIRY_VALUES),
   });
 
 export type CreateProjectFormData = z.infer<

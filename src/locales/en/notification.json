@@ -1,0 +1,70 @@
+{
+  "title": "Notifications",
+  "unreadCount_one": "{{count}} unread",
+  "unreadCount_other": "{{count}} unread",
+  "filters": {
+    "label": "Notification filters",
+    "all": "All",
+    "unread": "Unread"
+  },
+  "groups": {
+    "today": "Today",
+    "earlier": "Earlier"
+  },
+  "actions": {
+    "markAllRead": "Mark all as read",
+    "accept": "Accept",
+    "decline": "Decline",
+    "delete": "Delete notification"
+  },
+  "deleteInvitation": {
+    "title": "Delete this invitation?",
+    "description": "Deleting this notification will decline your invitation to join {{project}}. This can't be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete & decline",
+    "fallbackProject": "this project"
+  },
+  "status": {
+    "expired": "Expired"
+  },
+  "loading": "Loading notifications...",
+  "empty": {
+    "title": "You're all caught up",
+    "description": "New project invites and task updates will show up here."
+  },
+  "error": {
+    "title": "Couldn't load notifications",
+    "description": "Something went wrong while fetching your inbox.",
+    "retry": "Try again"
+  },
+  "time": {
+    "justNow": "Just now"
+  },
+  "acceptInvitation": {
+    "title": "Accept Project Invitation",
+    "subtitlePrefix": "Invited by",
+    "subtitleSuffix": "to collaborate",
+    "close": "Close",
+    "invitedRole": "Invited role",
+    "fields": {
+      "jobTitle": {
+        "label": "Your Role / Job Title in Project *",
+        "placeholder": "Senior Frontend Engineer",
+        "hint": "This will be displayed alongside your assignments and contributions in this project."
+      }
+    },
+    "validation": {
+      "jobTitleRequired": "Please enter your job title."
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "confirm": "Accept & Join"
+    },
+    "fallbacks": {
+      "inviter": "a teammate",
+      "project": "this project",
+      "workspace": "Workspace",
+      "role": "Member"
+    }
+  }
+}

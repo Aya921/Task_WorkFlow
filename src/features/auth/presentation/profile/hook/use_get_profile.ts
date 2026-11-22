@@ -18,6 +18,8 @@ export function useProfile(userId: string | undefined) {
 
       if (!response.data) {
         throw new Error(i18n.t("common:profile.notFound"));
+      
+      
       }
 
       if (response.data.currentWorkspaceId) {

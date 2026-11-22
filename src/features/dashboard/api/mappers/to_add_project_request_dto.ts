@@ -9,4 +9,5 @@ export const toAddProjectRequestDto = (
   p_description: entity.description ?? null,
   p_color: entity.color ?? null,
   p_member_ids: entity.memberIds ?? [],
+  p_invitation_expires_in_hours: entity.invitationExpiresInHours ?? null,
 });
