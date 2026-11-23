@@ -11,6 +11,22 @@
     "quoteText": "“The secret of getting ahead is getting started.”",
     "quoteAuthor": "Mark Twain"
   },
+  "workspaceInvite": {
+    "title": "Invite people to your workspace",
+    "description": "Share this invite code so teammates can join during signup.",
+    "codeLabel": "Workspace invite code",
+    "expiresAt": "Expires {{date}}",
+    "expiredAt": "Expired {{date}}",
+    "expiredMessage": "This invite code has expired. Generate a new one to keep inviting people.",
+    "copy": "Copy code",
+    "copied": "Copied",
+    "generate": "Generate new code",
+    "close": "Close",
+    "loading": "Loading invite code...",
+    "loadFailed": "Couldn't load the invite code.",
+    "retry": "Try again",
+    "open": "Invite people"
+  },
   "loading": "Loading dashboard...",
   "welcome": {
     "greeting": "Welcome back, {{name}}",

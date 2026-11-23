@@ -20,7 +20,8 @@
   "dashboard": {
     "loadFailed": "Failed to load dashboard. Please try again later.",
     "notFound": "Dashboard data not found.",
-    "createProjectFailed": "Failed to create project. Please try again later."
+    "createProjectFailed": "Failed to create project. Please try again later.",
+    "workspaceInviteFailed": "Failed to load the workspace invite. Please try again later."
   },
   "notification": {
     "loadFailed": "Failed to load notifications. Please try again later.",

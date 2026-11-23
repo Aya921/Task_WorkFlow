@@ -57,7 +57,7 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
       } as WorkspaceMember,
     ];
   });
-  const {  addProjectFn, isLoading} = useAddProjectMutation();
+  const { addProjectFn, isLoading } = useAddProjectMutation();
 
   const {
     formState: { errors },
@@ -92,9 +92,8 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
   }, [onClose]);
 
   const syncMembers = (nextMembers: WorkspaceMember[]) => {
-    setMembers(nextMembers); // using in the ui to display the members
+    setMembers(nextMembers);
     setValue(
-      // will sent in the form to the backend and we remove the current user from the list because
       "projectMembers",
       nextMembers
         .filter((member) => member.userId !== profile?.userId)
@@ -109,7 +108,6 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
   };
 
   const handleAddMember = (workspaceMember: WorkspaceMember) => {
-    // if the member is already in the list, we don't add them again
     if (members.some((member) => member.userId === workspaceMember.userId)) {
       return;
     }
@@ -133,14 +131,13 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
   };
 
   const onSubmit = (data: CreateProjectFormData) => {
-   
-    if(workspaceId) {
+    if (workspaceId) {
       addProjectFn({
         workspaceId,
         name: data.projectName,
         description: data.projectDescription,
         color: data.projectColor,
-        memberIds:data.projectMembers, // TODO: remove this after testing
+        memberIds: data.projectMembers,
         invitationExpiresInHours: getInvitationExpiryHours(data.invitationExpiry),
       });
     }

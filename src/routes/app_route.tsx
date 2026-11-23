@@ -11,6 +11,7 @@ import { ProtectedRoute } from "./protected_route";
 import { GuestRoute } from "./guest_route";
 import { NotificationsPage } from "../features/notification/presentation/pages/notifications_page";
 import { NotificationProvider } from "../features/notification/presentation/context/notificaton_provider";
+import { MainLayout } from "../shared/layout/main_layout";
 
 export const AppRoutes = () => {
   return (
@@ -33,16 +34,12 @@ export const AppRoutes = () => {
 
       {/* Protected routes */}
       <Route element={<ProtectedRoute />}>
-        <Route
-          path={ROUTES.DASHBOARD}
-          element={<DashboardPage />}
-        />
-        <Route
-          path={ROUTES.NOTIFICATIONS}
-          element={<NotificationProvider>
+        <Route element={<MainLayout />}>
+          <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
+          <Route path={ROUTES.NOTIFICATIONS} element={<NotificationProvider>
             <NotificationsPage />
-          </NotificationProvider>}
-        />
+          </NotificationProvider>} />
+        </Route>
       </Route>
 
       {/* Not found */}

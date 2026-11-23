@@ -8,8 +8,13 @@ export const DashboardRepoImp = ( dashboardDataSource: DashboardDataSource): Das
   addProject(request) {
     return dashboardDataSource.addProject(request);
   },
-  deleteProject(projectId){
+  deleteProject(projectId) {
     return dashboardDataSource.deleteProject(projectId);
-  }
-  
+  },
+  getWorkspaceInvite(workspaceId) {
+    return dashboardDataSource.getWorkspaceInvite(workspaceId);
+  },
+  regenerateWorkspaceInvite(workspaceId) {
+    return dashboardDataSource.regenerateWorkspaceInvite(workspaceId);
+  },
 });

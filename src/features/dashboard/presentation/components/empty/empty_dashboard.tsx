@@ -23,6 +23,7 @@ export const EmptyDashboard = ({
 }: EmptyDashboardProps) => {
   return (
     <section className="relative min-h-screen overflow-hidden bg-background py-4 lg:pt-10">
+      
       <img
         src={dashboardBg}
         alt=""
