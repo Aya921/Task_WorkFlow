@@ -17,6 +17,7 @@ export const dashboardCreateProjectSchema = (t: (key: string) => string) =>
       .min(1, { message: t("createProject.validation.colorRequired") }),
     projectMembers: z.array(z.string()),
     invitationExpiry: z.enum(INVITATION_EXPIRY_VALUES),
+    externalMemberEmails: z.array(z.string()),
   });
 
 export type CreateProjectFormData = z.infer<

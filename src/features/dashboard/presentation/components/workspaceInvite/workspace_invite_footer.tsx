@@ -38,7 +38,7 @@ export const WorkspaceInviteFooter = ({
       <div className="flex flex-wrap items-center justify-between gap-2">
 
      <div>
-     <Button
+    {!isExpired&& <Button
             type="button"
             onClick={onGenerate}
             isLoading={isRegenerating}
@@ -49,7 +49,7 @@ export const WorkspaceInviteFooter = ({
           >
             <RefreshCw size={14} aria-hidden="true" />
             {t("workspaceInvite.generate")}
-          </Button>
+          </Button>}
      </div>
         
 

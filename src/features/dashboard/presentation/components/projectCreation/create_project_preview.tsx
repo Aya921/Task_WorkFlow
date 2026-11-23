@@ -8,12 +8,14 @@ type CreateProjectPreviewProps = {
   name: string;
   color: string;
   members: WorkspaceMember[];
+  externalMembers: string[];
 };
 
 export const CreateProjectPreview = ({
   name,
   color,
   members,
+  externalMembers,
 }: CreateProjectPreviewProps) => {
   const { t } = useTranslation("dashboard");
   const previewName = name.trim() || t("createProject.preview.untitled");
@@ -44,14 +46,25 @@ export const CreateProjectPreview = ({
       </div>
 
       <div className="flex items-center justify-between gap-2 sm:justify-end">
-        {members.length > 0 ? (
+        {members.length > 0? (
           <div className="flex -space-x-1.5 rtl:space-x-reverse">
             {members.slice(0, 3).map((member) => (
               <span
-                key={member.userId}
+                key={member.fullName}
                 className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-white bg-primary-100 text-[8px] font-semibold text-primary-700"
               >
                 {getInitials(member.fullName)}
+              </span>
+            ))}
+            
+          </div>
+        ) : null}
+
+        {externalMembers.length > 0? (
+          <div className="flex -space-x-1.5 rtl:space-x-reverse">
+            {externalMembers.slice(0, 3).map((email) => (
+              <span key={email} className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-white bg-primary-100 text-[8px] font-semibold text-primary-700">
+                {getInitials(email)}
               </span>
             ))}
           </div>

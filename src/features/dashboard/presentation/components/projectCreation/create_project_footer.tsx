@@ -6,11 +6,13 @@ import { Button } from "../../../../../shared/components/button";
 type CreateProjectFooterProps = {
   onCancel: () => void;
   isSubmitting?: boolean;
+  errorMessage?: string;
 };
 
 export const CreateProjectFooter = ({
   onCancel,
   isSubmitting = false,
+  errorMessage,
 }: CreateProjectFooterProps) => {
   const { t } = useTranslation("dashboard");
 
@@ -40,6 +42,11 @@ export const CreateProjectFooter = ({
         <Plus size={14} strokeWidth={2.5} />
         {t("createProject.actions.create")}
       </Button>
+      {errorMessage && (
+        <p className={`${FONT_STYLES.caption} text-red-500`}>
+          {errorMessage}
+        </p>
+      )}
     </div>
   );
 };

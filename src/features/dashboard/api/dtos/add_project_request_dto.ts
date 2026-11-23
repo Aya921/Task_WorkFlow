@@ -5,4 +5,5 @@ export type AddProjectRequestDto = {
   p_color?: string | null;
   p_member_ids: string[];
   p_invitation_expires_in_hours?: number | null;
+  p_invite_external_members?: string[];
 };

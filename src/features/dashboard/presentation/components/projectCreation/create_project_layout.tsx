@@ -9,8 +9,9 @@ import {
   dashboardCreateProjectSchema,
   type CreateProjectFormData,
 } from "../../../types/create_project_schema";
-import type { WorkspaceMember } from "../../../domain/entity/workspace_member";
 import { useWorkspaceDashboardQuery } from "../../hooks/use_workspace_dashboard_query";
+import { useProjectMembers } from "../../hooks/use_project_members";
+import { useExternalProjectMembers } from "../../hooks/use_external_project_members";
 import { CreateProjectColorSection } from "./create_project_color_section";
 import { CreateProjectDescriptionField } from "./create_project_description_field";
 import { CreateProjectFooter } from "./create_project_footer";
@@ -43,21 +44,8 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
   const [selectedColor, setSelectedColor] = useState<ProjectColorOption>(
     DEFAULT_PROJECT_COLOR,
   );
-  const [members, setMembers] = useState<WorkspaceMember[]>(() => {
-    if (!profile) {
-      return [];
-    }
 
-    return [
-      {
-        userId: profile.userId,
-        fullName: profile.userName,
-        email: profile.userEmail,
-        role: "owner",
-      } as WorkspaceMember,
-    ];
-  });
-  const { addProjectFn, isLoading } = useAddProjectMutation();
+  const { addProjectFn, isLoading,error } = useAddProjectMutation();
 
   const {
     formState: { errors },
@@ -74,8 +62,19 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
       projectColor: DEFAULT_PROJECT_COLOR.color,
       projectMembers: [],
       invitationExpiry: DEFAULT_INVITATION_EXPIRY,
+      externalMemberEmails: [],
     },
   });
+
+  const { members, handleAddMember, handleRemoveMember } = useProjectMembers(
+    profile,
+    setValue,
+  );
+  const {
+    externalMembers,
+    handleAddExternalMember,
+    handleRemoveExternalMember,
+  } = useExternalProjectMembers(setValue);
 
   const projectName = useWatch({ control, name: "projectName" });
   const projectDescription = useWatch({ control, name: "projectDescription" });
@@ -91,44 +90,11 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [onClose]);
 
-  const syncMembers = (nextMembers: WorkspaceMember[]) => {
-    setMembers(nextMembers);
-    setValue(
-      "projectMembers",
-      nextMembers
-        .filter((member) => member.userId !== profile?.userId)
-        .map((member) => member.userId),
-      { shouldValidate: true },
-    );
-  };
-
   const handleSelectColor = (color: ProjectColorOption) => {
     setSelectedColor(color);
     setValue("projectColor", color.color, { shouldValidate: true });
   };
 
-  const handleAddMember = (workspaceMember: WorkspaceMember) => {
-    if (members.some((member) => member.userId === workspaceMember.userId)) {
-      return;
-    }
-
-    syncMembers([
-      ...members,
-      {
-        userId: workspaceMember.userId,
-        fullName: workspaceMember.fullName,
-        email: workspaceMember.email,
-        role: "member",
-      },
-    ]);
-  };
-
-  const handleRemoveMember = (id: string) => {
-    if (id === profile?.userId) {
-      return;
-    }
-    syncMembers(members.filter((member) => member.userId !== id));
-  };
 
   const onSubmit = (data: CreateProjectFormData) => {
     if (workspaceId) {
@@ -139,6 +105,8 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
         color: data.projectColor,
         memberIds: data.projectMembers,
         invitationExpiresInHours: getInvitationExpiryHours(data.invitationExpiry),
+        inviteExternalMembers: data.externalMemberEmails,
+        
       });
     }
   };
@@ -195,6 +163,10 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
             currentUserId={profile?.userId}
             onAdd={handleAddMember}
             onRemove={handleRemoveMember}
+            onAddExternalMember={handleAddExternalMember}
+            onRemoveExternalMember={handleRemoveExternalMember}
+            externalMembers={externalMembers}
+           
           />
 
           <CreateProjectInvitationExpiryField
@@ -206,11 +178,13 @@ export const CreateProjectLayout = ({ onClose }: CreateProjectLayoutProps) => {
             name={projectName}
             color={selectedColor.color}
             members={members}
+            externalMembers={externalMembers}
           />
         </div>
 
         <div className="border-t border-secondary-100 bg-white p-3 sm:px-5 sm:py-3">
-          <CreateProjectFooter onCancel={onClose} isSubmitting={isLoading} />
+          <CreateProjectFooter onCancel={onClose} isSubmitting={isLoading} 
+          errorMessage={error??undefined} />
         </div>
       </form>
     </div>

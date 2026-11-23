@@ -1,5 +1,5 @@
 import { Plus, UserRoundPlus } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FONT_STYLES } from "../../../../../assets/fonts/font_style";
 import { InputField } from "../../../../../shared/components/input_field";
@@ -13,8 +13,13 @@ type CreateProjectMembersSectionProps = {
   isLoadingWorkspaceMembers: boolean;
   currentUserId?: string;
   onAdd: (member: WorkspaceMember) => void;
+  externalMembers: string[];
+  onAddExternalMember: (email: string) => void;
   onRemove: (id: string) => void;
+  onRemoveExternalMember: (email: string) => void;
 };
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export const CreateProjectMembersSection = ({
   members,
@@ -23,54 +28,60 @@ export const CreateProjectMembersSection = ({
   currentUserId,
   onAdd,
   onRemove,
+  externalMembers,
+  onAddExternalMember,
+  onRemoveExternalMember,
 }: CreateProjectMembersSectionProps) => {
   const { t } = useTranslation("dashboard");
   const [query, setQuery] = useState("");
 
-  const suggestions = useMemo(() => {
-    const assignedIds = new Set(members.map((member) => member.userId));
-    const normalizedQuery = query.trim().toLowerCase();
-
-    return workspaceMembers.filter((member) => {
-      if (assignedIds.has(member.userId)) {
-        return false;
-      }
-
-      if (!normalizedQuery) {
-        return false;
-      }
-
-      const nameMatch = member.fullName.toLowerCase().includes(normalizedQuery);
-      const emailMatch = member.email?.toLowerCase().includes(normalizedQuery);
-      return nameMatch || Boolean(emailMatch);
-    });
-  }, [members, query, workspaceMembers]);
-
-  const resolveMemberFromQuery = () => {
-    const normalizedQuery = query.trim().toLowerCase();
-    if (!normalizedQuery) {
-      return null;
-    }
-
-    return (
-      suggestions.find(
-        (member) =>
-          member.fullName.toLowerCase() === normalizedQuery ||
-          member.email?.toLowerCase() === normalizedQuery,
-      ) ??
-      suggestions[0] ??
-      null
+  const suggestions: WorkspaceMember[] = useMemo(() => {
+    // remove from workspaceMembers the members that are already in the members array or the current user
+    const filteredMembers = workspaceMembers.filter(
+      (member) =>
+        members.every((m) => m.userId !== member.userId) &&
+        member.userId !== currentUserId,
     );
-  };
 
-  const handleAdd = () => {
-    const member = resolveMemberFromQuery();
-    if (!member) {
-      return;
+    // now search for the members in the workspaceMembers by name or email
+    const suggestionMembers = filteredMembers.filter(
+      (member) =>
+        member.fullName.toLowerCase().includes(query.toLowerCase()) ||
+        member.email.toLowerCase().includes(query.toLowerCase()),
+    );
+
+    return suggestionMembers;
+  }, [query, workspaceMembers, members, currentUserId]);
+
+
+  const email=query.trim().toLowerCase();
+
+  const externalSuggestions: string = useMemo(() => {
+    // test if the query is a valid email
+    if (
+      emailRegex.test(email) &&
+      !externalMembers.some(
+        (memberEmail) => memberEmail.toLowerCase() === email,
+      ) &&
+      suggestions.length === 0 &&
+      workspaceMembers.every(
+        (member) => member.email.toLowerCase() !== email,
+      )
+    ) {
+      return email;
     }
-    onAdd(member);
-    setQuery("");
-  };
+    return "";
+  }, [email, externalMembers, suggestions, workspaceMembers]);
+
+  const handleAddExternalMember = useCallback(
+    (email: string) => {
+      if (emailRegex.test(email.trim().toLowerCase())) {
+        onAddExternalMember(email);
+        setQuery("");
+      }
+    },
+    [onAddExternalMember],
+  );
 
   const handleSelect = (member: WorkspaceMember) => {
     onAdd(member);
@@ -86,7 +97,9 @@ export const CreateProjectMembersSection = ({
         <span
           className={`${FONT_STYLES.caption} rounded-full bg-secondary-100 px-2 py-0.5 font-semibold text-secondary-500`}
         >
-          {t("createProject.members.assigned", { count: members.length })}
+          {t("createProject.members.assigned", {
+            count: members.length + externalMembers.length,
+          })}
         </span>
       </div>
 
@@ -102,7 +115,12 @@ export const CreateProjectMembersSection = ({
           onKeyDown={(event) => {
             if (event.key === "Enter") {
               event.preventDefault();
-              handleAdd();
+              if (suggestions.length > 0) {
+                handleSelect(suggestions[0]);
+              }
+              if (externalSuggestions.length > 0) {
+                handleAddExternalMember(externalSuggestions);
+              }
             }
           }}
           autoComplete="off"
@@ -111,7 +129,17 @@ export const CreateProjectMembersSection = ({
           inputAccessory={
             <button
               type="button"
-              onClick={handleAdd}
+              disabled={
+                suggestions.length === 0 && externalSuggestions.length === 0
+              }
+              onClick={() => {
+                if (suggestions.length > 0) {
+                  handleSelect(suggestions[0]);
+                }
+                if (externalSuggestions.length > 0) {
+                  handleAddExternalMember(externalSuggestions);
+                }
+              }}
               className="inline-flex h-full items-center gap-1 rounded-md bg-secondary-900 px-2.5 text-[11px] font-bold text-white"
             >
               <Plus size={12} strokeWidth={2.5} />
@@ -125,21 +153,39 @@ export const CreateProjectMembersSection = ({
           isLoading={isLoadingWorkspaceMembers}
           query={query}
           onSelect={handleSelect}
+          externalSuggestion={externalSuggestions}
+          onSelectExternalSuggestion={handleAddExternalMember}
         />
       </div>
 
-      {members.length > 0 ? (
-        <div className="flex flex-wrap gap-1.5">
-          {members.map((member) => (
-            <CreateProjectMemberChip
-              key={member.userId}
-              member={member}
-              canRemove={member.userId !== currentUserId}
-              onRemove={() => onRemove(member.userId)}
-            />
-          ))}
-        </div>
-      ) : null}
-    </div>
+     
+        {members.length > 0 ? (
+          <div className="flex flex-wrap gap-1.5">
+            {members.map((member) => (
+              <CreateProjectMemberChip
+                key={member.userId}
+                member={member}
+                canRemove={member.userId !== currentUserId}
+                onRemove={() => onRemove(member.userId)}
+              />
+            ))}
+          </div>
+        ) : null}
+        {externalMembers.length > 0 ? (
+          <div className="flex flex-wrap gap-1.5">
+            {externalMembers.map((email) => (
+              <CreateProjectMemberChip
+                key={email}
+                email={email}
+                canRemove={true}
+                onRemove={() => {
+                  onRemoveExternalMember(email);
+                }}
+              />
+            ))}
+          </div>
+        ) : null}
+      </div>
+    
   );
 };
